@@ -1,0 +1,4 @@
+﻿  Process "sample.y" bison file
+C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: The command "
+C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: start /B /WAIT /D "C:\Users\student\Desktop\Compilers\Compilers\" win_bison.exe --output="sample.tab.cpp" --defines="sample.tab.h"  "sample.y"
+C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: exit /b %errorlevel%" exited with code 1.
