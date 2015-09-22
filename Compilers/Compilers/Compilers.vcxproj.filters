@@ -20,20 +20,12 @@
     </Flex>
   </ItemGroup>
   <ItemGroup>
-    <Bison Include="sample.y">
-      <Filter>Source Files</Filter>
-    </Bison>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="sample.tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sample.flex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sample.tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

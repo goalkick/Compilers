@@ -1,4 +1,16 @@
-﻿  Process "sample.y" bison file
-C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: The command "
-C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: start /B /WAIT /D "C:\Users\student\Desktop\Compilers\Compilers\" win_bison.exe --output="sample.tab.cpp" --defines="sample.tab.h"  "sample.y"
-C:\Users\student\Desktop\Compilers\Compilers\custom_build_rules\win_flex_bison_custom_build.targets(55,5): error MSB3721: exit /b %errorlevel%" exited with code 1.
+﻿Построение начато 22.09.2015 20:19:32.
+     1>Проект "C:\Users\Дмитрий\Compilers\Compilers\Compilers\Compilers\Compilers.vcxproj" в узле 2 (целевые объекты Rebuild).
+     1>FlexTarget:
+         Process "sample.l" flex file
+         cmd.exe /C "C:\Users\Дмитрий\AppData\Local\Temp\tmpa1b0d55dc6564336bdf1119dffc1a08a.cmd"
+         
+         start /B /WAIT /D "C:\Users\Дмитрий\Compilers\Compilers\Compilers\Compilers\" win_flex.exe --outfile="sample.flex.cpp" --wincompat --lex-compat  "sample.l"
+         exit /b %errorlevel%
+       ClCompile:
+         D:\Visual Studio 2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt sample.flex.cpp
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(347,5): error : Required file "tracker.exe" is missing.
+     1>Построение проекта "C:\Users\Дмитрий\Compilers\Compilers\Compilers\Compilers\Compilers.vcxproj" завершено (целевые объекты Rebuild) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:00.93

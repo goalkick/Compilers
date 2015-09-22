@@ -1,0 +1,10 @@
+﻿Построение начато 22.09.2015 20:24:39.
+     1>Проект "C:\Users\Дмитрий\Compilers\Compilers\Compilers\Compilers\Compilers.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Visual Studio 2012\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /errorReport:prompt sample.flex.cpp
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(347,5): error : Required file "tracker.exe" is missing.
+     1>Построение проекта "C:\Users\Дмитрий\Compilers\Compilers\Compilers\Compilers\Compilers.vcxproj" завершено (целевые объекты Build) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:00.06
