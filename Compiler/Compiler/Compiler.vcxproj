@@ -68,8 +68,8 @@
   <ItemGroup>
     <CustomBuild Include="lexer.l">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)\win_flex_bison\win_flex.exe" --wincompat -o"$(ProjectDir)lexer.cpp" lexer.l</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Flex compiling</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\win_flex_bison\win_flex.exe --wincompat -o"$(ProjectDir)lexer.cpp" lexer.l</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> compiling flex</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">lexer.cpp</Outputs>
     </CustomBuild>
   </ItemGroup>

@@ -3,13 +3,33 @@
 
 %{
 #include <iostream>
-#include <string>
-
+#include <cmath>
+#include <cstring>
 #define YY_DECL extern "C" int yylex()
 %}
 
-%%
-. { std::cout << "I'm symbol \"" + std::string( yytext ) + "\" at line: " << yylineno << std::endl; }
+DIGIT [0-9]
+LETTER [a-zA-Z_]
+id {LETER}({DIGIT} | {LETER})
+
+NUM {DIGIT}{DIGIT}*
+REAL ([0-9]+"."[]*) | ([0-9]*"."[0-9]+)
+COMMENT ("--"[a-z]*"\n") | (" "|"\n"|"\t")+
+
 
 %%
-extern int YYText();
+
+NUM { std::cout << yytext; }
+REAL { std::cout << yytext; }
+COMMENT { std::cout << yytext; }
+id { std::cout << yytext; }
+"if" { std::cout << yytext; }
+"&&" { std::cout << yytext; }
+"<"  { std::cout << yytext; }
+">"  { std::cout << yytext; }
+"==" { std::cout << yytext; }
+"*"  { std::cout << yytext; }
+"+"  { std::cout << yytext; }
+"-"  { std::cout << yytext; }
+
+%%
