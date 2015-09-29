@@ -64,6 +64,7 @@
   <ItemGroup>
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="parser.tab.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -72,6 +73,17 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> compiling flex</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">lexer.cpp</Outputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="parser.y">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\win_flex_bison\win_bison.exe -o"parser.tab.cpp" parser.y -v –d</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compiling bison</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">parser.tab.cpp;parser.tab.hpp;parser.output</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="parser.tab.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
