@@ -1,5 +1,3 @@
-/* Данный пример скорее всего даже не является рабочим, нужен для того, чтобы была возможность найти и загуглить то, что нужно гуглить */
-
 /* Секция с кодом, который попадет в парсер.*/
 %{
 #include <iostream>
@@ -21,8 +19,10 @@ void yyerror( int*, const char * );
 /* Определение лево-ассоцитивности. Аналогично есть %right.
 Порядок объявление важен - чем позже объявлен оператор, тем больше его приоритет.
 В данном случае оба оператора лево-ассоциативные, но - имеет более высокий приоритет, чем & и |. */
-%left '&'  '|'
-%left '-'
+%left '&' '+' '-'
+%left '*' '/'
+%left '<'
+%left '.' '['']' '!'
 
 /* Определение токенов. Можно задать ассоциируемый с токеном тип из Union. */
 %token <ival> INTEGER_LITERAL
@@ -45,12 +45,117 @@ void yyerror( int*, const char * );
 %token NEW
 %token ELSE
 %token THIS
+%token STATIC
 
 /* Секция с описанием правил парсера. */
 %%
-Program:
-%%
+Program : 
+	MainClass { /* Здесь выполняемый в случае совпадения код */ } 
+	| Program ClassDecls {}
+	;
 
+MainClass :
+	CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '['']' ID ')' '{' Statement '}' '}' {}
+	;
+
+ClassDecls : 
+	CLASS ID '{' '}' {}
+	| CLASS ID '{' VarDeclList '}' {}
+	| CLASS ID '{' MethodDeclList '}' {}
+	| CLASS ID '{' VarDeclList MethodDeclList '}' {}
+	| CLASS ID EXTENDS ID '{' '}' {}
+	| CLASS ID EXTENDS ID '{' VarDeclList '}' {}
+	| CLASS ID EXTENDS ID '{' MethodDeclList '}' {}
+	| CLASS ID EXTENDS ID '{' VarDeclList MethodDeclList '}' {}
+	;
+
+VarDeclList :
+	VarDecl {}
+	| VarDeclList VarDecl {}
+	;
+
+MethodDeclList :
+	MethodDecl {}
+	| MethodDeclList MethodDecl {}
+	;
+
+VarDecl : 
+	Type ID ';' {}
+	;
+
+MethodDecl :
+	PUBLIC Type ID '(' ')' '{' RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' ')' '{' VarDeclList RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' ')' '{' StatementList RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' FormalList ')' '{' RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN Exp ';' '}' {}
+	| PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}' {}
+	;
+
+StatementList :
+	Statement {}
+	| StatementList Statement {}
+	;
+
+FormalList :
+	Type ID {}
+	| Type ID FormalRest {}
+	;
+
+FormalRest : 
+	',' Type ID {}
+	| FormalRest ',' Type ID {}
+	;
+
+Type :
+	INT '['']' {}
+	| BOOLEAN {}
+	| INT {}
+	| ID {}
+	;
+
+Statement :
+	'{' StatementList '}' {}
+	| '{' '}' {}
+	| IF '(' Exp ')' Statement ELSE Statement {}
+	| WHILE '(' Exp ')' Statement {}
+	| SYSTEM_OUT_PRINTLN '(' Exp ')' ';' {}
+	| ID '=' Exp ';' {}
+	| ID '[' Exp ']' '=' Exp ';' {}
+	;
+
+Exp :
+	Exp '+' Exp {}
+	| Exp '-' Exp {}
+	| Exp '*' Exp {}
+	| Exp '/' Exp {}
+	| Exp '[' Exp ']' {}
+	| Exp '.' LENGTH {}
+	| Exp '.' ID '(' ExpList ')' {}
+	| Exp '.' ID '(' ')' {}
+	| INTEGER_LITERAL {}
+	| TRUE {}
+	| FALSE {}
+	| ID {}
+	| THIS {}
+	| NEW INT '[' Exp ']' {}
+	| NEW ID '(' ')' {}
+	| '!' Exp {}
+	| '(' Exp ')' {}
+	;
+
+ExpList :
+	Exp {}
+	| ExpList ExpRest {}
+	;
+
+ExpRest :
+	',' Exp {}
+	;
+
+%%
 /* Функция обработки ошибки. */
 void yyerror( int*, const char* str )
 {

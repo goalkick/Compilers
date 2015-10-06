@@ -65,7 +65,8 @@ extern int yydebug;
      FALSE = 274,
      NEW = 275,
      ELSE = 276,
-     THIS = 277
+     THIS = 277,
+     STATIC = 278
    };
 #endif
 
@@ -74,14 +75,14 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 16 "parser.y"
+#line 14 "parser.y"
 
 	int ival;
 	char sval[255];
 
 
 /* Line 2058 of yacc.c  */
-#line 85 "parser.tab.hpp"
+#line 86 "parser.tab.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

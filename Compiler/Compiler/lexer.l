@@ -39,6 +39,6 @@ NUM { yylval.ival = atoi( yytext ); return INTEGER_LITERAL; }
 id {  strcpy(yylval.sval, yytext); return ID; }
 COMMENT { ; }
 "&&"  { return yytext[0]; }
-[<>\=\+-.\*\\] { return yytext[0]; }
+[<>\=\+-.,\*\\\[\](){};!] { return yytext[0]; }
 
 %%
