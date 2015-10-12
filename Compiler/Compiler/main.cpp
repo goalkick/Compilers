@@ -1,7 +1,9 @@
-extern "C" int yylex();
+//int yyparse( int* );
+#include "parser.tab.hpp"
 
 int main()
 {
-	while( yylex() != 0 );
+	int a = 9;
+	while( yyparse() != 0 );
 	return 0;
 }

@@ -2,13 +2,12 @@
 %{
 #include <iostream>
 extern "C" int yylex();
-void yyerror( int*, const char * );
+void yyerror( const char * );
 %}
 
 /* Этот код будет помещен до определения Union
 Обычно используется для описания классов, реализующих синтаксическое дерево. */
 /* Параметры функции парсера. */
-%parse-param { int* hasError }
 
 /* Определение возможных типов выражения. */
 %union{
@@ -21,8 +20,8 @@ void yyerror( int*, const char * );
 В данном случае оба оператора лево-ассоциативные, но - имеет более высокий приоритет, чем & и |. */
 %left '&' '+' '-'
 %left '*' '/'
-%left '<'
-%left '.' '['']' '!'
+%left '<' '>'
+%left '.' '[' ']' '!'
 
 /* Определение токенов. Можно задать ассоциируемый с токеном тип из Union. */
 %token <ival> INTEGER_LITERAL
@@ -47,19 +46,27 @@ void yyerror( int*, const char * );
 %token THIS
 %token STATIC
 
+%start Program
+
 /* Секция с описанием правил парсера. */
 %%
+
 Program : 
-	MainClass { /* Здесь выполняемый в случае совпадения код */ } 
-	| Program ClassDecls {}
+	MainClass { } 
+	| MainClass ClassDeclsList {}
 	;
 
 MainClass :
 	CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '['']' ID ')' '{' Statement '}' '}' {}
 	;
 
+ClassDeclsList :
+	ClassDecls {}
+	| ClassDeclsList ClassDecls {}
+	;
+
 ClassDecls : 
-	CLASS ID '{' '}' {}
+	CLASS ID '{' '}' { std::cout << 1; }
 	| CLASS ID '{' VarDeclList '}' {}
 	| CLASS ID '{' MethodDeclList '}' {}
 	| CLASS ID '{' VarDeclList MethodDeclList '}' {}
@@ -135,6 +142,8 @@ Exp :
 	| Exp '.' LENGTH {}
 	| Exp '.' ID '(' ExpList ')' {}
 	| Exp '.' ID '(' ')' {}
+	| Exp '<' Exp {}
+	| Exp '>' Exp {}
 	| INTEGER_LITERAL {}
 	| TRUE {}
 	| FALSE {}
@@ -157,7 +166,7 @@ ExpRest :
 
 %%
 /* Функция обработки ошибки. */
-void yyerror( int*, const char* str )
+void yyerror( const char* str )
 {
-	std::cout << str << std::endl;
+	std::cout << "ERROR!" << str << std::endl;
 }

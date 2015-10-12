@@ -75,7 +75,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 14 "parser.y"
+#line 13 "parser.y"
 
 	int ival;
 	char sval[255];
@@ -99,7 +99,7 @@ int yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int yyparse (int* hasError);
+int yyparse (void);
 #else
 int yyparse ();
 #endif
