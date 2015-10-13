@@ -63,7 +63,7 @@
 
 /* Copy the first part of user declarations.  */
 /* Line 371 of yacc.c  */
-#line 2 "parser.y"
+#line 1 "parser.y"
 
 #include <iostream>
 extern "C" int yylex();
@@ -135,7 +135,7 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 13 "parser.y"
+#line 7 "parser.y"
 
 	int ival;
 	char sval[255];
@@ -499,13 +499,13 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    56,    60,    64,    65,    69,    70,    71,
-      72,    73,    74,    75,    76,    80,    81,    85,    86,    90,
-      94,    95,    96,    97,    98,    99,   100,   101,   105,   106,
-     110,   111,   115,   116,   120,   121,   122,   123,   127,   128,
-     129,   130,   131,   132,   133,   137,   138,   139,   140,   141,
-     142,   143,   144,   145,   146,   147,   148,   149,   150,   151,
-     152,   153,   154,   155,   156,   160,   161,   165
+       0,    49,    49,    50,    54,    58,    59,    63,    64,    65,
+      66,    67,    68,    69,    70,    74,    75,    79,    80,    84,
+      88,    89,    90,    91,    92,    93,    94,    95,    99,   100,
+     104,   105,   109,   110,   114,   115,   116,   117,   121,   122,
+     123,   124,   125,   126,   127,   131,   132,   133,   134,   135,
+     136,   137,   138,   139,   140,   141,   142,   143,   144,   145,
+     146,   147,   148,   149,   150,   154,   155,   159
 };
 #endif
 
@@ -1568,397 +1568,397 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 55 "parser.y"
+#line 49 "parser.y"
     { }
     break;
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 56 "parser.y"
+#line 50 "parser.y"
     {}
     break;
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 60 "parser.y"
+#line 54 "parser.y"
     {}
     break;
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 64 "parser.y"
+#line 58 "parser.y"
     {}
     break;
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 65 "parser.y"
+#line 59 "parser.y"
     {}
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 69 "parser.y"
+#line 63 "parser.y"
     { std::cout << 1; }
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 70 "parser.y"
+#line 64 "parser.y"
     {}
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 71 "parser.y"
+#line 65 "parser.y"
     {}
     break;
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 72 "parser.y"
+#line 66 "parser.y"
     {}
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 73 "parser.y"
+#line 67 "parser.y"
     {}
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 74 "parser.y"
+#line 68 "parser.y"
     {}
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 75 "parser.y"
+#line 69 "parser.y"
     {}
     break;
 
   case 14:
 /* Line 1792 of yacc.c  */
-#line 76 "parser.y"
+#line 70 "parser.y"
     {}
     break;
 
   case 15:
 /* Line 1792 of yacc.c  */
-#line 80 "parser.y"
+#line 74 "parser.y"
     {}
     break;
 
   case 16:
 /* Line 1792 of yacc.c  */
-#line 81 "parser.y"
+#line 75 "parser.y"
     {}
     break;
 
   case 17:
 /* Line 1792 of yacc.c  */
-#line 85 "parser.y"
+#line 79 "parser.y"
     {}
     break;
 
   case 18:
 /* Line 1792 of yacc.c  */
-#line 86 "parser.y"
+#line 80 "parser.y"
     {}
     break;
 
   case 19:
 /* Line 1792 of yacc.c  */
-#line 90 "parser.y"
+#line 84 "parser.y"
     {}
     break;
 
   case 20:
 /* Line 1792 of yacc.c  */
-#line 94 "parser.y"
+#line 88 "parser.y"
     {}
     break;
 
   case 21:
 /* Line 1792 of yacc.c  */
-#line 95 "parser.y"
+#line 89 "parser.y"
     {}
     break;
 
   case 22:
 /* Line 1792 of yacc.c  */
-#line 96 "parser.y"
+#line 90 "parser.y"
     {}
     break;
 
   case 23:
 /* Line 1792 of yacc.c  */
-#line 97 "parser.y"
+#line 91 "parser.y"
     {}
     break;
 
   case 24:
 /* Line 1792 of yacc.c  */
-#line 98 "parser.y"
+#line 92 "parser.y"
     {}
     break;
 
   case 25:
 /* Line 1792 of yacc.c  */
-#line 99 "parser.y"
+#line 93 "parser.y"
     {}
     break;
 
   case 26:
 /* Line 1792 of yacc.c  */
-#line 100 "parser.y"
+#line 94 "parser.y"
     {}
     break;
 
   case 27:
 /* Line 1792 of yacc.c  */
-#line 101 "parser.y"
+#line 95 "parser.y"
     {}
     break;
 
   case 28:
 /* Line 1792 of yacc.c  */
-#line 105 "parser.y"
+#line 99 "parser.y"
     {}
     break;
 
   case 29:
 /* Line 1792 of yacc.c  */
-#line 106 "parser.y"
+#line 100 "parser.y"
     {}
     break;
 
   case 30:
 /* Line 1792 of yacc.c  */
-#line 110 "parser.y"
+#line 104 "parser.y"
     {}
     break;
 
   case 31:
 /* Line 1792 of yacc.c  */
-#line 111 "parser.y"
+#line 105 "parser.y"
     {}
     break;
 
   case 32:
 /* Line 1792 of yacc.c  */
-#line 115 "parser.y"
+#line 109 "parser.y"
     {}
     break;
 
   case 33:
 /* Line 1792 of yacc.c  */
-#line 116 "parser.y"
+#line 110 "parser.y"
     {}
     break;
 
   case 34:
 /* Line 1792 of yacc.c  */
-#line 120 "parser.y"
+#line 114 "parser.y"
     {}
     break;
 
   case 35:
 /* Line 1792 of yacc.c  */
-#line 121 "parser.y"
+#line 115 "parser.y"
     {}
     break;
 
   case 36:
 /* Line 1792 of yacc.c  */
-#line 122 "parser.y"
+#line 116 "parser.y"
     {}
     break;
 
   case 37:
 /* Line 1792 of yacc.c  */
-#line 123 "parser.y"
+#line 117 "parser.y"
     {}
     break;
 
   case 38:
 /* Line 1792 of yacc.c  */
-#line 127 "parser.y"
+#line 121 "parser.y"
     {}
     break;
 
   case 39:
 /* Line 1792 of yacc.c  */
-#line 128 "parser.y"
+#line 122 "parser.y"
     {}
     break;
 
   case 40:
 /* Line 1792 of yacc.c  */
-#line 129 "parser.y"
+#line 123 "parser.y"
     {}
     break;
 
   case 41:
 /* Line 1792 of yacc.c  */
-#line 130 "parser.y"
+#line 124 "parser.y"
     {}
     break;
 
   case 42:
 /* Line 1792 of yacc.c  */
-#line 131 "parser.y"
+#line 125 "parser.y"
     {}
     break;
 
   case 43:
 /* Line 1792 of yacc.c  */
-#line 132 "parser.y"
+#line 126 "parser.y"
     {}
     break;
 
   case 44:
 /* Line 1792 of yacc.c  */
-#line 133 "parser.y"
+#line 127 "parser.y"
     {}
     break;
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 137 "parser.y"
+#line 131 "parser.y"
     {}
     break;
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 138 "parser.y"
+#line 132 "parser.y"
     {}
     break;
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 139 "parser.y"
+#line 133 "parser.y"
     {}
     break;
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 140 "parser.y"
+#line 134 "parser.y"
     {}
     break;
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 141 "parser.y"
+#line 135 "parser.y"
     {}
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 142 "parser.y"
+#line 136 "parser.y"
     {}
     break;
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 143 "parser.y"
+#line 137 "parser.y"
     {}
     break;
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 144 "parser.y"
+#line 138 "parser.y"
     {}
     break;
 
   case 53:
 /* Line 1792 of yacc.c  */
-#line 145 "parser.y"
+#line 139 "parser.y"
     {}
     break;
 
   case 54:
 /* Line 1792 of yacc.c  */
-#line 146 "parser.y"
+#line 140 "parser.y"
     {}
     break;
 
   case 55:
 /* Line 1792 of yacc.c  */
-#line 147 "parser.y"
+#line 141 "parser.y"
     {}
     break;
 
   case 56:
 /* Line 1792 of yacc.c  */
-#line 148 "parser.y"
+#line 142 "parser.y"
     {}
     break;
 
   case 57:
 /* Line 1792 of yacc.c  */
-#line 149 "parser.y"
+#line 143 "parser.y"
     {}
     break;
 
   case 58:
 /* Line 1792 of yacc.c  */
-#line 150 "parser.y"
+#line 144 "parser.y"
     {}
     break;
 
   case 59:
 /* Line 1792 of yacc.c  */
-#line 151 "parser.y"
+#line 145 "parser.y"
     {}
     break;
 
   case 60:
 /* Line 1792 of yacc.c  */
-#line 152 "parser.y"
+#line 146 "parser.y"
     {}
     break;
 
   case 61:
 /* Line 1792 of yacc.c  */
-#line 153 "parser.y"
+#line 147 "parser.y"
     {}
     break;
 
   case 62:
 /* Line 1792 of yacc.c  */
-#line 154 "parser.y"
+#line 148 "parser.y"
     {}
     break;
 
   case 63:
 /* Line 1792 of yacc.c  */
-#line 155 "parser.y"
+#line 149 "parser.y"
     {}
     break;
 
   case 64:
 /* Line 1792 of yacc.c  */
-#line 156 "parser.y"
+#line 150 "parser.y"
     {}
     break;
 
   case 65:
 /* Line 1792 of yacc.c  */
-#line 160 "parser.y"
+#line 154 "parser.y"
     {}
     break;
 
   case 66:
 /* Line 1792 of yacc.c  */
-#line 161 "parser.y"
+#line 155 "parser.y"
     {}
     break;
 
   case 67:
 /* Line 1792 of yacc.c  */
-#line 165 "parser.y"
+#line 159 "parser.y"
     {}
     break;
 
@@ -2196,9 +2196,9 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 168 "parser.y"
+#line 162 "parser.y"
 
-/* Ôóíêöèÿ îáğàáîòêè îøèáêè. */
+/* Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ Ğ¾ÑˆĞ¸Ğ±ĞºĞ¸. */
 void yyerror( const char* str )
 {
 	std::cout << "ERROR!" << str << std::endl;

@@ -1045,7 +1045,7 @@ return('.');
 case 38:
 YY_RULE_SETUP
 #line 61 "lexer.l"
-{ return '&'; }
+{ return '&'; }	
 	YY_BREAK
 case 39:
 /* rule 39 can match eol */
