@@ -144,6 +144,7 @@ Exp :
 	| Exp '.' ID '(' ')' {}
 	| Exp '<' Exp {}
 	| Exp '>' Exp {}
+	| Exp '&' Exp {}
 	| INTEGER_LITERAL {}
 	| TRUE {}
 	| FALSE {}
