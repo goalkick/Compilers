@@ -58,7 +58,7 @@ NUM {DIGIT}{DIGIT}*
 "<" return('<'); 
 ">" return('>');
 "." return('.');
-"&&"  { return '&'; }
+"&&"  { return '&'; }	
 " "|"\n"|"\t" { ; }
 [/][/].*\n { ; }
 {NUM} { yylval.ival = atoi( yytext ); return INTEGER_LITERAL; }
