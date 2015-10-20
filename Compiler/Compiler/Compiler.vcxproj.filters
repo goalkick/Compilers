@@ -40,5 +40,14 @@
     <ClInclude Include="grammar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Program_Kolya.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="visitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
