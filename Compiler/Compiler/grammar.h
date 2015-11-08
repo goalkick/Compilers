@@ -2,111 +2,111 @@
 class IVisitor;
 
 // Корневой интерфейс программы
-class Program {
+class IProgram {
 public:
-	virtual ~Program() {}
+	virtual ~IProgram() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Главный класс
-class MainClass {
+class IMainClass {
 public:
-	virtual ~MainClass() {}
+	virtual ~IMainClass() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Список классов
-class ClassDeclsList {
+class IClassDeclsList {
 public:
-	virtual ~ClassDeclsList() {}
+	virtual ~IClassDeclsList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Описание класса
-class ClassDecls {
+class IClassDecls {
 public:
-	virtual ~ClassDecls() {}
+	virtual ~IClassDecls() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Список объявлений переменных
-class VarDeclList {
+class IVarDeclList {
 public:
-	virtual ~VarDeclList() {}
+	virtual ~IVarDeclList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Объявление переменной
-class VarDecl {
+class IVarDecl {
 public:
-	virtual ~VarDecl() {}
+	virtual ~IVarDecl() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Список методов класса
-class MethodDeclList {
+class IMethodDeclList {
 public:
-	virtual ~MethodDeclList() {}
+	virtual ~IMethodDeclList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Метод класса
-class MethodDecl {
+class IMethodDecl {
 public:
-	virtual ~MethodDecl() {}
+	virtual ~IMethodDecl() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Список параметров
-class FormalList {
+class IFormalList {
 public:
-	virtual ~FormalList() {}
+	virtual ~IFormalList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
-class FormalRest {
+class IFormalRest {
 public:
-	virtual ~FormalRest() {}
+	virtual ~IFormalRest() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Тип
-class Type {
+class IType {
 public:
-	virtual ~Type() {}
+	virtual ~IType() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Последовательность команд
-class StatementList {
+class IStatementList {
 public:
-	virtual ~StatementList() {}
+	virtual ~IStatementList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Одна команда (или блок)
-class Statement {
+class IStatement {
 public:
-	virtual ~Statement() {}
+	virtual ~IStatement() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Последовательность выражений (аргументы функции)
-class ExpList {
+class IExpList {
 public:
-	virtual ~ExpList() {}
+	virtual ~IExpList() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
-class ExpRest {
+class IExpRest {
 public:
-	virtual ~ExpRest() {}
+	virtual ~IExpRest() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };
 
 // Арифметическое выражение
-class Exp {
+class IExp {
 public:
-	virtual ~Exp() {}
+	virtual ~IExp() {}
 	virtual void Accept( IVisitor* ) const = 0;
 };

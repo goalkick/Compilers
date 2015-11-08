@@ -39,6 +39,16 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+/* Line 2058 of yacc.c  */
+#line 11 "parser.y"
+ 
+	#include "Classes.h" 
+	#include "PrettyPrinter.h" 
+
+
+/* Line 2058 of yacc.c  */
+#line 52 "parser.tab.hpp"
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -53,7 +63,7 @@ extern int yydebug;
      IF = 262,
      CLASS = 263,
      PUBLIC = 264,
-     BOOLEAN = 265,
+     BOOL = 265,
      EXTENDS = 266,
      RETURN = 267,
      WHILE = 268,
@@ -75,14 +85,31 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 7 "parser.y"
+#line 16 "parser.y"
 
 	int ival;
 	char sval[255];
+	char* val;
+	IProgram* programVal; 
+	IMainClass* mainClassDeclarationVal; 
+	IClassDeclsList* classDeclarationListVal; 
+	IClassDecls* classDeclarationVal; 
+	IVarDeclList* variableDeclarationListVal; 
+	IVarDecl* variableDeclarationVal; 
+	IMethodDecl* methodDeclarationVal; 
+	IMethodDeclList* methodDeclarationListVal; 
+	IFormalList* formalListVal; 
+	IFormalRest* formalRestVal; 
+	IStatement* statementVal; 
+	IType* typeVal; 
+	IExp* expressionVal; 
+	IExpRest* expressionRest; 
+	IExpList* expressionListVal; 
+	IStatementList* statementListVal;
 
 
 /* Line 2058 of yacc.c  */
-#line 86 "parser.tab.hpp"
+#line 113 "parser.tab.hpp"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -99,7 +126,7 @@ int yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int yyparse (void);
+int yyparse (std::shared_ptr<CProgram>& root);
 #else
 int yyparse ();
 #endif

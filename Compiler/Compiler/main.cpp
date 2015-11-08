@@ -1,9 +1,14 @@
-//int yyparse( int* );
-#include "parser.tab.hpp"
+//#include "parser.tab.hpp"
+#include "PrettyPrinter.h"
+
+extern int yyparse( std::shared_ptr<CProgram>& );
 
 int main()
 {
-	int a = 9;
-	while( yyparse() != 0 );
+	std::shared_ptr<CProgram> root;
+	//while( yyparse() != 0 );
+	yyparse( root );
+	std::shared_ptr<CPrettyPrinter> printer( new CPrettyPrinter );
+	root->Accept( printer.get() );
 	return 0;
 }

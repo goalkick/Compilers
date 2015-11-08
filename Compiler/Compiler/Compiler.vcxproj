@@ -65,6 +65,7 @@
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.tab.cpp" />
+    <ClCompile Include="PrettyPrinter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -84,8 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="classes.h" />
+    <ClInclude Include="CLocation.h" />
     <ClInclude Include="grammar.h" />
     <ClInclude Include="parser.tab.hpp" />
+    <ClInclude Include="PrettyPrinter.h" />
     <ClInclude Include="Program_Kolya.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>

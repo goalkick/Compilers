@@ -2,11 +2,13 @@
 %option yylineno
 
 %{
+#pragma once
 #include <iostream>
 #include <cmath>
 #include <cstring>
 #include "parser.tab.hpp"
 #define YY_DECL extern "C" int yylex()
+	
 %}
 
 DIGIT [0-9]
@@ -24,7 +26,7 @@ NUM {DIGIT}{DIGIT}*
 "extends" { return EXTENDS; }
 "public" { return PUBLIC; }
 "return" { return RETURN; }
-"boolean" { return BOOLEAN; }
+"boolean" { return BOOL; }
 "else" { return ELSE; }
 "while" { return WHILE; }
 "System.out.println" { return SYSTEM_OUT_PRINTLN; }
