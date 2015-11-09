@@ -1,0 +1,2502 @@
+Terminals unused in grammar
+
+   '>'
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: MainClass
+    2        | MainClass ClassDeclsList
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    4 ClassDeclsList: ClassDecls
+    5               | ClassDeclsList ClassDecls
+
+    6 ClassDecls: CLASS ID '{' '}'
+    7           | CLASS ID '{' VarDeclList '}'
+    8           | CLASS ID '{' MethodDeclList '}'
+    9           | CLASS ID '{' VarDeclList MethodDeclList '}'
+   10           | CLASS ID EXTENDS ID '{' '}'
+   11           | CLASS ID EXTENDS ID '{' VarDeclList '}'
+   12           | CLASS ID EXTENDS ID '{' MethodDeclList '}'
+   13           | CLASS ID EXTENDS ID '{' VarDeclList MethodDeclList '}'
+
+   14 VarDeclList: VarDecl
+   15            | VarDeclList VarDecl
+
+   16 MethodDeclList: MethodDecl
+   17               | MethodDeclList MethodDecl
+
+   18 VarDecl: Type ID ';'
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' RETURN Exp ';' '}'
+   20           | PUBLIC Type ID '(' ')' '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type ID '(' ')' '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+   23           | PUBLIC Type ID '(' FormalList ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+   27 StatementList: Statement
+   28              | StatementList Statement
+
+   29 FormalList: Type ID
+   30           | Type ID FormalRest
+
+   31 FormalRest: ',' Type ID
+   32           | FormalRest ',' Type ID
+
+   33 Type: INT '[' ']'
+   34     | BOOL
+   35     | INT
+   36     | ID
+
+   37 Statement: '{' StatementList '}'
+   38          | '{' '}'
+   39          | IF '(' Exp ')' Statement ELSE Statement
+   40          | WHILE '(' Exp ')' Statement
+   41          | SYSTEM_OUT_PRINTLN '(' Exp ')' ';'
+   42          | ID '=' Exp ';'
+   43          | ID '[' Exp ']' '=' Exp ';'
+
+   44 Exp: Exp '+' Exp
+   45    | Exp '-' Exp
+   46    | Exp '*' Exp
+   47    | Exp '/' Exp
+   48    | Exp '[' Exp ']'
+   49    | Exp '.' LENGTH
+   50    | Exp '.' ID '(' ExpList ')'
+   51    | Exp '.' ID '(' ')'
+   52    | Exp '<' Exp
+   53    | Exp '&' Exp
+   54    | INTEGER_LITERAL
+   55    | TRUE
+   56    | FALSE
+   57    | ID
+   58    | THIS
+   59    | NEW INT '[' Exp ']'
+   60    | NEW ID '(' ')'
+   61    | '!' Exp
+   62    | '(' Exp ')'
+
+   63 ExpList: Exp
+   64        | ExpList ExpRest
+
+   65 ExpRest: ',' Exp
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'!' (33) 61
+'&' (38) 53
+'(' (40) 3 19 20 21 22 23 24 25 26 39 40 41 50 51 60 62
+')' (41) 3 19 20 21 22 23 24 25 26 39 40 41 50 51 60 62
+'*' (42) 46
+'+' (43) 44
+',' (44) 31 32 65
+'-' (45) 45
+'.' (46) 49 50 51
+'/' (47) 47
+';' (59) 18 19 20 21 22 23 24 25 26 41 42 43
+'<' (60) 52
+'=' (61) 42 43
+'>' (62)
+'[' (91) 3 33 43 48 59
+']' (93) 3 33 43 48 59
+'{' (123) 3 6 7 8 9 10 11 12 13 19 20 21 22 23 24 25 26 37 38
+'}' (125) 3 6 7 8 9 10 11 12 13 19 20 21 22 23 24 25 26 37 38
+error (256)
+INTEGER_LITERAL (258) 54
+ID (259) 3 6 7 8 9 10 11 12 13 18 19 20 21 22 23 24 25 26 29 30 31
+    32 36 42 43 50 51 57 60
+STRING (260) 3
+INT (261) 33 35 59
+IF (262) 39
+CLASS (263) 3 6 7 8 9 10 11 12 13
+PUBLIC (264) 3 19 20 21 22 23 24 25 26
+BOOL (265) 34
+EXTENDS (266) 10 11 12 13
+RETURN (267) 19 20 21 22 23 24 25 26
+WHILE (268) 40
+VOID (269) 3
+MAIN (270) 3
+SYSTEM_OUT_PRINTLN (271) 41
+LENGTH (272) 49
+TRUE (273) 55
+FALSE (274) 56
+NEW (275) 59 60
+ELSE (276) 39
+THIS (277) 58
+STATIC (278) 3
+
+
+Nonterminals, with rules where they appear
+
+$accept (42)
+    on left: 0
+Program (43)
+    on left: 1 2, on right: 0
+MainClass (44)
+    on left: 3, on right: 1 2
+ClassDeclsList (45)
+    on left: 4 5, on right: 2 5
+ClassDecls (46)
+    on left: 6 7 8 9 10 11 12 13, on right: 4 5
+VarDeclList (47)
+    on left: 14 15, on right: 7 9 11 13 15 20 22 24 26
+MethodDeclList (48)
+    on left: 16 17, on right: 8 9 12 13 17
+VarDecl (49)
+    on left: 18, on right: 14 15
+MethodDecl (50)
+    on left: 19 20 21 22 23 24 25 26, on right: 16 17
+StatementList (51)
+    on left: 27 28, on right: 21 22 25 26 28 37
+FormalList (52)
+    on left: 29 30, on right: 23 24 25 26
+FormalRest (53)
+    on left: 31 32, on right: 30 32
+Type (54)
+    on left: 33 34 35 36, on right: 18 19 20 21 22 23 24 25 26 29 30
+    31 32
+Statement (55)
+    on left: 37 38 39 40 41 42 43, on right: 3 27 28 39 40
+Exp (56)
+    on left: 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61
+    62, on right: 19 20 21 22 23 24 25 26 39 40 41 42 43 44 45 46 47
+    48 49 50 51 52 53 59 61 62 63 65
+ExpList (57)
+    on left: 63 64, on right: 50 64
+ExpRest (58)
+    on left: 65, on right: 64
+
+
+State 0
+
+    0 $accept: . Program $end
+
+    CLASS  shift, and go to state 1
+
+    Program    go to state 2
+    MainClass  go to state 3
+
+
+State 1
+
+    3 MainClass: CLASS . ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    ID  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: Program . $end
+
+    $end  shift, and go to state 5
+
+
+State 3
+
+    1 Program: MainClass .
+    2        | MainClass . ClassDeclsList
+
+    CLASS  shift, and go to state 6
+
+    $default  reduce using rule 1 (Program)
+
+    ClassDeclsList  go to state 7
+    ClassDecls      go to state 8
+
+
+State 4
+
+    3 MainClass: CLASS ID . '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    '{'  shift, and go to state 9
+
+
+State 5
+
+    0 $accept: Program $end .
+
+    $default  accept
+
+
+State 6
+
+    6 ClassDecls: CLASS . ID '{' '}'
+    7           | CLASS . ID '{' VarDeclList '}'
+    8           | CLASS . ID '{' MethodDeclList '}'
+    9           | CLASS . ID '{' VarDeclList MethodDeclList '}'
+   10           | CLASS . ID EXTENDS ID '{' '}'
+   11           | CLASS . ID EXTENDS ID '{' VarDeclList '}'
+   12           | CLASS . ID EXTENDS ID '{' MethodDeclList '}'
+   13           | CLASS . ID EXTENDS ID '{' VarDeclList MethodDeclList '}'
+
+    ID  shift, and go to state 10
+
+
+State 7
+
+    2 Program: MainClass ClassDeclsList .
+    5 ClassDeclsList: ClassDeclsList . ClassDecls
+
+    CLASS  shift, and go to state 6
+
+    $default  reduce using rule 2 (Program)
+
+    ClassDecls  go to state 11
+
+
+State 8
+
+    4 ClassDeclsList: ClassDecls .
+
+    $default  reduce using rule 4 (ClassDeclsList)
+
+
+State 9
+
+    3 MainClass: CLASS ID '{' . PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    PUBLIC  shift, and go to state 12
+
+
+State 10
+
+    6 ClassDecls: CLASS ID . '{' '}'
+    7           | CLASS ID . '{' VarDeclList '}'
+    8           | CLASS ID . '{' MethodDeclList '}'
+    9           | CLASS ID . '{' VarDeclList MethodDeclList '}'
+   10           | CLASS ID . EXTENDS ID '{' '}'
+   11           | CLASS ID . EXTENDS ID '{' VarDeclList '}'
+   12           | CLASS ID . EXTENDS ID '{' MethodDeclList '}'
+   13           | CLASS ID . EXTENDS ID '{' VarDeclList MethodDeclList '}'
+
+    EXTENDS  shift, and go to state 13
+    '{'      shift, and go to state 14
+
+
+State 11
+
+    5 ClassDeclsList: ClassDeclsList ClassDecls .
+
+    $default  reduce using rule 5 (ClassDeclsList)
+
+
+State 12
+
+    3 MainClass: CLASS ID '{' PUBLIC . STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    STATIC  shift, and go to state 15
+
+
+State 13
+
+   10 ClassDecls: CLASS ID EXTENDS . ID '{' '}'
+   11           | CLASS ID EXTENDS . ID '{' VarDeclList '}'
+   12           | CLASS ID EXTENDS . ID '{' MethodDeclList '}'
+   13           | CLASS ID EXTENDS . ID '{' VarDeclList MethodDeclList '}'
+
+    ID  shift, and go to state 16
+
+
+State 14
+
+    6 ClassDecls: CLASS ID '{' . '}'
+    7           | CLASS ID '{' . VarDeclList '}'
+    8           | CLASS ID '{' . MethodDeclList '}'
+    9           | CLASS ID '{' . VarDeclList MethodDeclList '}'
+
+    ID      shift, and go to state 17
+    INT     shift, and go to state 18
+    PUBLIC  shift, and go to state 19
+    BOOL    shift, and go to state 20
+    '}'     shift, and go to state 21
+
+    VarDeclList     go to state 22
+    MethodDeclList  go to state 23
+    VarDecl         go to state 24
+    MethodDecl      go to state 25
+    Type            go to state 26
+
+
+State 15
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC . VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    VOID  shift, and go to state 27
+
+
+State 16
+
+   10 ClassDecls: CLASS ID EXTENDS ID . '{' '}'
+   11           | CLASS ID EXTENDS ID . '{' VarDeclList '}'
+   12           | CLASS ID EXTENDS ID . '{' MethodDeclList '}'
+   13           | CLASS ID EXTENDS ID . '{' VarDeclList MethodDeclList '}'
+
+    '{'  shift, and go to state 28
+
+
+State 17
+
+   36 Type: ID .
+
+    $default  reduce using rule 36 (Type)
+
+
+State 18
+
+   33 Type: INT . '[' ']'
+   35     | INT .
+
+    '['  shift, and go to state 29
+
+    $default  reduce using rule 35 (Type)
+
+
+State 19
+
+   19 MethodDecl: PUBLIC . Type ID '(' ')' '{' RETURN Exp ';' '}'
+   20           | PUBLIC . Type ID '(' ')' '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC . Type ID '(' ')' '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC . Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+   23           | PUBLIC . Type ID '(' FormalList ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC . Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC . Type ID '(' FormalList ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC . Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    ID    shift, and go to state 17
+    INT   shift, and go to state 18
+    BOOL  shift, and go to state 20
+
+    Type  go to state 30
+
+
+State 20
+
+   34 Type: BOOL .
+
+    $default  reduce using rule 34 (Type)
+
+
+State 21
+
+    6 ClassDecls: CLASS ID '{' '}' .
+
+    $default  reduce using rule 6 (ClassDecls)
+
+
+State 22
+
+    7 ClassDecls: CLASS ID '{' VarDeclList . '}'
+    9           | CLASS ID '{' VarDeclList . MethodDeclList '}'
+   15 VarDeclList: VarDeclList . VarDecl
+
+    ID      shift, and go to state 17
+    INT     shift, and go to state 18
+    PUBLIC  shift, and go to state 19
+    BOOL    shift, and go to state 20
+    '}'     shift, and go to state 31
+
+    MethodDeclList  go to state 32
+    VarDecl         go to state 33
+    MethodDecl      go to state 25
+    Type            go to state 26
+
+
+State 23
+
+    8 ClassDecls: CLASS ID '{' MethodDeclList . '}'
+   17 MethodDeclList: MethodDeclList . MethodDecl
+
+    PUBLIC  shift, and go to state 19
+    '}'     shift, and go to state 34
+
+    MethodDecl  go to state 35
+
+
+State 24
+
+   14 VarDeclList: VarDecl .
+
+    $default  reduce using rule 14 (VarDeclList)
+
+
+State 25
+
+   16 MethodDeclList: MethodDecl .
+
+    $default  reduce using rule 16 (MethodDeclList)
+
+
+State 26
+
+   18 VarDecl: Type . ID ';'
+
+    ID  shift, and go to state 36
+
+
+State 27
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID . MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    MAIN  shift, and go to state 37
+
+
+State 28
+
+   10 ClassDecls: CLASS ID EXTENDS ID '{' . '}'
+   11           | CLASS ID EXTENDS ID '{' . VarDeclList '}'
+   12           | CLASS ID EXTENDS ID '{' . MethodDeclList '}'
+   13           | CLASS ID EXTENDS ID '{' . VarDeclList MethodDeclList '}'
+
+    ID      shift, and go to state 17
+    INT     shift, and go to state 18
+    PUBLIC  shift, and go to state 19
+    BOOL    shift, and go to state 20
+    '}'     shift, and go to state 38
+
+    VarDeclList     go to state 39
+    MethodDeclList  go to state 40
+    VarDecl         go to state 24
+    MethodDecl      go to state 25
+    Type            go to state 26
+
+
+State 29
+
+   33 Type: INT '[' . ']'
+
+    ']'  shift, and go to state 41
+
+
+State 30
+
+   19 MethodDecl: PUBLIC Type . ID '(' ')' '{' RETURN Exp ';' '}'
+   20           | PUBLIC Type . ID '(' ')' '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type . ID '(' ')' '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type . ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+   23           | PUBLIC Type . ID '(' FormalList ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type . ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type . ID '(' FormalList ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type . ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    ID  shift, and go to state 42
+
+
+State 31
+
+    7 ClassDecls: CLASS ID '{' VarDeclList '}' .
+
+    $default  reduce using rule 7 (ClassDecls)
+
+
+State 32
+
+    9 ClassDecls: CLASS ID '{' VarDeclList MethodDeclList . '}'
+   17 MethodDeclList: MethodDeclList . MethodDecl
+
+    PUBLIC  shift, and go to state 19
+    '}'     shift, and go to state 43
+
+    MethodDecl  go to state 35
+
+
+State 33
+
+   15 VarDeclList: VarDeclList VarDecl .
+
+    $default  reduce using rule 15 (VarDeclList)
+
+
+State 34
+
+    8 ClassDecls: CLASS ID '{' MethodDeclList '}' .
+
+    $default  reduce using rule 8 (ClassDecls)
+
+
+State 35
+
+   17 MethodDeclList: MethodDeclList MethodDecl .
+
+    $default  reduce using rule 17 (MethodDeclList)
+
+
+State 36
+
+   18 VarDecl: Type ID . ';'
+
+    ';'  shift, and go to state 44
+
+
+State 37
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN . '(' STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    '('  shift, and go to state 45
+
+
+State 38
+
+   10 ClassDecls: CLASS ID EXTENDS ID '{' '}' .
+
+    $default  reduce using rule 10 (ClassDecls)
+
+
+State 39
+
+   11 ClassDecls: CLASS ID EXTENDS ID '{' VarDeclList . '}'
+   13           | CLASS ID EXTENDS ID '{' VarDeclList . MethodDeclList '}'
+   15 VarDeclList: VarDeclList . VarDecl
+
+    ID      shift, and go to state 17
+    INT     shift, and go to state 18
+    PUBLIC  shift, and go to state 19
+    BOOL    shift, and go to state 20
+    '}'     shift, and go to state 46
+
+    MethodDeclList  go to state 47
+    VarDecl         go to state 33
+    MethodDecl      go to state 25
+    Type            go to state 26
+
+
+State 40
+
+   12 ClassDecls: CLASS ID EXTENDS ID '{' MethodDeclList . '}'
+   17 MethodDeclList: MethodDeclList . MethodDecl
+
+    PUBLIC  shift, and go to state 19
+    '}'     shift, and go to state 48
+
+    MethodDecl  go to state 35
+
+
+State 41
+
+   33 Type: INT '[' ']' .
+
+    $default  reduce using rule 33 (Type)
+
+
+State 42
+
+   19 MethodDecl: PUBLIC Type ID . '(' ')' '{' RETURN Exp ';' '}'
+   20           | PUBLIC Type ID . '(' ')' '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type ID . '(' ')' '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type ID . '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+   23           | PUBLIC Type ID . '(' FormalList ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type ID . '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID . '(' FormalList ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID . '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    '('  shift, and go to state 49
+
+
+State 43
+
+    9 ClassDecls: CLASS ID '{' VarDeclList MethodDeclList '}' .
+
+    $default  reduce using rule 9 (ClassDecls)
+
+
+State 44
+
+   18 VarDecl: Type ID ';' .
+
+    $default  reduce using rule 18 (VarDecl)
+
+
+State 45
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' . STRING '[' ']' ID ')' '{' Statement '}' '}'
+
+    STRING  shift, and go to state 50
+
+
+State 46
+
+   11 ClassDecls: CLASS ID EXTENDS ID '{' VarDeclList '}' .
+
+    $default  reduce using rule 11 (ClassDecls)
+
+
+State 47
+
+   13 ClassDecls: CLASS ID EXTENDS ID '{' VarDeclList MethodDeclList . '}'
+   17 MethodDeclList: MethodDeclList . MethodDecl
+
+    PUBLIC  shift, and go to state 19
+    '}'     shift, and go to state 51
+
+    MethodDecl  go to state 35
+
+
+State 48
+
+   12 ClassDecls: CLASS ID EXTENDS ID '{' MethodDeclList '}' .
+
+    $default  reduce using rule 12 (ClassDecls)
+
+
+State 49
+
+   19 MethodDecl: PUBLIC Type ID '(' . ')' '{' RETURN Exp ';' '}'
+   20           | PUBLIC Type ID '(' . ')' '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type ID '(' . ')' '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type ID '(' . ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+   23           | PUBLIC Type ID '(' . FormalList ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type ID '(' . FormalList ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID '(' . FormalList ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' . FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    ID    shift, and go to state 17
+    INT   shift, and go to state 18
+    BOOL  shift, and go to state 20
+    ')'   shift, and go to state 52
+
+    FormalList  go to state 53
+    Type        go to state 54
+
+
+State 50
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING . '[' ']' ID ')' '{' Statement '}' '}'
+
+    '['  shift, and go to state 55
+
+
+State 51
+
+   13 ClassDecls: CLASS ID EXTENDS ID '{' VarDeclList MethodDeclList '}' .
+
+    $default  reduce using rule 13 (ClassDecls)
+
+
+State 52
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' . '{' RETURN Exp ';' '}'
+   20           | PUBLIC Type ID '(' ')' . '{' VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type ID '(' ')' . '{' StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type ID '(' ')' . '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    '{'  shift, and go to state 56
+
+
+State 53
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList . ')' '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type ID '(' FormalList . ')' '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID '(' FormalList . ')' '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' FormalList . ')' '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    ')'  shift, and go to state 57
+
+
+State 54
+
+   29 FormalList: Type . ID
+   30           | Type . ID FormalRest
+
+    ID  shift, and go to state 58
+
+
+State 55
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' . ']' ID ')' '{' Statement '}' '}'
+
+    ']'  shift, and go to state 59
+
+
+State 56
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' . RETURN Exp ';' '}'
+   20           | PUBLIC Type ID '(' ')' '{' . VarDeclList RETURN Exp ';' '}'
+   21           | PUBLIC Type ID '(' ')' '{' . StatementList RETURN Exp ';' '}'
+   22           | PUBLIC Type ID '(' ')' '{' . VarDeclList StatementList RETURN Exp ';' '}'
+
+    ID                  shift, and go to state 60
+    INT                 shift, and go to state 18
+    IF                  shift, and go to state 61
+    BOOL                shift, and go to state 20
+    RETURN              shift, and go to state 62
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    VarDeclList    go to state 66
+    VarDecl        go to state 24
+    StatementList  go to state 67
+    Type           go to state 26
+    Statement      go to state 68
+
+
+State 57
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' . '{' RETURN Exp ';' '}'
+   24           | PUBLIC Type ID '(' FormalList ')' . '{' VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID '(' FormalList ')' . '{' StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' FormalList ')' . '{' VarDeclList StatementList RETURN Exp ';' '}'
+
+    '{'  shift, and go to state 69
+
+
+State 58
+
+   29 FormalList: Type ID .
+   30           | Type ID . FormalRest
+
+    ','  shift, and go to state 70
+
+    $default  reduce using rule 29 (FormalList)
+
+    FormalRest  go to state 71
+
+
+State 59
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' . ID ')' '{' Statement '}' '}'
+
+    ID  shift, and go to state 72
+
+
+State 60
+
+   36 Type: ID .
+   42 Statement: ID . '=' Exp ';'
+   43          | ID . '[' Exp ']' '=' Exp ';'
+
+    '['  shift, and go to state 73
+    '='  shift, and go to state 74
+
+    $default  reduce using rule 36 (Type)
+
+
+State 61
+
+   39 Statement: IF . '(' Exp ')' Statement ELSE Statement
+
+    '('  shift, and go to state 75
+
+
+State 62
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 84
+
+
+State 63
+
+   40 Statement: WHILE . '(' Exp ')' Statement
+
+    '('  shift, and go to state 85
+
+
+State 64
+
+   41 Statement: SYSTEM_OUT_PRINTLN . '(' Exp ')' ';'
+
+    '('  shift, and go to state 86
+
+
+State 65
+
+   37 Statement: '{' . StatementList '}'
+   38          | '{' . '}'
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+    '}'                 shift, and go to state 88
+
+    StatementList  go to state 89
+    Statement      go to state 68
+
+
+State 66
+
+   15 VarDeclList: VarDeclList . VarDecl
+   20 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList . RETURN Exp ';' '}'
+   22           | PUBLIC Type ID '(' ')' '{' VarDeclList . StatementList RETURN Exp ';' '}'
+
+    ID                  shift, and go to state 60
+    INT                 shift, and go to state 18
+    IF                  shift, and go to state 61
+    BOOL                shift, and go to state 20
+    RETURN              shift, and go to state 90
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    VarDecl        go to state 33
+    StatementList  go to state 91
+    Type           go to state 26
+    Statement      go to state 68
+
+
+State 67
+
+   21 MethodDecl: PUBLIC Type ID '(' ')' '{' StatementList . RETURN Exp ';' '}'
+   28 StatementList: StatementList . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    RETURN              shift, and go to state 92
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 93
+
+
+State 68
+
+   27 StatementList: Statement .
+
+    $default  reduce using rule 27 (StatementList)
+
+
+State 69
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' . RETURN Exp ';' '}'
+   24           | PUBLIC Type ID '(' FormalList ')' '{' . VarDeclList RETURN Exp ';' '}'
+   25           | PUBLIC Type ID '(' FormalList ')' '{' . StatementList RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' FormalList ')' '{' . VarDeclList StatementList RETURN Exp ';' '}'
+
+    ID                  shift, and go to state 60
+    INT                 shift, and go to state 18
+    IF                  shift, and go to state 61
+    BOOL                shift, and go to state 20
+    RETURN              shift, and go to state 94
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    VarDeclList    go to state 95
+    VarDecl        go to state 24
+    StatementList  go to state 96
+    Type           go to state 26
+    Statement      go to state 68
+
+
+State 70
+
+   31 FormalRest: ',' . Type ID
+
+    ID    shift, and go to state 17
+    INT   shift, and go to state 18
+    BOOL  shift, and go to state 20
+
+    Type  go to state 97
+
+
+State 71
+
+   30 FormalList: Type ID FormalRest .
+   32 FormalRest: FormalRest . ',' Type ID
+
+    ','  shift, and go to state 98
+
+    $default  reduce using rule 30 (FormalList)
+
+
+State 72
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID . ')' '{' Statement '}' '}'
+
+    ')'  shift, and go to state 99
+
+
+State 73
+
+   43 Statement: ID '[' . Exp ']' '=' Exp ';'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 100
+
+
+State 74
+
+   42 Statement: ID '=' . Exp ';'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 101
+
+
+State 75
+
+   39 Statement: IF '(' . Exp ')' Statement ELSE Statement
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 102
+
+
+State 76
+
+   61 Exp: '!' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 103
+
+
+State 77
+
+   54 Exp: INTEGER_LITERAL .
+
+    $default  reduce using rule 54 (Exp)
+
+
+State 78
+
+   57 Exp: ID .
+
+    $default  reduce using rule 57 (Exp)
+
+
+State 79
+
+   55 Exp: TRUE .
+
+    $default  reduce using rule 55 (Exp)
+
+
+State 80
+
+   56 Exp: FALSE .
+
+    $default  reduce using rule 56 (Exp)
+
+
+State 81
+
+   59 Exp: NEW . INT '[' Exp ']'
+   60    | NEW . ID '(' ')'
+
+    ID   shift, and go to state 104
+    INT  shift, and go to state 105
+
+
+State 82
+
+   58 Exp: THIS .
+
+    $default  reduce using rule 58 (Exp)
+
+
+State 83
+
+   62 Exp: '(' . Exp ')'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 106
+
+
+State 84
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 115
+
+
+State 85
+
+   40 Statement: WHILE '(' . Exp ')' Statement
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 116
+
+
+State 86
+
+   41 Statement: SYSTEM_OUT_PRINTLN '(' . Exp ')' ';'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 117
+
+
+State 87
+
+   42 Statement: ID . '=' Exp ';'
+   43          | ID . '[' Exp ']' '=' Exp ';'
+
+    '['  shift, and go to state 73
+    '='  shift, and go to state 74
+
+
+State 88
+
+   38 Statement: '{' '}' .
+
+    $default  reduce using rule 38 (Statement)
+
+
+State 89
+
+   28 StatementList: StatementList . Statement
+   37 Statement: '{' StatementList . '}'
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+    '}'                 shift, and go to state 118
+
+    Statement  go to state 93
+
+
+State 90
+
+   20 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 119
+
+
+State 91
+
+   22 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList StatementList . RETURN Exp ';' '}'
+   28 StatementList: StatementList . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    RETURN              shift, and go to state 120
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 93
+
+
+State 92
+
+   21 MethodDecl: PUBLIC Type ID '(' ')' '{' StatementList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 121
+
+
+State 93
+
+   28 StatementList: StatementList Statement .
+
+    $default  reduce using rule 28 (StatementList)
+
+
+State 94
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 122
+
+
+State 95
+
+   15 VarDeclList: VarDeclList . VarDecl
+   24 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList . RETURN Exp ';' '}'
+   26           | PUBLIC Type ID '(' FormalList ')' '{' VarDeclList . StatementList RETURN Exp ';' '}'
+
+    ID                  shift, and go to state 60
+    INT                 shift, and go to state 18
+    IF                  shift, and go to state 61
+    BOOL                shift, and go to state 20
+    RETURN              shift, and go to state 123
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    VarDecl        go to state 33
+    StatementList  go to state 124
+    Type           go to state 26
+    Statement      go to state 68
+
+
+State 96
+
+   25 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' StatementList . RETURN Exp ';' '}'
+   28 StatementList: StatementList . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    RETURN              shift, and go to state 125
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 93
+
+
+State 97
+
+   31 FormalRest: ',' Type . ID
+
+    ID  shift, and go to state 126
+
+
+State 98
+
+   32 FormalRest: FormalRest ',' . Type ID
+
+    ID    shift, and go to state 17
+    INT   shift, and go to state 18
+    BOOL  shift, and go to state 20
+
+    Type  go to state 127
+
+
+State 99
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' . '{' Statement '}' '}'
+
+    '{'  shift, and go to state 128
+
+
+State 100
+
+   43 Statement: ID '[' Exp . ']' '=' Exp ';'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ']'  shift, and go to state 129
+
+
+State 101
+
+   42 Statement: ID '=' Exp . ';'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 130
+
+
+State 102
+
+   39 Statement: IF '(' Exp . ')' Statement ELSE Statement
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ')'  shift, and go to state 131
+
+
+State 103
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   61    | '!' Exp .
+
+    $default  reduce using rule 61 (Exp)
+
+
+State 104
+
+   60 Exp: NEW ID . '(' ')'
+
+    '('  shift, and go to state 132
+
+
+State 105
+
+   59 Exp: NEW INT . '[' Exp ']'
+
+    '['  shift, and go to state 133
+
+
+State 106
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   62    | '(' Exp . ')'
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ')'  shift, and go to state 134
+
+
+State 107
+
+   53 Exp: Exp '&' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 135
+
+
+State 108
+
+   44 Exp: Exp '+' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 136
+
+
+State 109
+
+   45 Exp: Exp '-' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 137
+
+
+State 110
+
+   46 Exp: Exp '*' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 138
+
+
+State 111
+
+   47 Exp: Exp '/' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 139
+
+
+State 112
+
+   52 Exp: Exp '<' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 140
+
+
+State 113
+
+   49 Exp: Exp '.' . LENGTH
+   50    | Exp '.' . ID '(' ExpList ')'
+   51    | Exp '.' . ID '(' ')'
+
+    ID      shift, and go to state 141
+    LENGTH  shift, and go to state 142
+
+
+State 114
+
+   48 Exp: Exp '[' . Exp ']'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 143
+
+
+State 115
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 144
+
+
+State 116
+
+   40 Statement: WHILE '(' Exp . ')' Statement
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ')'  shift, and go to state 145
+
+
+State 117
+
+   41 Statement: SYSTEM_OUT_PRINTLN '(' Exp . ')' ';'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ')'  shift, and go to state 146
+
+
+State 118
+
+   37 Statement: '{' StatementList '}' .
+
+    $default  reduce using rule 37 (Statement)
+
+
+State 119
+
+   20 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 147
+
+
+State 120
+
+   22 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 148
+
+
+State 121
+
+   21 MethodDecl: PUBLIC Type ID '(' ')' '{' StatementList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 149
+
+
+State 122
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 150
+
+
+State 123
+
+   24 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 151
+
+
+State 124
+
+   26 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList . RETURN Exp ';' '}'
+   28 StatementList: StatementList . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    RETURN              shift, and go to state 152
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 93
+
+
+State 125
+
+   25 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 153
+
+
+State 126
+
+   31 FormalRest: ',' Type ID .
+
+    $default  reduce using rule 31 (FormalRest)
+
+
+State 127
+
+   32 FormalRest: FormalRest ',' Type . ID
+
+    ID  shift, and go to state 154
+
+
+State 128
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' . Statement '}' '}'
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 155
+
+
+State 129
+
+   43 Statement: ID '[' Exp ']' . '=' Exp ';'
+
+    '='  shift, and go to state 156
+
+
+State 130
+
+   42 Statement: ID '=' Exp ';' .
+
+    $default  reduce using rule 42 (Statement)
+
+
+State 131
+
+   39 Statement: IF '(' Exp ')' . Statement ELSE Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 157
+
+
+State 132
+
+   60 Exp: NEW ID '(' . ')'
+
+    ')'  shift, and go to state 158
+
+
+State 133
+
+   59 Exp: NEW INT '[' . Exp ']'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 159
+
+
+State 134
+
+   62 Exp: '(' Exp ')' .
+
+    $default  reduce using rule 62 (Exp)
+
+
+State 135
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   53    | Exp '&' Exp .
+
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 53 (Exp)
+
+
+State 136
+
+   44 Exp: Exp . '+' Exp
+   44    | Exp '+' Exp .
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 44 (Exp)
+
+
+State 137
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   45    | Exp '-' Exp .
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 45 (Exp)
+
+
+State 138
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   46    | Exp '*' Exp .
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 46 (Exp)
+
+
+State 139
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   47    | Exp '/' Exp .
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 47 (Exp)
+
+
+State 140
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   52    | Exp '<' Exp .
+   53    | Exp . '&' Exp
+
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 52 (Exp)
+
+
+State 141
+
+   50 Exp: Exp '.' ID . '(' ExpList ')'
+   51    | Exp '.' ID . '(' ')'
+
+    '('  shift, and go to state 160
+
+
+State 142
+
+   49 Exp: Exp '.' LENGTH .
+
+    $default  reduce using rule 49 (Exp)
+
+
+State 143
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   48    | Exp '[' Exp . ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ']'  shift, and go to state 161
+
+
+State 144
+
+   19 MethodDecl: PUBLIC Type ID '(' ')' '{' RETURN Exp ';' '}' .
+
+    $default  reduce using rule 19 (MethodDecl)
+
+
+State 145
+
+   40 Statement: WHILE '(' Exp ')' . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 162
+
+
+State 146
+
+   41 Statement: SYSTEM_OUT_PRINTLN '(' Exp ')' . ';'
+
+    ';'  shift, and go to state 163
+
+
+State 147
+
+   20 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 164
+
+
+State 148
+
+   22 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 165
+
+
+State 149
+
+   21 MethodDecl: PUBLIC Type ID '(' ')' '{' StatementList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 166
+
+
+State 150
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 167
+
+
+State 151
+
+   24 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 168
+
+
+State 152
+
+   26 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN . Exp ';' '}'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 169
+
+
+State 153
+
+   25 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 170
+
+
+State 154
+
+   32 FormalRest: FormalRest ',' Type ID .
+
+    $default  reduce using rule 32 (FormalRest)
+
+
+State 155
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement . '}' '}'
+
+    '}'  shift, and go to state 171
+
+
+State 156
+
+   43 Statement: ID '[' Exp ']' '=' . Exp ';'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 172
+
+
+State 157
+
+   39 Statement: IF '(' Exp ')' Statement . ELSE Statement
+
+    ELSE  shift, and go to state 173
+
+
+State 158
+
+   60 Exp: NEW ID '(' ')' .
+
+    $default  reduce using rule 60 (Exp)
+
+
+State 159
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   59    | NEW INT '[' Exp . ']'
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ']'  shift, and go to state 174
+
+
+State 160
+
+   50 Exp: Exp '.' ID '(' . ExpList ')'
+   51    | Exp '.' ID '(' . ')'
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+    ')'              shift, and go to state 175
+
+    Exp      go to state 176
+    ExpList  go to state 177
+
+
+State 161
+
+   48 Exp: Exp '[' Exp ']' .
+
+    $default  reduce using rule 48 (Exp)
+
+
+State 162
+
+   40 Statement: WHILE '(' Exp ')' Statement .
+
+    $default  reduce using rule 40 (Statement)
+
+
+State 163
+
+   41 Statement: SYSTEM_OUT_PRINTLN '(' Exp ')' ';' .
+
+    $default  reduce using rule 41 (Statement)
+
+
+State 164
+
+   20 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 20 (MethodDecl)
+
+
+State 165
+
+   22 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 178
+
+
+State 166
+
+   21 MethodDecl: PUBLIC Type ID '(' ')' '{' StatementList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 21 (MethodDecl)
+
+
+State 167
+
+   23 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' RETURN Exp ';' '}' .
+
+    $default  reduce using rule 23 (MethodDecl)
+
+
+State 168
+
+   24 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 179
+
+
+State 169
+
+   26 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp . ';' '}'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 180
+
+
+State 170
+
+   25 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 181
+
+
+State 171
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' . '}'
+
+    '}'  shift, and go to state 182
+
+
+State 172
+
+   43 Statement: ID '[' Exp ']' '=' Exp . ';'
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+    ';'  shift, and go to state 183
+
+
+State 173
+
+   39 Statement: IF '(' Exp ')' Statement ELSE . Statement
+
+    ID                  shift, and go to state 87
+    IF                  shift, and go to state 61
+    WHILE               shift, and go to state 63
+    SYSTEM_OUT_PRINTLN  shift, and go to state 64
+    '{'                 shift, and go to state 65
+
+    Statement  go to state 184
+
+
+State 174
+
+   59 Exp: NEW INT '[' Exp ']' .
+
+    $default  reduce using rule 59 (Exp)
+
+
+State 175
+
+   51 Exp: Exp '.' ID '(' ')' .
+
+    $default  reduce using rule 51 (Exp)
+
+
+State 176
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   63 ExpList: Exp .
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 63 (ExpList)
+
+
+State 177
+
+   50 Exp: Exp '.' ID '(' ExpList . ')'
+   64 ExpList: ExpList . ExpRest
+
+    ')'  shift, and go to state 185
+    ','  shift, and go to state 186
+
+    ExpRest  go to state 187
+
+
+State 178
+
+   22 MethodDecl: PUBLIC Type ID '(' ')' '{' VarDeclList StatementList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 22 (MethodDecl)
+
+
+State 179
+
+   24 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 24 (MethodDecl)
+
+
+State 180
+
+   26 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' . '}'
+
+    '}'  shift, and go to state 188
+
+
+State 181
+
+   25 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' StatementList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 25 (MethodDecl)
+
+
+State 182
+
+    3 MainClass: CLASS ID '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' ID ')' '{' Statement '}' '}' .
+
+    $default  reduce using rule 3 (MainClass)
+
+
+State 183
+
+   43 Statement: ID '[' Exp ']' '=' Exp ';' .
+
+    $default  reduce using rule 43 (Statement)
+
+
+State 184
+
+   39 Statement: IF '(' Exp ')' Statement ELSE Statement .
+
+    $default  reduce using rule 39 (Statement)
+
+
+State 185
+
+   50 Exp: Exp '.' ID '(' ExpList ')' .
+
+    $default  reduce using rule 50 (Exp)
+
+
+State 186
+
+   65 ExpRest: ',' . Exp
+
+    '!'              shift, and go to state 76
+    INTEGER_LITERAL  shift, and go to state 77
+    ID               shift, and go to state 78
+    TRUE             shift, and go to state 79
+    FALSE            shift, and go to state 80
+    NEW              shift, and go to state 81
+    THIS             shift, and go to state 82
+    '('              shift, and go to state 83
+
+    Exp  go to state 189
+
+
+State 187
+
+   64 ExpList: ExpList ExpRest .
+
+    $default  reduce using rule 64 (ExpList)
+
+
+State 188
+
+   26 MethodDecl: PUBLIC Type ID '(' FormalList ')' '{' VarDeclList StatementList RETURN Exp ';' '}' .
+
+    $default  reduce using rule 26 (MethodDecl)
+
+
+State 189
+
+   44 Exp: Exp . '+' Exp
+   45    | Exp . '-' Exp
+   46    | Exp . '*' Exp
+   47    | Exp . '/' Exp
+   48    | Exp . '[' Exp ']'
+   49    | Exp . '.' LENGTH
+   50    | Exp . '.' ID '(' ExpList ')'
+   51    | Exp . '.' ID '(' ')'
+   52    | Exp . '<' Exp
+   53    | Exp . '&' Exp
+   65 ExpRest: ',' Exp .
+
+    '&'  shift, and go to state 107
+    '+'  shift, and go to state 108
+    '-'  shift, and go to state 109
+    '*'  shift, and go to state 110
+    '/'  shift, and go to state 111
+    '<'  shift, and go to state 112
+    '.'  shift, and go to state 113
+    '['  shift, and go to state 114
+
+    $default  reduce using rule 65 (ExpRest)

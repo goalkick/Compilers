@@ -66,6 +66,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.tab.cpp" />
     <ClCompile Include="PrettyPrinter.cpp" />
+    <ClCompile Include="SymbolsTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -92,6 +93,8 @@
     <ClInclude Include="Program_Kolya.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CSymbol.h" />
+    <ClInclude Include="SymbolsTable.h" />
     <ClInclude Include="visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

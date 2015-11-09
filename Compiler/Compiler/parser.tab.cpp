@@ -1633,13 +1633,13 @@ yyreduce:
   case 7:
 /* Line 1792 of yacc.c  */
 #line 110 "parser.y"
-    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (4)].sval), nullptr, nullptr, nullptr, CLocation( 0, 0, 0, 0 ) ); }
+    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (4)].sval), "", nullptr, nullptr, CLocation( 0, 0, 0, 0 ) ); }
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
 #line 111 "parser.y"
-    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (5)].sval), nullptr, (yyvsp[(4) - (5)].variableDeclarationListVal), nullptr, CLocation( 0, 0, 0, 0 ) ); }
+    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (5)].sval), "", (yyvsp[(4) - (5)].variableDeclarationListVal), nullptr, CLocation( 0, 0, 0, 0 ) ); }
     break;
 
   case 9:
@@ -1651,7 +1651,7 @@ yyreduce:
   case 10:
 /* Line 1792 of yacc.c  */
 #line 113 "parser.y"
-    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (6)].sval), nullptr, (yyvsp[(4) - (6)].variableDeclarationListVal), (yyvsp[(5) - (6)].methodDeclarationListVal), CLocation( 0, 0, 0, 0 ) ); }
+    { (yyval.classDeclarationVal) = new CClassDecls( (yyvsp[(2) - (6)].sval), "", (yyvsp[(4) - (6)].variableDeclarationListVal), (yyvsp[(5) - (6)].methodDeclarationListVal), CLocation( 0, 0, 0, 0 ) ); }
     break;
 
   case 11:
