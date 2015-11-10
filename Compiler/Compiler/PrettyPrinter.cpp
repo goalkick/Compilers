@@ -14,8 +14,8 @@ void CPrettyPrinter::visit(const CProgram* rule)
 
 void CPrettyPrinter::visit(const CMainClass* rule)
 {
-	std::cout << "class " << rule->ClassName() << " {" << std::endl;
-	std::cout << "public static void main(String[] " << rule->Arg() << ") {" << std::endl;
+	std::cout << "class " << rule->ClassName()->GetString() << " {" << std::endl;
+	std::cout << "public static void main(String[] " << rule->Arg()->GetString() << ") {" << std::endl;
 	if( rule->Statement() != nullptr ) 
 	{
 		rule->Statement()->Accept( this );
@@ -40,7 +40,7 @@ void CPrettyPrinter::visit(const CClassDecls* rule)
 	std::cout << "class " << rule->ClassName();
 	if( !rule->ParentName()->GetString().empty() )
 	{
-		std::cout << " extends " << rule->ParentName();
+		std::cout << " extends " << rule->ParentName()->GetString();
 	}
 	std::cout << " {" << std::endl;
 	if( rule->VarDeclList() != nullptr ) 
@@ -69,7 +69,7 @@ void CPrettyPrinter::visit(const CVarDeclList* rule)
 void CPrettyPrinter::visit(const CVarDecl* rule)
 {
 	rule->Type()->Accept( this );
-	std::cout << rule->Name() << ";" << std::endl;
+	std::cout << rule->Name()->GetString() << ";" << std::endl;
 }
 
 void CPrettyPrinter::visit(const CMethodDeclList* rule)
@@ -91,7 +91,7 @@ void CPrettyPrinter::visit(const CMethodDecl* rule)
 	{
 		rule->Type()->Accept( this );
 	}
-	std::cout << rule->Name() << "( ";
+	std::cout << rule->Name()->GetString() << "( ";
 	if( rule->FormalList() != nullptr ) 
 	{
 		rule->FormalList()->Accept( this );
@@ -119,7 +119,7 @@ void CPrettyPrinter::visit(const CFormalList* rule)
 	{
 		rule->Type()->Accept( this );
 	}
-	std::cout << " " << rule->Id() << " ";
+	std::cout << " " << rule->Id()->GetString() << " ";
 	if( rule->FormalRest() != nullptr ) 
 	{
 		rule->FormalRest()->Accept( this );
@@ -132,7 +132,7 @@ void CPrettyPrinter::visit(const CFormalRest* rule)
 	{
 		rule->FormalRest()->Accept( this );
 	}
-	std::cout << ", " << rule->Type() << " " << rule->Id();
+	std::cout << ", " << rule->Type() << " " << rule->Id()->GetString();
 }
 
 void CPrettyPrinter::visit(const CType* rule)
@@ -153,7 +153,7 @@ void CPrettyPrinter::visit(const CType* rule)
 
 void CPrettyPrinter::visit(const CUserType* rule)
 {
-	std::cout << rule->Type() << std::endl;
+	std::cout << rule->Type()->GetString() << std::endl;
 }
 
 void CPrettyPrinter::visit(const CStatementList* rule)
@@ -225,7 +225,7 @@ void CPrettyPrinter::visit(const CPrintStatement* rule)
 
 void CPrettyPrinter::visit(const CAssignStatement* rule)
 {
-    std::cout << rule->LeftPart() << " = ";
+    std::cout << rule->LeftPart()->GetString() << " = ";
 	if( rule->RightPart() != nullptr )
 	{
 		rule->RightPart()->Accept( this );
@@ -235,7 +235,7 @@ void CPrettyPrinter::visit(const CAssignStatement* rule)
 
 void CPrettyPrinter::visit(const CArrayAssignStatement* rule)
 {
-    std::cout << rule->ArrayName() << "[";
+    std::cout << rule->ArrayName()->GetString() << "[";
     if( rule->ElementNumber() != nullptr )
     {
 		rule->ElementNumber()->Accept( this );
@@ -335,7 +335,7 @@ void CPrettyPrinter::visit(const CMethodExpression* rule)
 	{
 		rule->Exp()->Accept( this );
 	}
-	std::cout << "." << rule->Id() << "(";
+	std::cout << "." << rule->Id()->GetString() << "(";
 	if( rule->IndexExp() != nullptr )
 	{
 		rule->IndexExp()->Accept( this );
@@ -345,17 +345,17 @@ void CPrettyPrinter::visit(const CMethodExpression* rule)
 
 void CPrettyPrinter::visit(const CIntLiteralExpression* rule)
 {
-    std::cout << rule->Value();
+    std::cout << rule->Value()->GetString();
 }
 
 void CPrettyPrinter::visit(const CBoolLiteralExpression* rule)
 {
-    std::cout << rule->Value();
+    std::cout << rule->Value()->GetString();
 }
 
 void CPrettyPrinter::visit(const CIdentifierExpression* rule)
 {
-    std::cout << rule->Id();
+    std::cout << rule->Id()->GetString();
 }
 
 void CPrettyPrinter::visit(const CThisExpression* rule)
@@ -375,7 +375,7 @@ void CPrettyPrinter::visit(const CNewIntArrayExpression* rule)
 
 void CPrettyPrinter::visit(const CNewExpression* rule)
 {
-    std::cout << "new " << rule->Id() << "()";
+    std::cout << "new " << rule->Id()->GetString() << "()";
 }
 
 void CPrettyPrinter::visit(const CUnaryOpExpression* rule)

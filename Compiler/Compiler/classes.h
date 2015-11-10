@@ -29,7 +29,7 @@ private:
 
 class CMainClass : public IMainClass {
 public:
-	CMainClass( IStatement* _pStatement, std::string name, std::string arg, CLocation& location ) : 
+	CMainClass( IStatement* _pStatement, const std::string& name, const std::string& arg, CLocation& location ) : 
 		_location( location ), 
 		_name( CSymbol::GetSymbol( name ) ),
 		_arg( CSymbol::GetSymbol( arg ) ),
@@ -40,14 +40,14 @@ public:
 
 	const IStatement* Statement() const { return pStatement.get(); }
 	
-	const CSymbol* ClassName() const { return _name.get(); }
+	const CSymbol* ClassName() const { return _name; }
 
-	const CSymbol* Arg() const { return _arg.get(); }
+	const CSymbol* Arg() const { return _arg; }
 
 private:
 	std::shared_ptr<IStatement> pStatement;
-	std::shared_ptr<CSymbol> _name;
-	std::shared_ptr<CSymbol> _arg;
+	CSymbol* _name;
+	CSymbol* _arg;
 	CLocation _location;
 };
 
@@ -73,7 +73,7 @@ private:
 
 class CClassDecls : public IClassDecls {
 public:
-	CClassDecls( std::string name, std::string parent, IVarDeclList* _pVarDeclList, IMethodDeclList* _pMethodDeclList, CLocation& location ) : 
+	CClassDecls( const std::string& name, const std::string& parent, IVarDeclList* _pVarDeclList, IMethodDeclList* _pMethodDeclList, CLocation& location ) : 
 		_location( location ),
 		_name( CSymbol::GetSymbol( name ) ),
 		_parent( CSymbol::GetSymbol( parent ) ),
@@ -89,15 +89,15 @@ public:
 	
 	const IMethodDeclList* MethodDeclList() const { return pMethodDeclList.get(); }
 
-	const CSymbol* ClassName() const { return _name.get(); }
+	const CSymbol* ClassName() const { return _name; }
 
-	const CSymbol* ParentName() const { return _parent.get(); }
+	const CSymbol* ParentName() const { return _parent; }
 
 private:
 	std::shared_ptr<IVarDeclList> pVarDeclList;
 	std::shared_ptr<IMethodDeclList> pMethodDeclList;
-	std::shared_ptr<CSymbol> _name;
-	std::shared_ptr<CSymbol> _parent;
+	CSymbol* _name;
+	CSymbol* _parent;
 	CLocation _location;
 };
 
@@ -133,11 +133,11 @@ public:
 	
 	const IType* Type() const { return pType.get(); }
 
-	const CSymbol* Name() const { return _name.get(); }
+	const CSymbol* Name() const { return _name; }
 
 private:
 	std::shared_ptr<IType> pType;
-	std::shared_ptr<CSymbol> _name;
+	CSymbol* _name;
 	CLocation _location;
 };
 
@@ -185,7 +185,7 @@ public:
 	
 	const IType* Type() const { return pType.get(); }
 
-	const CSymbol* Name() const { return _name.get(); }
+	const CSymbol* Name() const { return _name; }
 
 	const IExp* Exp() const { return pExp.get(); }
 
@@ -197,7 +197,7 @@ public:
 
 private:
 	std::shared_ptr<IType> pType;
-	std::shared_ptr<CSymbol> _name;
+	CSymbol* _name;
 	std::shared_ptr<IExp> pExp;
 	std::shared_ptr<IFormalList> pFormalList;
 	std::shared_ptr<IVarDeclList> pVarDeclList;
@@ -220,12 +220,12 @@ public:
 	
 	const IType* Type() const { return pType.get(); }
 
-	const CSymbol* Id() const { return _id.get(); }
+	const CSymbol* Id() const { return _id; }
 	
 private:
 	std::shared_ptr<IFormalRest> pFormalRest;
 	std::shared_ptr<IType> pType;
-	std::shared_ptr<CSymbol> _id;
+	CSymbol* _id;
 	CLocation _location;
 };
 
@@ -244,12 +244,12 @@ public:
 	
 	const IType* Type() const { return pType.get(); }
 
-	const CSymbol* Id() const { return _id.get(); }
+	const CSymbol* Id() const { return _id; }
 	
 private:
 	std::shared_ptr<IFormalRest> pFormalRest;
 	std::shared_ptr<IType> pType;
-	std::shared_ptr<CSymbol> _id;
+	CSymbol* _id;
 	CLocation _location;
 };
 
@@ -280,10 +280,10 @@ public:
 
 	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
 	
-	const CSymbol* Type() const { return _type.get(); }
+	const CSymbol* Type() const { return _type; }
 
 private:
-	std::shared_ptr<CSymbol> _type;
+	CSymbol* _type;
 	CLocation _location;
 };
 
@@ -396,14 +396,14 @@ public:
 		_location( location )
 	{}
 
-	const CSymbol* LeftPart() const { return _left.get(); }
+	const CSymbol* LeftPart() const { return _left; }
 
 	const IExp* RightPart() const { return _right.get(); }
 
 	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 private:
-	std::shared_ptr<CSymbol> _left;
+	CSymbol* _left;
 	std::shared_ptr<IExp> _right;
 	CLocation _location;
 };
@@ -417,7 +417,7 @@ public:
 		_rightPart( rightPart )
 	{}
 
-	const CSymbol* ArrayName() const { return _arrayId.get(); }
+	const CSymbol* ArrayName() const { return _arrayId; }
 
 	const IExp* ElementNumber() const { return _elementNumber.get(); }
 
@@ -426,7 +426,7 @@ public:
 	void Accept( IVisitor* visitor ) const { visitor->visit( this ); };
 
 private:
-	std::shared_ptr<CSymbol> _arrayId;
+	CSymbol* _arrayId;
 	std::shared_ptr<IExp> _elementNumber;
 	std::shared_ptr<IExp> _rightPart;
 	CLocation _location;
@@ -530,14 +530,14 @@ public:
 
 	const IExpList* IndexExp() const { return pExpList.get(); };
 
-	const CSymbol* Id() const { return id.get(); };
+	const CSymbol* Id() const { return id; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
 private:
 	std::shared_ptr<IExp> pExp;
 	std::shared_ptr<IExpList> pExpList;
-	std::shared_ptr<CSymbol> id;
+	CSymbol* id;
 	CLocation location;
 };
 
@@ -548,12 +548,12 @@ public:
         location( _location )
 	{}
 
-	const CSymbol* Value() const { return value.get(); };
+	const CSymbol* Value() const { return value; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
 private:
-	std::shared_ptr<CSymbol> value;
+	CSymbol* value;
 	CLocation location;
 };
 
@@ -564,12 +564,12 @@ public:
         location( _location )
 	{}
 
-	const CSymbol* Value( ) const { return value.get(); };
+	const CSymbol* Value( ) const { return value; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
 private:
-	std::shared_ptr<CSymbol> value;
+	CSymbol* value;
 	CLocation location;
 };
 
@@ -580,12 +580,12 @@ public:
         location( _location )
 	{}
 
-	const CSymbol* Id() const { return id.get(); };
+	const CSymbol* Id() const { return id; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
 private:
-	std::shared_ptr<CSymbol> id;
+	CSymbol* id;
 	CLocation location;
 };
 
@@ -624,12 +624,12 @@ public:
         location( _location )
     {}
 
-	const CSymbol* Id() const { return id.get(); };
+	const CSymbol* Id() const { return id; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
 private:
-	std::shared_ptr<CSymbol> id;
+	CSymbol* id;
 	CLocation location;
 };
 
