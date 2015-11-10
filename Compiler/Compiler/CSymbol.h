@@ -27,4 +27,3 @@ private:
 	CSymbol(const std::string& s) : name(s) {}
 };
 
-std::unordered_map<std::string, CSymbol*> CSymbol::table;

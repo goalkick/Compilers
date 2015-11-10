@@ -12,8 +12,8 @@ int main()
 	std::shared_ptr<CPrettyPrinter> printer( new CPrettyPrinter );
 	root->Accept( printer.get() );
 	
-	std::shared_ptr<CSymbolTableBuilderVisitor> symbolTableBuilder( new CSymbolTableBuilderVisitor );
-	root->Accept( symbolTableBuilder.get() );
+	//std::shared_ptr<CSymbolTableBuilderVisitor> symbolTableBuilder( new CSymbolTableBuilderVisitor );
+	//root->Accept( symbolTableBuilder.get() );
 
 	return 0;
 }
