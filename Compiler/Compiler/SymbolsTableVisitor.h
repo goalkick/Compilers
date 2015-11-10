@@ -4,7 +4,7 @@
 
 class CSymbolTableBuilderVisitor : public IVisitor {
 public:
-
+	CSymbolTableBuilderVisitor();
 	std::shared_ptr<SymbolsTable::CTable> GetSymbolsTable();
 
 	void visit(const CProgram* n);

@@ -6,7 +6,6 @@
 #include <string>
 #include <memory>
 #include "CSymbol.h"
-#include "SymbolsTable.h"
 
 class CProgram : public IProgram {
 public:

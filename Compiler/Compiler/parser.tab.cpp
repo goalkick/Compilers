@@ -1923,7 +1923,7 @@ yyreduce:
   case 55:
 /* Line 1792 of yacc.c  */
 #line 190 "parser.y"
-    { (yyval.expressionVal) = new CIntLiteralExpression( yyval.ival, CLocation( 0, 0, 0, 0 ) ); }
+    { (yyval.expressionVal) = new CIntLiteralExpression( std::to_string(yyval.ival), CLocation( 0, 0, 0, 0 ) ); }
     break;
 
   case 56:

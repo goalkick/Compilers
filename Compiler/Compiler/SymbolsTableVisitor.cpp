@@ -195,10 +195,10 @@ void CSymbolTableBuilderVisitor::visit( const CMethodDeclList* methodList )
 
 void CSymbolTableBuilderVisitor::visit( const CType* program )
 {
-	lastTypeValue = std::make_shared<CType>( program );
+	lastTypeValue = std::make_shared<CType>( *program );
 }
 
 void CSymbolTableBuilderVisitor::visit( const CUserType* program )
 {
-	lastTypeValue = std::make_shared<CUserType>( program );
+	lastTypeValue = std::make_shared<CUserType>( *program );
 }
