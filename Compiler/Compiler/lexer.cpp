@@ -1,6 +1,6 @@
-#line 2 "C:\\Users\\Elena\\Compilers\\Compiler\\Compiler\\lexer.cpp"
+#line 2 "C:\\Users\\Toshik\\abbyy\\Compilers\\Compiler\\Compiler\\lexer.cpp"
 
-#line 4 "C:\\Users\\Elena\\Compilers\\Compiler\\Compiler\\lexer.cpp"
+#line 4 "C:\\Users\\Toshik\\abbyy\\Compilers\\Compiler\\Compiler\\lexer.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -584,7 +584,7 @@ char *yytext;
 #include "parser.tab.hpp"
 #define YY_DECL extern "C" int yylex()
 	
-#line 588 "C:\\Users\\Elena\\Compilers\\Compiler\\Compiler\\lexer.cpp"
+#line 588 "C:\\Users\\Toshik\\abbyy\\Compilers\\Compiler\\Compiler\\lexer.cpp"
 
 #define INITIAL 0
 
@@ -766,7 +766,7 @@ YY_DECL
 #line 20 "lexer.l"
 
 
-#line 770 "C:\\Users\\Elena\\Compilers\\Compiler\\Compiler\\lexer.cpp"
+#line 770 "C:\\Users\\Toshik\\abbyy\\Compilers\\Compiler\\Compiler\\lexer.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -1076,7 +1076,7 @@ YY_RULE_SETUP
 #line 68 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 1080 "C:\\Users\\Elena\\Compilers\\Compiler\\Compiler\\lexer.cpp"
+#line 1080 "C:\\Users\\Toshik\\abbyy\\Compilers\\Compiler\\Compiler\\lexer.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 

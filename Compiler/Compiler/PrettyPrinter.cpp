@@ -38,7 +38,7 @@ void CPrettyPrinter::visit(const CClassDeclsList* rule)
 void CPrettyPrinter::visit(const CClassDecls* rule)
 {
 	std::cout << "class " << rule->ClassName();
-	if( !rule->ParentName().empty() )
+	if( !rule->ParentName()->GetString().empty() )
 	{
 		std::cout << " extends " << rule->ParentName();
 	}

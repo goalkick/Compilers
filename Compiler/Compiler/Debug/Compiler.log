@@ -1,17 +1,238 @@
-﻿Build started 09.11.2015 22:26:52.
-     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
+﻿Build started 10.11.2015 1:58:06.
+     1>Project "C:\Users\Toshik\abbyy\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SymbolsTable.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt lexer.cpp main.cpp parser.tab.cpp PrettyPrinter.cpp SymbolsTable.cpp SymbolsTableVisitor.cpp
+         SymbolsTableVisitor.cpp
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9): error C2011: 'SymbolsTable::CVarInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23): error C2011: 'SymbolsTable::CMethodInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42): error C2011: 'SymbolsTable::CClassInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67): error C2011: 'SymbolsTable::CTable' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstablevisitor.cpp(6): error C2027: use of undefined type 'SymbolsTable::CTable'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstablevisitor.cpp(6): fatal error C1903: unable to recover from previous error(s); stopping compilation
+         main.cpp
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9): error C2011: 'SymbolsTable::CVarInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23): error C2011: 'SymbolsTable::CMethodInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42): error C2011: 'SymbolsTable::CClassInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67): error C2011: 'SymbolsTable::CTable' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+         Generating Code...
+         Compiling...
+         lexer.cpp
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(57): warning C4005: 'INT8_MIN' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(60) : see previous definition of 'INT8_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(58): warning C4005: 'INT16_MIN' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(63) : see previous definition of 'INT16_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(59): warning C4005: 'INT32_MIN' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(66) : see previous definition of 'INT32_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(61): warning C4005: 'INT8_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(69) : see previous definition of 'INT8_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(62): warning C4005: 'INT16_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(72) : see previous definition of 'INT16_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(63): warning C4005: 'INT32_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(75) : see previous definition of 'INT32_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(65): warning C4005: 'UINT8_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(78) : see previous definition of 'UINT8_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(66): warning C4005: 'UINT16_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(81) : see previous definition of 'UINT16_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(67): warning C4005: 'UINT32_MAX' : macro redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.cpp(84) : see previous definition of 'UINT32_MAX'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\lexer.l(67): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
+         Generating Code...
+         Compiling...
          SymbolsTable.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.lib" /MACHINE:X86 Debug\lexer.obj
-         Debug\main.obj
-         Debug\parser.tab.obj
-         Debug\PrettyPrinter.obj
-         Debug\SymbolsTable.obj
-         Compiler.vcxproj -> C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe
-     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)).
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9): error C2011: 'SymbolsTable::CVarInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23): error C2011: 'SymbolsTable::CMethodInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42): error C2011: 'SymbolsTable::CClassInfo' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67): error C2011: 'SymbolsTable::CTable' : 'class' type redefinition
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(5): error C2027: use of undefined type 'SymbolsTable::CTable'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(7): error C2065: 'classes' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(7): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(8): error C2065: 'classes' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(8): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(10): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(10): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CClassInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(15): error C2065: 'classes' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(15): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(19): error C2027: use of undefined type 'SymbolsTable::CTable'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(67) : see declaration of 'SymbolsTable::CTable'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(21): error C2065: 'classes' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(21): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(22): error C2065: 'classes' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(22): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(24): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(24): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CClassInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(32): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(34): error C2065: 'vars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(34): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(35): error C2065: 'vars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(35): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(37): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(37): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(42): error C2065: 'vars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(42): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(46): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(48): error C2065: 'methods' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(48): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(49): error C2065: 'methods' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(49): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(51): error C2027: use of undefined type 'SymbolsTable::CMethodInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(51): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CMethodInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(56): error C2065: 'methods' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(56): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(60): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(62): error C2065: 'baseClass' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(66): error C2065: 'baseClass' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(70): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(71): error C2270: 'GetMethod' : modifiers not allowed on nonmember functions
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(72): error C2065: 'methods' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(72): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(73): error C2065: 'methods' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(73): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(75): error C2027: use of undefined type 'SymbolsTable::CMethodInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(75): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CMethodInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(83): error C2027: use of undefined type 'SymbolsTable::CClassInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(42) : see declaration of 'SymbolsTable::CClassInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(84): error C2270: 'GetVar' : modifiers not allowed on nonmember functions
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(85): error C2065: 'vars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(85): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(86): error C2065: 'vars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(86): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(88): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(88): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(96): error C2027: use of undefined type 'SymbolsTable::CMethodInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(98): error C2065: 'params' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(98): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(99): error C2065: 'params' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(99): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(101): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(101): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(106): error C2065: 'params' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(106): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(110): error C2027: use of undefined type 'SymbolsTable::CMethodInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(112): error C2065: 'localVars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(112): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(113): error C2065: 'localVars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(113): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(115): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(115): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(120): error C2065: 'localVars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(120): error C2228: left of '.push_back' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(124): error C2027: use of undefined type 'SymbolsTable::CMethodInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(23) : see declaration of 'SymbolsTable::CMethodInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(125): error C2270: 'GetVar' : modifiers not allowed on nonmember functions
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(126): error C2065: 'localVars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(126): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(127): error C2065: 'localVars' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(127): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(129): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(129): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(135): error C2065: 'params' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(135): error C2228: left of '.begin' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(136): error C2065: 'params' : undeclared identifier
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(136): error C2228: left of '.end' must have class/struct/union
+                 type is ''unknown-type''
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(138): error C2027: use of undefined type 'SymbolsTable::CVarInfo'
+                 c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.h(9) : see declaration of 'SymbolsTable::CVarInfo'
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\symbolstable.cpp(138): error C2039: 'GetName' : is not a member of 'std::shared_ptr<_Ty>'
+                 with
+                 [
+                     _Ty=SymbolsTable::CVarInfo
+                 ]
+         PrettyPrinter.cpp
+         parser.tab.cpp
+     1>c:\users\toshik\abbyy\compilers\compiler\compiler\parser.tab.cpp(1318): warning C4065: switch statement contains 'default' but no 'case' labels
+         Generating Code...
+     1>Done Building Project "C:\Users\Toshik\abbyy\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:05.15
+Time Elapsed 00:00:06.63

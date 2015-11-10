@@ -5,7 +5,6 @@
 #include "classes.h"
 
 namespace SymbolsTable {
-	// связь имени и типа
 	class CVarInfo {
 	public:
 		CVarInfo( const std::string& _name, IType* _type ) : name( _name ), type( _type ) {}
@@ -19,7 +18,6 @@ namespace SymbolsTable {
 		IType* type;
 	};
 
-	// описание метода (имя, формальные параметры и локальные переменные – CVarInfo)
 	class CMethodInfo {
 	public:
 		CMethodInfo( const std::string& _name, IType* _type ) : name( _name ), returnType( new CVarInfo( "", _type ) ) {}
@@ -38,7 +36,6 @@ namespace SymbolsTable {
 		std::vector<std::shared_ptr<CVarInfo>> localVars;
 	};
 
-	// описание класса (имя, поля CVarInfo, методы CMethodInfo)
 	class CClassInfo {
 	public:
 		CClassInfo( const std::string& _name ) : name( _name ) {}
@@ -63,7 +60,6 @@ namespace SymbolsTable {
 		std::vector<std::shared_ptr<CMethodInfo> > methods;
 	};
 
-	// список известных классов (CClassInfo)
 	class CTable {
 	public:
 		bool AddClass( const std::string& name );

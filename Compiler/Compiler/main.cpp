@@ -1,5 +1,6 @@
 //#include "parser.tab.hpp"
 #include "PrettyPrinter.h"
+#include "SymbolsTableVisitor.h"
 
 extern int yyparse( std::shared_ptr<CProgram>& );
 
@@ -10,5 +11,9 @@ int main()
 	yyparse( root );
 	std::shared_ptr<CPrettyPrinter> printer( new CPrettyPrinter );
 	root->Accept( printer.get() );
+	
+	std::shared_ptr<CSymbolTableBuilderVisitor> symbolTableBuilder( new CSymbolTableBuilderVisitor );
+	root->Accept( symbolTableBuilder.get() );
+
 	return 0;
 }

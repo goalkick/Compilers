@@ -187,7 +187,7 @@ Exp :
 	| Exp '.' ID '(' ')' { $$ = new CMethodExpression( $1, $3, nullptr, CLocation( 0, 0, 0, 0 ) ); }
 	| Exp '<' Exp { $$ = new CBinOpExpression( $1, CBinOpExpression::LESS, $3, CLocation( 0, 0, 0, 0 ) ); }
 	| Exp '&' Exp { $$ = new CBinOpExpression( $1, CBinOpExpression::AND, $3, CLocation( 0, 0, 0, 0 ) ); }
-	| INTEGER_LITERAL { $$ = new CIntLiteralExpression( yyval.ival, CLocation( 0, 0, 0, 0 ) ); }
+	| INTEGER_LITERAL { $$ = new CIntLiteralExpression( std::to_string(yyval.ival), CLocation( 0, 0, 0, 0 ) ); }
 	| TRUE {}
 	| FALSE {}
 	| ID { $$ = new CIdentifierExpression( $1, CLocation( 0, 0, 0, 0 ) ); }
