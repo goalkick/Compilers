@@ -31,8 +31,8 @@ class CMainClass : public IMainClass {
 public:
 	CMainClass( IStatement* _pStatement, const std::string& name, const std::string& arg, CLocation& location ) : 
 		_location( location ), 
-		_name( CSymbol::GetSymbol( name ) ),
 		_arg( CSymbol::GetSymbol( arg ) ),
+		_name( CSymbol::GetSymbol( name ) ),
 		pStatement( _pStatement )
 	{ }
 

@@ -21,10 +21,12 @@ public:
 
 	const std::string& GetString() const { return name; }
 
+	CSymbol( const std::string& s ) : name( s ) {}
+	CSymbol( CSymbol* c ) : name( c->GetString() ) {}
 private:
 	const std::string name;
 	static std::unordered_map< std::string, std::shared_ptr<CSymbol> > table;
 
-	CSymbol(const std::string& s) : name(s) {}
+	
 };
 

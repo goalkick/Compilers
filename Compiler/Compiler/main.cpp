@@ -1,6 +1,6 @@
 //#include "parser.tab.hpp"
 #include "PrettyPrinter.h"
-#include "SymbolsTableVisitor.h"
+//#include "SymbolsTableVisitor.h"
 
 extern int yyparse( std::shared_ptr<CProgram>& );
 
