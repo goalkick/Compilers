@@ -7,10 +7,11 @@
 #include <memory>
 #include "CSymbol.h"
 
-class CProgram : public IProgram {
+class CProgram : public IProgram
+{
 public:
-	CProgram( IMainClass* _pMainClass, IClassDeclsList* _pClassDeclList, CLocation& location ) : 
-		pMainClass( _pMainClass ), 
+	CProgram( IMainClass* _pMainClass, IClassDeclsList* _pClassDeclList, CLocation& location ) :
+		pMainClass( _pMainClass ),
 		pClassDeclList( _pClassDeclList ),
 		_location( location )
 	{ }
@@ -27,10 +28,11 @@ private:
 	CLocation _location;
 };
 
-class CMainClass : public IMainClass {
+class CMainClass : public IMainClass
+{
 public:
-	CMainClass( IStatement* _pStatement, const std::string& name, const std::string& arg, CLocation& location ) : 
-		_location( location ), 
+	CMainClass( IStatement* _pStatement, const std::string& name, const std::string& arg, CLocation& location ) :
+		_location( location ),
 		_arg( CSymbol::GetSymbol( arg ) ),
 		_name( CSymbol::GetSymbol( name ) ),
 		pStatement( _pStatement )
@@ -39,7 +41,7 @@ public:
 	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IStatement* Statement() const { return pStatement.get(); }
-	
+
 	const CSymbol* ClassName() const { return _name; }
 
 	const CSymbol* Arg() const { return _arg; }
@@ -51,15 +53,16 @@ private:
 	CLocation _location;
 };
 
-class CClassDeclsList : public IClassDeclsList {
+class CClassDeclsList : public IClassDeclsList
+{
 public:
-	CClassDeclsList( IClassDecls* _pClassDecls, IClassDeclsList* _pClassDeclsList, CLocation& location ) : 
-		_location( location ), 
-		pClassDecls( _pClassDecls ), 
-		pClassDeclsList (_pClassDeclsList )
+	CClassDeclsList( IClassDecls* _pClassDecls, IClassDeclsList* _pClassDeclsList, CLocation& location ) :
+		_location( location ),
+		pClassDecls( _pClassDecls ),
+		pClassDeclsList( _pClassDeclsList )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IClassDecls* ClassDecls() const { return pClassDecls.get(); }
 
@@ -71,22 +74,23 @@ private:
 	CLocation _location;
 };
 
-class CClassDecls : public IClassDecls {
+class CClassDecls : public IClassDecls
+{
 public:
-	CClassDecls( const std::string& name, const std::string& parent, IVarDeclList* _pVarDeclList, IMethodDeclList* _pMethodDeclList, CLocation& location ) : 
+	CClassDecls( const std::string& name, const std::string& parent, IVarDeclList* _pVarDeclList, IMethodDeclList* _pMethodDeclList, CLocation& location ) :
 		_location( location ),
 		_name( CSymbol::GetSymbol( name ) ),
 		_parent( CSymbol::GetSymbol( parent ) ),
-		pVarDeclList( _pVarDeclList ), 
-		pMethodDeclList (_pMethodDeclList )
+		pVarDeclList( _pVarDeclList ),
+		pMethodDeclList( _pMethodDeclList )
 	{
-	
+
 	}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IVarDeclList* VarDeclList() const { return pVarDeclList.get(); }
-	
+
 	const IMethodDeclList* MethodDeclList() const { return pMethodDeclList.get(); }
 
 	const CSymbol* ClassName() const { return _name; }
@@ -101,15 +105,16 @@ private:
 	CLocation _location;
 };
 
-class CVarDeclList : public IVarDeclList {
+class CVarDeclList : public IVarDeclList
+{
 public:
-	CVarDeclList( IVarDeclList* _pVarDeclList, IVarDecl* _pVarDecl, CLocation& location ) : 
-		_location( location ), 
-		pVarDeclList( _pVarDeclList ), 
-		pVarDecl (_pVarDecl )
+	CVarDeclList( IVarDeclList* _pVarDeclList, IVarDecl* _pVarDecl, CLocation& location ) :
+		_location( location ),
+		pVarDeclList( _pVarDeclList ),
+		pVarDecl( _pVarDecl )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IVarDeclList* VarDeclList() const { return pVarDeclList.get(); }
 
@@ -121,16 +126,17 @@ private:
 	CLocation _location;
 };
 
-class CVarDecl : public IVarDecl {
+class CVarDecl : public IVarDecl
+{
 public:
-	CVarDecl( IType* _pType, const std::string& name, CLocation& location ) : 
-		_location( location ), 
-		_name( CSymbol::GetSymbol( name ) ), 
-		pType(_pType )
+	CVarDecl( IType* _pType, const std::string& name, CLocation& location ) :
+		_location( location ),
+		_name( CSymbol::GetSymbol( name ) ),
+		pType( _pType )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IType* Type() const { return pType.get(); }
 
 	const CSymbol* Name() const { return _name; }
@@ -141,48 +147,50 @@ private:
 	CLocation _location;
 };
 
-class CMethodDeclList : public IMethodDeclList {
+class CMethodDeclList : public IMethodDeclList
+{
 public:
-	CMethodDeclList( IMethodDecl* _pMethodDecl, IMethodDeclList* _pMethodDeclList, CLocation& location ) : 
-		_location( location ), 
-		pMethodDecl( _pMethodDecl ), 
+	CMethodDeclList( IMethodDecl* _pMethodDecl, IMethodDeclList* _pMethodDeclList, CLocation& location ) :
+		_location( location ),
+		pMethodDecl( _pMethodDecl ),
 		pMethodDeclList( _pMethodDeclList )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IMethodDecl* MethodDecl() const { return pMethodDecl.get(); }
 
 	const IMethodDeclList* MethodDeclList() const { return pMethodDeclList.get(); }
-	
+
 private:
 	std::shared_ptr<IMethodDecl> pMethodDecl;
 	std::shared_ptr<IMethodDeclList> pMethodDeclList;
 	CLocation _location;
 };
 
-class CMethodDecl : public IMethodDecl {
+class CMethodDecl : public IMethodDecl
+{
 public:
-	CMethodDecl( 
-		IType* _type, 
-		const std::string& name, 
-		IFormalList* _pFormalList, 
+	CMethodDecl(
+		IType* _type,
+		const std::string& name,
+		IFormalList* _pFormalList,
 		IVarDeclList* _pVarDeclList,
-		IStatementList* _pStatementList, 
-		IExp* _pExp, 
+		IStatementList* _pStatementList,
+		IExp* _pExp,
 		CLocation& location ) :
 
-		_location( location ), 
-		pType( _type ), 
-		_name( CSymbol::GetSymbol( name ) ), 
-		pFormalList( _pFormalList ), 
+		_location( location ),
+		pType( _type ),
+		_name( CSymbol::GetSymbol( name ) ),
+		pFormalList( _pFormalList ),
 		pVarDeclList( _pVarDeclList ),
-		pStatementList( _pStatementList ), 
+		pStatementList( _pStatementList ),
 		pExp( _pExp )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IType* Type() const { return pType.get(); }
 
 	const CSymbol* Name() const { return _name; }
@@ -205,23 +213,24 @@ private:
 	CLocation _location;
 };
 
-class CFormalList : public IFormalList {
+class CFormalList : public IFormalList
+{
 public:
-	CFormalList( IType* _pType, const std::string& id, IFormalRest* _pFormalRest, CLocation& location ) : 
-		_location( location ), 
-		_id( CSymbol::GetSymbol( id ) ), 
-		pType(_pType ),
+	CFormalList( IType* _pType, const std::string& id, IFormalRest* _pFormalRest, CLocation& location ) :
+		_location( location ),
+		_id( CSymbol::GetSymbol( id ) ),
+		pType( _pType ),
 		pFormalRest( _pFormalRest )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IFormalRest* FormalRest() const { return pFormalRest.get(); }
-	
+
 	const IType* Type() const { return pType.get(); }
 
 	const CSymbol* Id() const { return _id; }
-	
+
 private:
 	std::shared_ptr<IFormalRest> pFormalRest;
 	std::shared_ptr<IType> pType;
@@ -229,23 +238,24 @@ private:
 	CLocation _location;
 };
 
-class CFormalRest : public IFormalRest {
+class CFormalRest : public IFormalRest
+{
 public:
-	CFormalRest( IType* _pType, const std::string& id, IFormalRest* _pFormalRest, CLocation& location ) : 
-		_location( location ), 
-		_id( CSymbol::GetSymbol( id ) ), 
-		pType(_pType ),
+	CFormalRest( IType* _pType, const std::string& id, IFormalRest* _pFormalRest, CLocation& location ) :
+		_location( location ),
+		_id( CSymbol::GetSymbol( id ) ),
+		pType( _pType ),
 		pFormalRest( _pFormalRest )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
 
 	const IFormalRest* FormalRest() const { return pFormalRest.get(); }
-	
+
 	const IType* Type() const { return pType.get(); }
 
 	const CSymbol* Id() const { return _id; }
-	
+
 private:
 	std::shared_ptr<IFormalRest> pFormalRest;
 	std::shared_ptr<IType> pType;
@@ -253,17 +263,31 @@ private:
 	CLocation _location;
 };
 
-class CType : public IType {
+class CType : public IType
+{
 public:
 	enum EType { INT, INT_ARRAY, BOOL };
 
 	CType( EType type, CLocation& location ) :
-	_type( type ),
-	_location( location )
+		_type( type ),
+		_location( location )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
+	std::string StringType() const {
+		switch (_type) {
+		case INT:
+			return "int";
+		case INT_ARRAY:
+			return "int []";
+		case BOOL:
+			return "boolean";
+		default:
+			return "ERROR!!!";
+		}
+	}
+
 	EType Type() const { return _type; }
 
 private:
@@ -271,32 +295,36 @@ private:
 	CLocation _location;
 };
 
-class CUserType : public IType {
+class CUserType : public IType
+{
 public:
 	CUserType( const std::string& type, CLocation& location ) :
-	_type( CSymbol::GetSymbol ( type ) ),
-	_location( location )
+		_type( CSymbol::GetSymbol( type ) ),
+		_location( location )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const CSymbol* Type() const { return _type; }
+
+	std::string StringType() const { return _type->GetString(); }
 
 private:
 	CSymbol* _type;
 	CLocation _location;
 };
 
-class CStatementList : public IStatementList {
+class CStatementList : public IStatementList
+{
 public:
-	CStatementList( IStatement* _pStatement, IStatementList* _pStatementList, CLocation& location ) : 
-		pStatement( _pStatement ), 
-		pStatementList( _pStatementList ), 
+	CStatementList( IStatement* _pStatement, IStatementList* _pStatementList, CLocation& location ) :
+		pStatement( _pStatement ),
+		pStatementList( _pStatementList ),
 		_location( location )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IStatement* Statement() const { return pStatement.get(); }
 
 	const IStatementList* StatementList() const { return pStatementList.get(); }
@@ -307,15 +335,16 @@ private:
 	CLocation _location;
 };
 
-class CStatement : public IStatement {
+class CStatement : public IStatement
+{
 public:
 	CStatement( IStatementList* _pStatementList, CLocation& location ) :
 		_location( location ),
 		pStatementList( _pStatementList )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IStatementList* StatementList() const { return pStatementList.get(); }
 
 private:
@@ -323,18 +352,19 @@ private:
 	CLocation _location;
 };
 
-class CIfStatement : public IStatement {
+class CIfStatement : public IStatement
+{
 public:
-	CIfStatement( 
-		IExp* condition, 
-		IStatement* statementIfTrue, 
-		IStatement* statementIfFalse, 
+	CIfStatement(
+		IExp* condition,
+		IStatement* statementIfTrue,
+		IStatement* statementIfFalse,
 		CLocation& location ) :
 
-	_location( location ),
-	_condition( condition ),
-	_statementIfTrue( statementIfTrue ),
-	_statementIfFalse( statementIfFalse )
+		_location( location ),
+		_condition( condition ),
+		_statementIfTrue( statementIfTrue ),
+		_statementIfFalse( statementIfFalse )
 	{}
 
 	const IExp* Condition() const { return _condition.get(); }
@@ -352,7 +382,8 @@ private:
 	CLocation _location;
 };
 
-class CWhileStatement : public IStatement {
+class CWhileStatement : public IStatement
+{
 public:
 	CWhileStatement( IExp* condition, IStatement* cycleBody, CLocation& location ) :
 		_condition( condition ),
@@ -372,7 +403,8 @@ private:
 	CLocation _location;
 };
 
-class CPrintStatement : public IStatement {
+class CPrintStatement : public IStatement
+{
 public:
 	CPrintStatement( IExp* expression, CLocation& location ) :
 		_expression( expression ),
@@ -388,7 +420,8 @@ private:
 	CLocation _location;
 };
 
-class CAssignStatement : public IStatement {
+class CAssignStatement : public IStatement
+{
 public:
 	CAssignStatement( const std::string& left, IExp* right, CLocation& location ) :
 		_left( CSymbol::GetSymbol( left ) ),
@@ -408,7 +441,8 @@ private:
 	CLocation _location;
 };
 
-class CArrayAssignStatement : public IStatement {
+class CArrayAssignStatement : public IStatement
+{
 public:
 	CArrayAssignStatement( const std::string& arrayId, IExp* elementNumber, IExp* rightPart, CLocation& location ) :
 		_location( location ),
@@ -432,7 +466,8 @@ private:
 	CLocation _location;
 };
 
-class CExpList : public IExpList {
+class CExpList : public IExpList
+{
 public:
 	CExpList( IExp* _pExp, IExpList* _pExpList, IExpRest* _pExpRest, CLocation& location ) :
 		pExp( _pExp ),
@@ -441,8 +476,8 @@ public:
 		_location( location )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IExp* Exp() const { return pExp.get(); }
 
 	const IExpList* ExpList() const { return pExpList.get(); }
@@ -456,16 +491,17 @@ private:
 	CLocation _location;
 };
 
-class CBinOpExpression : public IExp {
+class CBinOpExpression : public IExp
+{
 public:
 	enum EBinOp { AND, LESS, PLUS, MINUS, TIMES, DIVIDE };
 
 	CBinOpExpression( IExp* _pLeftExp, EBinOp _binOp, IExp* _pRightExp, const CLocation& _location ) :
-        pLeftExp( _pLeftExp ),
-        pRightExp( _pRightExp ),
-        location( _location ),
+		pLeftExp( _pLeftExp ),
+		pRightExp( _pRightExp ),
+		location( _location ),
 		binOp( _binOp )
-    {}
+	{}
 
 	EBinOp BinOp() const { return binOp; };
 
@@ -481,13 +517,14 @@ private:
 	EBinOp binOp;
 };
 
-class CIndexExpression : public IExp {
+class CIndexExpression : public IExp
+{
 public:
 	CIndexExpression( IExp* _pExp, IExp* _pIndexExp, const CLocation& _location ) :
-        pExp( _pExp ),
-        pIndexExp( _pIndexExp ),
-        location( _location )
-    {}
+		pExp( _pExp ),
+		pIndexExp( _pIndexExp ),
+		location( _location )
+	{}
 
 	const IExp* Exp() const { return pExp.get(); };
 
@@ -501,11 +538,12 @@ private:
 	CLocation location;
 };
 
-class CLenghtExpression : public IExp {
+class CLenghtExpression : public IExp
+{
 public:
 	CLenghtExpression( IExp* _pExp, const CLocation& _location ) :
-        pExp( _pExp ),
-        location( _location )
+		pExp( _pExp ),
+		location( _location )
 	{}
 
 	const IExp* Exp() const { return pExp.get(); };
@@ -517,13 +555,14 @@ private:
 	CLocation location;
 };
 
-class CMethodExpression : public IExp {
+class CMethodExpression : public IExp
+{
 public:
 	CMethodExpression( IExp* _pExp, const std::string& _id, IExpList* _pExpList, const CLocation& _location ) :
-        pExp( _pExp ),
+		pExp( _pExp ),
 		id( CSymbol::GetSymbol( _id ) ),
-        pExpList( _pExpList ),
-        location( _location )
+		pExpList( _pExpList ),
+		location( _location )
 	{}
 
 	const IExp* Exp() const { return pExp.get(); };
@@ -541,11 +580,12 @@ private:
 	CLocation location;
 };
 
-class CIntLiteralExpression : public IExp {
+class CIntLiteralExpression : public IExp
+{
 public:
 	CIntLiteralExpression( const std::string& _value, const CLocation& _location ) :
 		value( CSymbol::GetSymbol( _value ) ),
-        location( _location )
+		location( _location )
 	{}
 
 	const CSymbol* Value() const { return value; };
@@ -557,14 +597,15 @@ private:
 	CLocation location;
 };
 
-class CBoolLiteralExpression : public IExp {
+class CBoolLiteralExpression : public IExp
+{
 public:
 	CBoolLiteralExpression( const std::string& _value, const CLocation& _location ) :
 		value( CSymbol::GetSymbol( _value ) ),
-        location( _location )
+		location( _location )
 	{}
 
-	const CSymbol* Value( ) const { return value; };
+	const CSymbol* Value() const { return value; };
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 
@@ -573,11 +614,12 @@ private:
 	CLocation location;
 };
 
-class CIdentifierExpression : public IExp {
+class CIdentifierExpression : public IExp
+{
 public:
 	CIdentifierExpression( const std::string& _id, const CLocation& _location ) :
 		id( CSymbol::GetSymbol( _id ) ),
-        location( _location )
+		location( _location )
 	{}
 
 	const CSymbol* Id() const { return id; };
@@ -589,10 +631,11 @@ private:
 	CLocation location;
 };
 
-class CThisExpression : public IExp {
+class CThisExpression : public IExp
+{
 public:
 	CThisExpression( const CLocation& _location ) :
-        location( _location )
+		location( _location )
 	{}
 
 	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
@@ -601,11 +644,12 @@ private:
 	CLocation location;
 };
 
-class CNewIntArrayExpression : public IExp {
+class CNewIntArrayExpression : public IExp
+{
 public:
 	CNewIntArrayExpression( IExp* _pExp, const CLocation& _location ) :
-        pExp( _pExp ),
-        location( _location )
+		pExp( _pExp ),
+		location( _location )
 	{}
 
 	const IExp* Exp() const { return pExp.get(); };
@@ -617,12 +661,13 @@ private:
 	CLocation location;
 };
 
-class CNewExpression : public IExp {
+class CNewExpression : public IExp
+{
 public:
 	CNewExpression( const std::string& _id, const CLocation& _location ) :
 		id( CSymbol::GetSymbol( _id ) ),
-        location( _location )
-    {}
+		location( _location )
+	{}
 
 	const CSymbol* Id() const { return id; };
 
@@ -633,14 +678,15 @@ private:
 	CLocation location;
 };
 
-class CUnaryOpExpression : public IExp {
+class CUnaryOpExpression : public IExp
+{
 public:
 	enum UnaryOp { MINUS, NOT };
 
 	CUnaryOpExpression( UnaryOp _op, IExp* _pExp, const CLocation& _location ) :
-        op( _op ),
-        pExp( _pExp ),
-        location( _location )
+		op( _op ),
+		pExp( _pExp ),
+		location( _location )
 	{}
 
 	const IExp* Exp() const { return pExp.get(); };
@@ -655,11 +701,12 @@ private:
 	UnaryOp op;
 };
 
-class CBracesExpression : public IExp {
+class CBracesExpression : public IExp
+{
 public:
 	CBracesExpression( IExp* _pExp, const CLocation& _location ) :
-        pExp( _pExp ),
-        location( _location )
+		pExp( _pExp ),
+		location( _location )
 	{}
 
 	const IExp* Exp() const { return pExp.get(); };
@@ -674,34 +721,31 @@ private:
 /*
 class CExpressionList : public IExpList {
 public:
-	CExpressionList( IExp* _pExp, IExpList* _pExpList, const CLocation& _location ) :
-        pExp( _pExp ),
-        pExpList( _pExpList ),
-        location( _location )
-	{}
-
-	const IExp* Exp() const { return pExp.get(); };
-
-	const IExpList* ExpList() const { return pExpList.get(); };
-
-	void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
-
+CExpressionList( IExp* _pExp, IExpList* _pExpList, const CLocation& _location ) :
+pExp( _pExp ),
+pExpList( _pExpList ),
+location( _location )
+{}
+const IExp* Exp() const { return pExp.get(); };
+const IExpList* ExpList() const { return pExpList.get(); };
+void Accept( IVisitor*  visitor ) const { visitor->visit( this ); };
 private:
-	std::shared_ptr<IExp> pExp;
-	std::shared_ptr<IExpList> pExpList;
-	CLocation location;
+std::shared_ptr<IExp> pExp;
+std::shared_ptr<IExpList> pExpList;
+CLocation location;
 };
 */
 
-class CExpRest : public IExpRest {
+class CExpRest : public IExpRest
+{
 public:
 	CExpRest( IExp* _pExp, CLocation& location ) :
 		pExp( _pExp ),
 		_location( location )
 	{}
 
-	void Accept( IVisitor* visitor) const { visitor->visit( this ); }
-	
+	void Accept( IVisitor* visitor ) const { visitor->visit( this ); }
+
 	const IExp* Exp() const { return pExp.get(); }
 
 private:
@@ -712,14 +756,13 @@ private:
 /*
 class CExp : public IExp {
 public:
-	virtual ~CExp() {}
-	virtual void Accept( IVisitor* ) const;
+virtual ~CExp() {}
+virtual void Accept( IVisitor* ) const;
+void Accept( IVisitor* visitor) const { visitor->visit( *this ); }
 
-	void Accept( IVisitor* visitor) const { visitor->visit( *this ); }
-	
 private:
-	std::shared_ptr<class VarDeclList> pVarDeclList;
-	std::shared_ptr<class MethodDeclList> pMethodDeclList;
-	CLocation _location;
+std::shared_ptr<class VarDeclList> pVarDeclList;
+std::shared_ptr<class MethodDeclList> pMethodDeclList;
+CLocation _location;
 };
 */

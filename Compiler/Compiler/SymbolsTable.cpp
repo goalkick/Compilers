@@ -5,9 +5,9 @@ namespace SymbolsTable {
 	bool CTable::AddClass( const std::string& name )
 	{
 		std::vector<std::shared_ptr<CClassInfo>>::iterator it = classes.begin();
-		for( ; it != classes.end(); ++it ) 
+		for (; it != classes.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return false;
 			}
@@ -19,9 +19,9 @@ namespace SymbolsTable {
 	CClassInfo* CTable::GetClass( const std::string& name )
 	{
 		std::vector<std::shared_ptr<CClassInfo>>::iterator it = classes.begin();
-		for( ; it != classes.end(); ++it ) 
+		for (; it != classes.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return it->get();
 			}
@@ -29,12 +29,12 @@ namespace SymbolsTable {
 		return nullptr;
 	}
 
-	bool CClassInfo::AddVar( const std::string& name, IType* type )
+	bool CClassInfo::AddVar( const std::string& name, const IType* type )
 	{
 		std::vector<std::shared_ptr<CVarInfo> >::iterator it = vars.begin();
-		for( ; it != vars.end(); ++it ) 
+		for (; it != vars.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return false;
 			}
@@ -43,23 +43,24 @@ namespace SymbolsTable {
 		return true;
 	}
 
-	bool CClassInfo::AddMethod( const std::string& name, IType* type )
+	bool CClassInfo::AddMethod( const std::string& name, const IType* type )
 	{
 		std::vector<std::shared_ptr<CMethodInfo> >::iterator it = methods.begin();
-		for( ; it != methods.end(); ++it ) 
+		for (; it != methods.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return false;
 			}
 		}
-		methods.push_back( std::make_shared<CMethodInfo>( name, type ) );
+		std::shared_ptr<CMethodInfo> shr( new CMethodInfo( name, type ) );
+		methods.push_back( shr );
 		return true;
 	}
 
 	bool CClassInfo::SetBaseClass( CClassInfo* _baseClass )
 	{
-		if( baseClass != nullptr ) 
+		if (baseClass != nullptr)
 		{
 			return false;
 		}
@@ -70,9 +71,9 @@ namespace SymbolsTable {
 	CMethodInfo* CClassInfo::GetMethod( const std::string& name ) const
 	{
 		std::vector<std::shared_ptr<CMethodInfo> >::const_iterator it = methods.begin();
-		for( ; it != methods.end(); ++it ) 
+		for (; it != methods.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return it->get();
 			}
@@ -83,9 +84,9 @@ namespace SymbolsTable {
 	CVarInfo* CClassInfo::GetVar( const std::string name ) const
 	{
 		std::vector<std::shared_ptr<CVarInfo> >::const_iterator it = vars.begin();
-		for( ; it != vars.end(); ++it )
+		for (; it != vars.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return it->get();
 			}
@@ -93,12 +94,12 @@ namespace SymbolsTable {
 		return nullptr;
 	}
 
-	bool CMethodInfo::AddParamVar( const std::string& name, IType* type )
+	bool CMethodInfo::AddParamVar( const std::string& name, const IType* type )
 	{
 		std::vector<std::shared_ptr<CVarInfo> >::const_iterator it = params.begin();
-		for( ; it != params.end(); ++it )
+		for (; it != params.end(); ++it)
 		{
-			if( (*it)->GetName() == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return false;
 			}
@@ -107,12 +108,12 @@ namespace SymbolsTable {
 		return true;
 	}
 
-	bool CMethodInfo::AddLocalVar( const std::string& name, IType* type )
+	bool CMethodInfo::AddLocalVar( const std::string& name, const IType* type )
 	{
 		std::vector<std::shared_ptr<CVarInfo> >::const_iterator it = localVars.begin();
-		for( ; it != localVars.end(); ++it )
+		for (; it != localVars.end(); ++it)
 		{
-			if( (*it)->GetName( ) == name ) 
+			if ((*it)->GetName() == name)
 			{
 				return false;
 			}
@@ -124,18 +125,18 @@ namespace SymbolsTable {
 	CVarInfo* CMethodInfo::GetVar( const std::string& name ) const
 	{
 		std::vector<std::shared_ptr<CVarInfo> >::const_iterator it1 = localVars.begin();
-		for( ; it1 != localVars.end(); ++it1 ) 
+		for (; it1 != localVars.end(); ++it1)
 		{
-			if( (*it1)->GetName() == name ) 
+			if ((*it1)->GetName() == name)
 			{
 				return it1->get();
 			}
 		}
-		
+
 		std::vector<std::shared_ptr<CVarInfo> >::const_iterator it2 = params.begin();
-		for( ; it2 != params.end(); ++it2 ) 
+		for (; it2 != params.end(); ++it2)
 		{
-			if( (*it2)->GetName() == name ) 
+			if ((*it2)->GetName() == name)
 			{
 				return it2->get();
 			}

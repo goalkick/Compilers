@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class IVisitor;
 
 // Корневой интерфейс программы
@@ -75,6 +76,7 @@ class IType {
 public:
 	virtual ~IType() {}
 	virtual void Accept( IVisitor* ) const = 0;
+	virtual std::string StringType() const = 0;
 };
 
 // Последовательность команд

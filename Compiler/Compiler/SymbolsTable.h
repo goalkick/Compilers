@@ -7,28 +7,37 @@
 namespace SymbolsTable {
 	class CVarInfo {
 	public:
-		CVarInfo( const std::string& _name, IType* _type ) : name( _name ), type( _type ) {}
+		CVarInfo( const std::string& _name, const IType* _type ) : name( _name ), type( _type ) {}
 
 		std::string GetName() const { return name; }
 
-		IType* GetType() const { return type; }
+		const IType* GetType() const { return type; }
 
 	private:
 		std::string name;
-		IType* type;
+		const IType* type;
 	};
 
 	class CMethodInfo {
 	public:
-		CMethodInfo( const std::string& _name, IType* _type ) : name( _name ), returnType( new CVarInfo( "", _type ) ) {}
+		CMethodInfo( const std::string& _name, const IType* _type )  {
+			name = _name;
+			if (_type != NULL) {
+				returnType = std::make_shared<CVarInfo>( _type->StringType(), _type );
+			}
+			else {
+				returnType = std::make_shared<CVarInfo>( "", _type );
+			}
+		}
 
-		bool AddParamVar( const std::string& name, IType* type );
-		bool AddLocalVar( const std::string& name, IType* type );
+		bool AddParamVar( const std::string& name, const IType* type );
+		bool AddLocalVar( const std::string& name, const IType* type );
 
 		std::string GetName() const { return name; }
 		CVarInfo* GetVar( const std::string& name ) const;
 		CVarInfo* GetReturnType() const { return returnType.get(); }
-
+		std::vector<std::shared_ptr<CVarInfo>> GetParams() const {return params;}
+		
 	private:
 		std::string name;
 		std::shared_ptr<CVarInfo> returnType;
@@ -40,8 +49,8 @@ namespace SymbolsTable {
 	public:
 		CClassInfo( const std::string& _name ) : name( _name ) {}
 
-		bool AddVar( const std::string& name, IType* type );
-		bool AddMethod( const std::string& name, IType* type );
+		bool AddVar( const std::string& name, const IType* type );
+		bool AddMethod( const std::string& name, const IType* type );
 
 		bool SetBaseClass( CClassInfo* baseClass );
 
