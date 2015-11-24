@@ -132,7 +132,9 @@ void CPrettyPrinter::visit(const CFormalRest* rule)
 	{
 		rule->FormalRest()->Accept( this );
 	}
-	std::cout << ", " << rule->Type() << " " << rule->Id()->GetString();
+	std::cout << ", ";
+	rule->Type()->Accept( this );
+	std::cout << " " << rule->Id()->GetString();
 }
 
 void CPrettyPrinter::visit(const CType* rule)
@@ -269,6 +271,7 @@ void CPrettyPrinter::visit(const CExpRest* rule)
 {
     if( rule->Exp() != nullptr )
     {
+		std::cout << ',';
 		rule->Exp()->Accept( this );
 	}
 }
