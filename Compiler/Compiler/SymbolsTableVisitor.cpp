@@ -77,12 +77,12 @@ void CSymbolTableBuilderVisitor::visit( const CClassDecls* program )
 		for( auto method : parentClass->GetMethods() ) 
 		{
 			method->GetReturnType()->GetType()->Accept( this );
-			curClass->AddMethod( method->GetName(), lastTypeValue.get() );
+			curClass->AddMethod( method->GetName(), lastTypeValue );
 		}
 		for( auto var : parentClass->GerVars() )
 		{
 			var->GetType()->Accept( this );
-			curClass->AddVar( var->GetName(), lastTypeValue.get() );
+			curClass->AddVar( var->GetName(), lastTypeValue );
 		}
 	}
 
@@ -99,7 +99,7 @@ void CSymbolTableBuilderVisitor::visit( const CClassDecls* program )
 void CSymbolTableBuilderVisitor::visit( const CVarDecl* program )
 {
 	program->Type()->Accept( this );
-	IType* type = lastTypeValue.get();
+	const IType* type = lastTypeValue;
 	std::string id = program->Name()->GetString();
 
 	if( curClass == nullptr )
@@ -134,14 +134,14 @@ void CSymbolTableBuilderVisitor::visit( const CVarDeclList* program )
 void CSymbolTableBuilderVisitor::visit( const CFormalList* list )
 {
 	list->Type()->Accept( this );
-	IType* type = lastTypeValue.get();
+	const IType* type = lastTypeValue;
 	std::string id = list->Id()->GetString();
 
 	if( curMethod == nullptr )
 	{
 		std::cout << "Var " + id + " is defined out of scope" << std::endl;
 	}
-	else if( !curMethod->AddLocalVar( id, type ) )
+	else if( !curMethod->AddParamVar( id, type ) )
 	{
 		std::cout << "Var " + id + " is already defined in " + curMethod->GetName() << std::endl;
 	}
@@ -154,6 +154,11 @@ void CSymbolTableBuilderVisitor::visit( const CFormalList* list )
 
 void CSymbolTableBuilderVisitor::visit( const CFormalRest* list )
 {
+	list->Type()->Accept( this );
+	std::string id = list->Id()->GetString();
+	if( !curMethod->AddParamVar( id, lastTypeValue ) ) {
+		std::cout << "Redefinition" << std::endl;
+	}
 	if( list->FormalRest() != nullptr )
 	{
 		list->FormalRest()->Accept( this );
@@ -163,7 +168,7 @@ void CSymbolTableBuilderVisitor::visit( const CFormalRest* list )
 void CSymbolTableBuilderVisitor::visit( const CMethodDecl* program )
 {
 	program->Type()->Accept( this );
-	IType* returnType = lastTypeValue.get();
+	const IType* returnType = lastTypeValue;
 
 	if( curClass == nullptr )
 	{
@@ -195,10 +200,10 @@ void CSymbolTableBuilderVisitor::visit( const CMethodDeclList* methodList )
 
 void CSymbolTableBuilderVisitor::visit( const CType* program )
 {
-	lastTypeValue = std::make_shared<CType>( *program );
+	lastTypeValue = program;
 }
 
 void CSymbolTableBuilderVisitor::visit( const CUserType* program )
 {
-	lastTypeValue = std::make_shared<CUserType>( *program );
+	lastTypeValue = program;
 }

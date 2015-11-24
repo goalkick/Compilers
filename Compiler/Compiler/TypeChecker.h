@@ -11,7 +11,6 @@ namespace SymbolsTable
 	class CTable;
 }
 
-class IType;
 class CTypeCheckerVisitor : public IVisitor
 {
 public:
@@ -27,7 +26,7 @@ public:
 	void visit( const CMethodDecl* n );
 	void visit( const CFormalList* n ) {}
 	void visit( const CFormalRest* n ){}
-	void visit( const CType* n ){}
+	void visit( const CType* n );
 	void visit( const CUserType* n );
 	void visit( const CStatementList* n );
 	void visit( const CStatement* n ) {}

@@ -3,7 +3,6 @@
 #include "TypeChecker.h"
 #include "SymbolsTable.h"
 #include "classes.h"
-
 #include <iostream>
 CTypeCheckerVisitor::CTypeCheckerVisitor( SymbolsTable::CTable* table )
 {
@@ -123,6 +122,10 @@ void CTypeCheckerVisitor::visit( const CUserType* type )
 	lastTypeValueStack.push_back( type->Type()->GetString() );
 }
 
+void CTypeCheckerVisitor::visit( const CType* type )
+{
+	lastTypeValueStack.push_back( type->StringType() );
+}
 
 void CTypeCheckerVisitor::visit( const CArrayAssignStatement* statement )
 {
@@ -315,7 +318,7 @@ void CTypeCheckerVisitor::visit( const CMethodExpression* expr )
 		if (expr->IndexExp() != nullptr) {
 			int typeValuePointer = lastTypeValueStack.size();
 			expr->IndexExp()->Accept( this );
-			auto params = usedMethod->GetParams();
+			const auto& params = usedMethod->GetParams();
 			if (lastTypeValueStack.size() - typeValuePointer != params.size()) {
 				std::cout << "CMethodExpression else";
 			}

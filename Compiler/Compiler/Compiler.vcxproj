@@ -69,6 +69,7 @@
     <ClCompile Include="PrettyPrinter.cpp" />
     <ClCompile Include="SymbolsTable.cpp" />
     <ClCompile Include="SymbolsTableVisitor.cpp" />
+    <ClCompile Include="TypeChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -98,6 +99,7 @@
     <ClInclude Include="CSymbol.h" />
     <ClInclude Include="SymbolsTable.h" />
     <ClInclude Include="SymbolsTableVisitor.h" />
+    <ClInclude Include="TypeChecker.h" />
     <ClInclude Include="visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

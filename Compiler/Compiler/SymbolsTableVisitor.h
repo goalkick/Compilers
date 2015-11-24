@@ -45,7 +45,7 @@ private:
 	SymbolsTable::CClassInfo* curClass;
 	SymbolsTable::CMethodInfo* curMethod;
 	std::shared_ptr<SymbolsTable::CTable> symbolsTable;
-	std::shared_ptr<IType> lastTypeValue;
+	const IType* lastTypeValue;
 
 	bool isDebug;
 };
