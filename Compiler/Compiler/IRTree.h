@@ -1,9 +1,6 @@
-
-class Label {};
-namespace Temp {
-	class Temp {};
-	class LabelList {};
-}
+#pragma once
+#include <vector>
+#include "CTemp.h"
 
 namespace IRTree {
 
@@ -34,6 +31,8 @@ namespace IRTree {
 
 	// The integer constant
 	class CONST : public IExp {
+	public:
+		CONST( int _value ) : value( _value ) {}
 	private:
 		int value;
 	};
@@ -42,15 +41,17 @@ namespace IRTree {
 	// (corresponding to an assembly language label)
 	class NAME : public IExp {
 	private:
-		Label label;
+		Temp::Label label;
 	};
 
 	// Temporary t. 
 	// A temporary in the abstract machine is similar to a register in a real machine. 
 	// However, the abstract machine has an infinite number of temporaries.
 	class TEMP : public IExp {
+	public:
+		TEMP( Temp::Temp* _temp ) : temp( _temp ) {}
 	private:
-		Temp::Temp temp;
+		Temp::Temp* temp;
 	};
 
 	// The application of binary operator o to operands left, right. 
@@ -79,9 +80,11 @@ namespace IRTree {
 
 	// The statement s is evaluated for side effects, then e is evaluated for a result.
 	class ESEQ : public IExp {
+	public:
+		ESEQ( IStm* _stm, IExp* _exp ) : stm( _stm ), exp( _exp ) {}
 	private:
-		IStm stm;
-		IExp exp;
+		IStm* stm;
+		IExp* exp;
 	};
 
 	class IStm {
@@ -92,14 +95,20 @@ namespace IRTree {
 	// MOVE(MEM(e1), e2) Evaluate e1, yielding address a. Then evaluate e2, and
 	// store the result into wordSize bytes of memory starting at a.
 	class MOVE : public IStm {
+	public:
+		//MOVE( TEMP* _dst, CONST* _src ) : dst( _dst ), src( _src ) {}
+		MOVE( IExp* _dst, IExp* _src ) : dst( _dst ), src( _src ) {}
 	private:
-		IExp dst, src;
+		IExp* dst;
+		IExp* src;
 	};
 
 	// Evaluate e and discard the result.
 	class EXP : public IStm {
+	public:
+		EXP( IExp* _exp ) : exp( _exp ) {}
 	private:
-		IExp exp;
+		IExp* exp;
 	};
 
 	/*
@@ -117,7 +126,7 @@ namespace IRTree {
 	class JUMP : public IStm {
 	private:
 		IExp exp;
-		Temp::LabelList targets;
+		std::vector<Temp::Label> targets;
 	};
 
 	/*
@@ -130,16 +139,19 @@ namespace IRTree {
 	class CJUMP : public IStm {
 	private:
 		int relop;
-		IExp left, right;
-		Label iftrue, iffalse;
+		IExp* left, right;
+		Temp::Label iftrue, iffalse;
 	};
 
 	/*
 		The statement left followed by right.
 	*/
 	class SEQ : public IStm {
+	public:
+		SEQ( IStm* _left, IStm* _right ) : left(_left), right(_right) {}
+
 	private:
-		IStm left, rigth;
+		IStm *left, *right;
 	};
 
 	/*
@@ -148,8 +160,10 @@ namespace IRTree {
 		The value NAME(label) may be the target of jumps, calls, etc.
 	*/
 	class LABEL : public IStm {
+	public:
+		LABEL( Temp::Label* _label ) : label( _label ) {}
 	private:
-		Label label;
+		Temp::Label* label;
 	};
 	
 	class ExpList {

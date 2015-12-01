@@ -1,25 +1,25 @@
 ﻿#include "CTemp.h"
 
 namespace Temp {
-	int CLabel::nextUniqueId = 0;
+	int Label::nextUniqueId = 0;
 
-	CLabel::CLabel()
+	Label::Label()
 	{
 		name = std::to_string( nextUniqueId++ );
 	}
 
-	CLabel::CLabel( const CSymbol& label ) :
+	Label::Label( const CSymbol& label ) :
 		name( label.GetString() )
 	{}
 
-	int CTemp::nextUniqueId = 0;
+	int Temp::nextUniqueId = 0;
 
-	CTemp::CTemp()
+	Temp::Temp()
 	{
 		name = std::to_string( nextUniqueId++ );
 	}
 
-	CTemp::CTemp( const CSymbol& symbol ) :
+	Temp::Temp( const CSymbol& symbol ) :
 		name( symbol.GetString() )
 	{}
 } // namespace Temp

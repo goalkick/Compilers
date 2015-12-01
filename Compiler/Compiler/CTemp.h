@@ -3,12 +3,12 @@
 
 namespace Temp {
 	// Метка - точка перехода в коде
-	class CLabel {
+	class Label {
 	public:
 		// Создать метку с уникальным именем
-		CLabel();
+		Label();
 		// Создать метку с заданным именем
-		explicit CLabel( const CSymbol& symbol );
+		explicit Label( const CSymbol& symbol );
 
 		const std::string& Name() const { return name; }
 
@@ -18,13 +18,13 @@ namespace Temp {
 		std::string name;
 	};
 	// Временная переменная
-	class CTemp {
+	class Temp {
 	public:
 		// Новая переменная с уникальным именем
-		CTemp();
+		Temp();
 		// Новая переменная с заданным именем
-		explicit CTemp( const CSymbol& symbol );
-		~CTemp();
+		explicit Temp( const CSymbol& symbol );
+		~Temp();
 
 		const std::string& Name() const { return name; }
 

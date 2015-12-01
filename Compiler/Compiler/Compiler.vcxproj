@@ -63,6 +63,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSymbol.cpp" />
+    <ClCompile Include="CTemp.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.tab.cpp" />
@@ -88,8 +89,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CFrame.h" />
     <ClInclude Include="classes.h" />
     <ClInclude Include="CLocation.h" />
+    <ClInclude Include="CTemp.h" />
     <ClInclude Include="grammar.h" />
     <ClInclude Include="IRTree.h" />
     <ClInclude Include="parser.tab.hpp" />
