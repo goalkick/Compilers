@@ -82,5 +82,11 @@
     <ClInclude Include="TypeChecker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Translate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
