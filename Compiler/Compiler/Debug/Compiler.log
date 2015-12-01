@@ -1,41 +1,8 @@
-﻿Build started 24.11.2015 14:46:53.
-     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Rebuild target(s)).
-     1>CustomBuild:
-          compiling flex
-         Compiling bison
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CSymbol.cpp lexer.cpp main.cpp parser.tab.cpp PrettyPrinter.cpp SymbolsTable.cpp SymbolsTableVisitor.cpp TypeChecker.cpp
-         TypeChecker.cpp
-     1>c:\users\elena\compilers\compiler\compiler\typechecker.cpp(325): warning C4018: '<' : signed/unsigned mismatch
-         SymbolsTableVisitor.cpp
-         SymbolsTable.cpp
+﻿Build started 01.12.2015 14:37:16.
+     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt PrettyPrinter.cpp
          PrettyPrinter.cpp
-         parser.tab.cpp
-     1>c:\users\elena\compilers\compiler\compiler\parser.tab.cpp(1318): warning C4065: switch statement contains 'default' but no 'case' labels
-         main.cpp
-         lexer.cpp
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(57): warning C4005: 'INT8_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(60) : see previous definition of 'INT8_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(58): warning C4005: 'INT16_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(63) : see previous definition of 'INT16_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(59): warning C4005: 'INT32_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(66) : see previous definition of 'INT32_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(61): warning C4005: 'INT8_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(69) : see previous definition of 'INT8_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(62): warning C4005: 'INT16_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(72) : see previous definition of 'INT16_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(63): warning C4005: 'INT32_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(75) : see previous definition of 'INT32_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(65): warning C4005: 'UINT8_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(78) : see previous definition of 'UINT8_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(66): warning C4005: 'UINT16_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(81) : see previous definition of 'UINT16_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(67): warning C4005: 'UINT32_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(84) : see previous definition of 'UINT32_MAX'
-     1>c:\users\elena\compilers\compiler\compiler\lexer.l(67): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-         CSymbol.cpp
-         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.lib" /MACHINE:X86 Debug\CSymbol.obj
          Debug\lexer.obj
@@ -46,8 +13,8 @@
          Debug\SymbolsTableVisitor.obj
          Debug\TypeChecker.obj
          Compiler.vcxproj -> C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe
-     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:20.89
+Time Elapsed 00:00:08.71
