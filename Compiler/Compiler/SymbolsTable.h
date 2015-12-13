@@ -37,6 +37,7 @@ namespace SymbolsTable {
 		CVarInfo* GetVar( const std::string& name ) const;
 		CVarInfo* GetReturnType() const { return returnType.get(); }
 		std::vector<std::shared_ptr<CVarInfo>> GetParams() const { return params; }
+		const CVarInfo* CMethodInfo::GetParamByNumber( int number ) const;
 		
 	private:
 		std::string name;

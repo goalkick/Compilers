@@ -3,6 +3,7 @@
 
 #include "visitor.h"
 #include <vector>
+#include <stack>
 
 namespace SymbolsTable
 {
@@ -58,5 +59,11 @@ private:
 	SymbolsTable::CMethodInfo* curMethod;
 	SymbolsTable::CTable* symbolsTable;
 	std::vector<std::string> lastTypeValueStack;
+
+	std::stack<const SymbolsTable::CMethodInfo*> currMethodCall; // может быть foo = obj.Method(obj2.doo())
+	std::stack<int> numOfArgument;
+	std::string _lastTypeValue;
+
+	bool error;
 
 };

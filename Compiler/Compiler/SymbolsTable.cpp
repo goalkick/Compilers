@@ -93,6 +93,17 @@ namespace SymbolsTable {
 		}
 		return nullptr;
 	}
+	
+	const CVarInfo* CMethodInfo::GetParamByNumber( int number ) const
+	{
+		if (number >= params.size()) {
+			// very bad
+			return nullptr;
+		}
+		else {
+			return params[number].get();
+		}
+	}
 
 	bool CMethodInfo::AddParamVar( const std::string& name, const IType* type )
 	{
