@@ -17,7 +17,7 @@ namespace Translate {
 
 class CExpConverter : public ISubtreeWrapper {
 public:
-	CExpConverter(const IRTree::Exp* e) : expr( e ) {}
+	CExpConverter(const IRTree::IExp* e) : expr( e ) {}
 	const IRTree::IExp* ToExp() const {return expr;}
 	const IRTree::IStm* ToStm() const { ... ?... }
 	const IRTree::IStm* ToConditional(const CLabel* t, const CLabel* f) const { ... ?... }
