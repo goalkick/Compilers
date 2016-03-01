@@ -15,11 +15,11 @@ namespace IRTree {
 		};
 
 	static enum CJUMP_ENUM {
-			EQ, NE, 
-			LT, GT, 
-			LE, GE, 
-			ULT, ULE, 
-			UGT, UGE
+			EQUAL, NOT_EQUAL, // equal, not equal
+			LESS, GREATER, // less, greater
+			LESS_OR_EQUAL, GREATER_OR_EQUAL // less or equal, greater or equal
+			//ULT, ULE, 
+			//UGT, UGE
 		};
 
 	class IVisitor;

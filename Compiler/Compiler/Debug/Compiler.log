@@ -1,20 +1,290 @@
-﻿Build started 01.12.2015 14:37:16.
+﻿Build started 01.03.2016 14:32:50.
      1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt PrettyPrinter.cpp
+     1>CustomBuild:
+         Compiling bison
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ConditionalWrapper.cpp Frame.cpp lexer.cpp main.cpp parser.tab.cpp PrettyPrinter.cpp SymbolsTable.cpp SymbolsTableVisitor.cpp TypeChecker.cpp
+         TypeChecker.cpp
+         SymbolsTableVisitor.cpp
+         SymbolsTable.cpp
+     1>c:\users\elena\compilers\compiler\compiler\symbolstable.cpp(99): warning C4018: '>=' : signed/unsigned mismatch
          PrettyPrinter.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.lib" /MACHINE:X86 Debug\CSymbol.obj
-         Debug\lexer.obj
-         Debug\main.obj
-         Debug\parser.tab.obj
-         Debug\PrettyPrinter.obj
-         Debug\SymbolsTable.obj
-         Debug\SymbolsTableVisitor.obj
-         Debug\TypeChecker.obj
-         Compiler.vcxproj -> C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe
-     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)).
+         parser.tab.cpp
+     1>c:\users\elena\compilers\compiler\compiler\parser.tab.cpp(1318): warning C4065: switch statement contains 'default' but no 'case' labels
+         main.cpp
+         lexer.cpp
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(57): warning C4005: 'INT8_MIN' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(60) : see previous definition of 'INT8_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(58): warning C4005: 'INT16_MIN' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(63) : see previous definition of 'INT16_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(59): warning C4005: 'INT32_MIN' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(66) : see previous definition of 'INT32_MIN'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(61): warning C4005: 'INT8_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(69) : see previous definition of 'INT8_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(62): warning C4005: 'INT16_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(72) : see previous definition of 'INT16_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(63): warning C4005: 'INT32_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(75) : see previous definition of 'INT32_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(65): warning C4005: 'UINT8_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(78) : see previous definition of 'UINT8_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(66): warning C4005: 'UINT16_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(81) : see previous definition of 'UINT16_MAX'
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(67): warning C4005: 'UINT32_MAX' : macro redefinition
+                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(84) : see previous definition of 'UINT32_MAX'
+     1>c:\users\elena\compilers\compiler\compiler\lexer.l(67): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
+         Frame.cpp
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(16): error C2535: 'Temp::Label::Label(void)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(11) : see declaration of 'Temp::Label::Label'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(22): error C2535: 'Temp::Label::Label(const std::string &)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(14) : see declaration of 'Temp::Label::Label'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(48): error C2535: 'Temp::Temp::Temp(void)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(43) : see declaration of 'Temp::Temp::Temp'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(54): error C2535: 'Temp::Temp::Temp(const std::string &)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(46) : see declaration of 'Temp::Temp::Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(41): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(41): error C2228: left of '.Visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(57): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(57): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(74): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(74): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(92): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(92): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(112): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(112): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(122): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(122): error C2143: syntax error : missing ',' before '&'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(133): error C2146: syntax error : missing ';' before identifier 'args'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(133): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(124): error C2065: '_args' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C2614: 'IRTree::CALL' : illegal member initialization: 'args' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(129): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(129): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(139): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(139): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(150): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(150): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(140): error C2065: '_stm' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(141): error C2065: '_exp' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2758: 'IRTree::ESEQ::IStm' : must be initialized in constructor base/member initializer list
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(150) : see declaration of 'IRTree::ESEQ::IStm'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2614: 'IRTree::ESEQ' : illegal member initialization: 'stm' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(146): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(146): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(170): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(170): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(187): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(187): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C2039: 'LabelList' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(210): error C2065: '_label' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(215): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(215): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(241): error C2535: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(231) : see declaration of 'IRTree::CJUMP::CJUMP'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(252): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(252): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(284): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(284): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(309): error C2373: 'IRTree::LABEL::label' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(307) : see declaration of 'IRTree::LABEL::label'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(304): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(304): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(321): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(321): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2039: 'shared_ptr' : is not a member of 'std'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2065: 'shared_ptr' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2059: syntax error : 'const'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2039: 'CTemp' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C2039: 'CTemp' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C2556: 'int *Frame::CFrame::GetRegister(Frame::TRegisters) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::GetRegister(Frame::TRegisters) const'
+                 c:\users\elena\compilers\compiler\compiler\frame.h(85) : see declaration of 'Frame::CFrame::GetRegister'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C2373: 'Frame::CFrame::GetRegister' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\frame.h(85) : see declaration of 'Frame::CFrame::GetRegister'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(19): error C3861: 'assert': identifier not found
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(20): error C2228: left of '.get' must have class/struct/union
+                 type is 'const Temp::Temp *const '
+                 did you intend to use '->' instead?
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2039: 'CTemp' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2086: 'const int Frame::CTemp' : redefinition
+                 c:\users\elena\compilers\compiler\compiler\frame.cpp(17) : see declaration of 'Frame::CTemp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C2556: 'int *Frame::CFrame::FramePointer(void) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::FramePointer(void) const'
+                 c:\users\elena\compilers\compiler\compiler\frame.h(87) : see declaration of 'Frame::CFrame::FramePointer'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C2373: 'Frame::CFrame::FramePointer' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\frame.h(87) : see declaration of 'Frame::CFrame::FramePointer'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(25): error C2264: 'Frame::CFrame::GetRegister' : error in function definition or declaration; function not called
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2039: 'CMem' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2061: syntax error : identifier 'CMem'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2039: 'CTemp' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2039: 'CTemp' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2086: 'const int Frame::CTemp' : redefinition
+                 c:\users\elena\compilers\compiler\compiler\frame.cpp(17) : see declaration of 'Frame::CTemp'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C2556: 'int *Frame::CFrame::ReturnValue(void) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::ReturnValue(void) const'
+                 c:\users\elena\compilers\compiler\compiler\frame.h(91) : see declaration of 'Frame::CFrame::ReturnValue'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C2373: 'Frame::CFrame::ReturnValue' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\frame.h(91) : see declaration of 'Frame::CFrame::ReturnValue'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(35): error C2264: 'Frame::CFrame::GetRegister' : error in function definition or declaration; function not called
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2039: 'CMem' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2061: syntax error : identifier 'CMem'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(103): error C2039: 'B_Minus' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(103): error C2039: 'CTemp' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'B_Mul' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'CConst' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2039: 'CMem' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2061: syntax error : identifier 'CMem'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'B_Plus' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'B_Mul' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(112): error C2039: 'CConst' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2039: 'CMem' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2061: syntax error : identifier 'CMem'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'B_Plus' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'CTemp' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'CBinop' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'B_Mul' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(119): error C2039: 'CConst' : is not a member of 'IRTree'
+         ConditionalWrapper.cpp
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(16): error C2535: 'Temp::Label::Label(void)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(11) : see declaration of 'Temp::Label::Label'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(22): error C2535: 'Temp::Label::Label(const std::string &)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(14) : see declaration of 'Temp::Label::Label'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(48): error C2535: 'Temp::Temp::Temp(void)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(43) : see declaration of 'Temp::Temp::Temp'
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(54): error C2535: 'Temp::Temp::Temp(const std::string &)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\temp.h(46) : see declaration of 'Temp::Temp::Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(41): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(41): error C2228: left of '.Visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(57): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(57): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(74): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(74): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(92): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(92): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(112): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(112): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(122): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(122): error C2143: syntax error : missing ',' before '&'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(133): error C2146: syntax error : missing ';' before identifier 'args'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(133): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(124): error C2065: '_args' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C2614: 'IRTree::CALL' : illegal member initialization: 'args' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(129): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(129): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(139): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(139): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(150): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(150): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(140): error C2065: '_stm' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(141): error C2065: '_exp' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2758: 'IRTree::ESEQ::IStm' : must be initialized in constructor base/member initializer list
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(150) : see declaration of 'IRTree::ESEQ::IStm'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2614: 'IRTree::ESEQ' : illegal member initialization: 'stm' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(146): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(146): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(170): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(170): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(187): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(187): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C2039: 'LabelList' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(209): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(210): error C2065: '_label' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(215): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(215): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(241): error C2535: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(231) : see declaration of 'IRTree::CJUMP::CJUMP'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(252): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(252): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(284): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(284): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(309): error C2373: 'IRTree::LABEL::label' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(307) : see declaration of 'IRTree::LABEL::label'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(304): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(304): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(321): error C2027: use of undefined type 'IRTree::IVisitor'
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(25) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(321): error C2228: left of '.visit' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\translate.h(21): error C2143: syntax error : missing ';' before '...'
+     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C2143: syntax error : missing ';' before '...'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(16): error C2664: 'IRTree::MOVE::MOVE(const IRTree::IExp *,const IRTree::IExp *)' : cannot convert parameter 1 from 'Temp::Temp *' to 'const IRTree::IExp *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(17): error C2664: 'IRTree::MOVE::MOVE(const IRTree::IExp *,const IRTree::IExp *)' : cannot convert parameter 1 from 'Temp::Temp *' to 'const IRTree::IExp *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(25): error C2661: 'IRTree::ESEQ::ESEQ' : no overloaded function takes 2 arguments
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(31): error C2680: 'const IRTree::BINOP_ENUM *' : invalid target type for dynamic_cast
+                 target type must be a pointer or reference to a defined class
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(32): error C3536: 'asBinop': cannot be used before it is initialized
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(32): error C2446: '!=' : no conversion from 'nullptr' to 'int'
+                 A native nullptr can only be converted to bool or, using reinterpret_cast, to an integral type
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(33): error C3536: 'asBinop': cannot be used before it is initialized
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(33): error C2664: 'Translate::CConditionalWrapper::binopToConditional' : cannot convert parameter 1 from 'int' to 'const IRTree::BINOP_ENUM *'
+                 Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(41): error C2227: left of '->binop' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(45): error C2227: left of '->left' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(45): error C2228: left of '.get' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(45): error C2227: left of '->right' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(47): error C2227: left of '->left' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(47): error C2228: left of '.get' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(47): error C2227: left of '->right' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(53): error C2664: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : cannot convert parameter 2 from 'const IRTree::BINOP_ENUM *' to 'const IRTree::IExp *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(66): error C2227: left of '->left' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(66): error C2228: left of '.get' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(67): error C2227: left of '->right' must point to class/struct/union/generic type
+                 type is 'const IRTree::BINOP_ENUM *'
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(67): error C2228: left of '.get' must have class/struct/union
+         Generating Code...
+     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:08.71
+Time Elapsed 00:00:25.17
