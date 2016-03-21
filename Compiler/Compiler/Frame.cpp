@@ -10,17 +10,17 @@ namespace Frame {
 		LocalCounter( 0 )
 	{
 		for( int i = 0; i < R_Count; ++i ) {
-			registers.emplace_back( std::shared_ptr<const Temp::CTemp>( new const Temp::CTemp( to_string( static_cast< TRegisters >( i ) ) ) ) );
+			registers.emplace_back( const Temp::Temp( new const Temp::Temp( to_string( static_cast< TRegisters >( i ) ) ) ) );
 		}
 	}
 
-	const Temp::CTemp* CFrame::GetRegister( TRegisters registerType ) const
+	const Temp::Temp* CFrame::GetRegister( TRegisters registerType ) const
 	{
-		assert( registerType >= R_EAX && registerType < R_Count );
+		//assert( registerType >= R_EAX && registerType < R_Count );
 		return registers.at( registerType ).get();
 	}
 
-	const Temp::CTemp* CFrame::FramePointer() const
+	const Temp::Temp* CFrame::FramePointer() const
 	{
 		return GetRegister( R_EBP );
 	}
@@ -30,7 +30,7 @@ namespace Frame {
 		return new IRTree::CMem( new IRTree::CTemp( *FramePointer() ) );
 	}
 
-	const Temp::CTemp* CFrame::ReturnValue() const
+	const Temp::Temp* CFrame::ReturnValue() const
 	{
 		return GetRegister( R_EAX );
 	}
@@ -94,28 +94,26 @@ namespace Frame {
 		fields.insert( std::make_pair( _name, _var ) );
 	}
 
-
 	const IRTree::IExp* CInFrame::ToExp( const Frame::CFrame* frame ) const
 	{
 		// —мещаемс€ в область меньших адресов.
-		// ƒобавл€ем 7, так как сохран€етс€ 6 регистров и адрес возврата.
+		// ƒобавл€ем 7 = 6 регистров + адрес возврата.
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Minus, new IRTree::CTemp( *( frame->FramePointer() ) ),
-			new IRTree::CBinop( IRTree::B_Mul, new IRTree::CConst( number + 7 ), new IRTree::CConst( frame->WordSize() ) ) ) );
+			IRTree::MINUS, new IRTree::CTemp( *( frame->FramePointer() ) ),
+			new IRTree::CBinop( IRTree::MUL, new IRTree::CConst( number + 7 ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
-
 
 	const IRTree::IExp* CInObject::ToExp( const Frame::CFrame* frame ) const
 	{
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::B_Mul,
+			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::MUL,
 			new IRTree::CConst( offsetInWords ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	const IRTree::IExp* CFormalParameterInStack::ToExp( const Frame::CFrame* frame ) const
 	{
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Plus, new IRTree::CTemp( *( frame->FramePointer() ) ), new IRTree::CBinop( IRTree::B_Mul,
+			IRTree::B_Plus, new IRTree::CTemp( *( frame->FramePointer() ) ), new IRTree::CBinop( IRTree::MUL,
 				new IRTree::CConst( number ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
@@ -139,7 +137,6 @@ namespace Frame {
 			case Frame::R_ESP:
 				return std::string( "ESP" );
 			default:
-				//assert( false );
 				return std::string( "Unknown register" );
 		}
 	}

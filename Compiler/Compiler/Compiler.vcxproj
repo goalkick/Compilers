@@ -65,6 +65,7 @@
     <ClCompile Include="ConditionalWrapper.cpp" />
     <ClCompile Include="CSymbol.cpp" />
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="IRTreeBuilder.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.tab.cpp" />
@@ -94,17 +95,19 @@
     <ClInclude Include="CLocation.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="grammar.h" />
+    <ClInclude Include="IRForestBuilder.h" />
     <ClInclude Include="IRTree.h" />
+    <ClInclude Include="IRTreeVisitor.h" />
     <ClInclude Include="parser.tab.hpp" />
     <ClInclude Include="PrettyPrinter.h" />
     <ClInclude Include="Program_Kolya.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CSymbol.h" />
+    <ClInclude Include="StmConverter.h" />
     <ClInclude Include="SymbolsTable.h" />
     <ClInclude Include="SymbolsTableVisitor.h" />
     <ClInclude Include="Temp.h" />
-    <ClInclude Include="Translate.h" />
     <ClInclude Include="TypeChecker.h" />
     <ClInclude Include="visitor.h" />
   </ItemGroup>

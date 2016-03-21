@@ -1,28 +1,62 @@
-#include "Temp.h"
+#pragma once
 
+#include "Temp.h"
+#include "visitor.h"
+#include "IRTreeVisitor.h"
+#include <memory>
+#include <string>
+
+// »нтерфейс дл€ дерева промежуточного представлени€
 namespace IRTree {
 	static enum BINOP_ENUM {
-			PLUS, 
-			MINUS, 
-			MUL, 
-			DIV, 
-			AND, 
-			OR, 
-			LSHIFT, 
-			RSHIFT,
-			ARSHIFT, 
-			XOR
+			B_Plus, 
+			B_Minus, 
+			B_Mul, 
+			B_Division, 
+			B_Xor, 
+			B_Less, 
+			B_Greater,
+			B_And,
+			B_Count
 		};
 
 	static enum CJUMP_ENUM {
-			EQUAL, NOT_EQUAL, // equal, not equal
-			LESS, GREATER, // less, greater
-			LESS_OR_EQUAL, GREATER_OR_EQUAL // less or equal, greater or equal
-			//ULT, ULE, 
-			//UGT, UGE
+			CJ_Less,
+			CJ_Greater,
+			CJ_EqLess,
+			CJ_EqGreater,
+			CJ_Equal,
+			CJ_NotEqual,
+
+			CJ_Count
 		};
 
 	class IVisitor;
+
+	std::string IRTree::ToString( const BINOP_ENUM binOp )
+	{
+		switch( binOp ) {
+		case B_Plus:
+			return std::string( "+" );
+		case B_Minus:
+			return std::string( "-" );
+		case B_Mul:
+			return std::string( "*" );
+		case B_Division:
+			return std::string( "/" );
+		case B_Xor:
+			return std::string( "^" );
+		case B_Less:
+			return std::string( "<" );
+		case B_Greater:
+			return std::string( ">" );
+		case B_And:
+			return std::string( "&" );
+		default:
+			return std::string( "" );
+		}
+	}
+
 	// Exp stand for the computation of some value
 	class IExp {
 	public:
@@ -30,25 +64,26 @@ namespace IRTree {
 	};
 
 	// The integer constant
-	class CONST : public IExp {
+	class CConst : public IExp {
 	public:
-		CONST( int _value ) :
+		CConst( int _value ) :
 			value( _value )
 		{}
 
 		virtual void Accept( IVisitor& printer ) const
-	{
-		printer.Visit( this );
-	}
+		{
+			printer.visit( this );
+		}
 	private:
 		const int value;
 	};
 
 	// The symbolic constant n 
 	// (corresponding to an assembly language label)
-	class NAME : public IExp {
+	// ћетка дл€ переходов
+	class CName : public IExp {
 	public:
-		NAME( const Temp::Label* _label ) :
+		CName( const Temp::CLabel* _label ) :
 			label( _label )
 		{}
 
@@ -57,15 +92,15 @@ namespace IRTree {
 			printer.visit( this );
 		}
 	private:
-		const Temp::Label* label;
+		const Temp::CLabel* label;
 	};
 
 	// Temporary t. 
 	// A temporary in the abstract machine is similar to a register in a real machine. 
 	// However, the abstract machine has an infinite number of temporaries.
-	class TEMP : public IExp {
+	class CTemp : public IExp {
 	public:
-		TEMP( const Temp::Temp& _temp ) :
+		CTemp( const Temp::CTemp& _temp ) :
 			temp( _temp )
 		{}
 
@@ -73,15 +108,16 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
 	private:
-		Temp::Temp temp;
+		const Temp::CTemp temp;
 	};
 
 	// The application of binary operator o to operands left, right. 
 	// Subexpression left is evaluated before right.
-	class BINOP : public IExp {
+	class CBinop : public IExp {
 	public:
-		BINOP( BINOP_ENUM _binop, const IExp* _left, const IExp* _right ) :
+		CBinop( BINOP_ENUM _binop, const IExp* _left, const IExp* _right ) :
 			binop( _binop ),
 			left( _left ),
 			right( _right )
@@ -92,22 +128,22 @@ namespace IRTree {
 			printer.visit( this );
 		}
 	private:
-		BINOP_ENUM binop;
+		const BINOP_ENUM binop;
 		const IExp* left;
 		const IExp* right;
 	};
 
 	// The contents of wordSize bytes of memory starting at address e 
 	// (where wordSize is defined in the Frame module). 
-	// Note that when MEM is used as the left child of a MOVE, it means Уstore,Ф but anywhere else it means Уfetch.Ф
+	// Note that when CMem is used as the left child of a CMove, it means Уstore,Ф but anywhere else it means Уfetch.Ф
 	// ?????????? Accept????????
-	class MEM : public IExp {
+	class CMem : public IExp {
 	public:
-		MEM( const IExp* _exp ) :
+		CMem( const IExp* _exp ) :
 			exp( _exp )
 		{}
 
-		virtual void Accept( IVisitor& printer ) const override
+		virtual void Accept( IVisitor& printer ) const
 		{
 			printer.visit( this );
 		}
@@ -117,9 +153,9 @@ namespace IRTree {
 
 	// A procedure call: the application of function f to argument list l.
 	// The subexpression f is evaluated before the arguments which are evaluated left to right.
-	class CALL : public IExp {
+	class CCall : public IExp {
 	public:
-		CALL( const IExp* const _func, const ExpList& _args ) :
+		CCall( const IExp* const _func, const CExpList& _args ) :
 			func( _func ),
 			args( _args )
 		{}
@@ -128,15 +164,17 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
 	private:
 		const IExp* func;
-		ExpList args;
+		const CExpList args;
 	};
 
 	// The statement s is evaluated for side effects, then e is evaluated for a result.
-	class ESEQ : public IExp {
+	// ¬ыполн€ет stm, затем вычисл€ет и возвращает exp
+	class CEseq : public IExp {
 	public:
-		ESEQ( const IStm* _stm, const IExp* _exp ) :
+		CEseq( const IStm* _stm, const IExp* _exp ) :
 			stm( _stm ),
 			exp( _exp )
 		{}
@@ -152,15 +190,18 @@ namespace IRTree {
 	};
 
 	class IStm {
-
+	public:
+		virtual void Accept( IVisitor& ) const = 0;
 	};
 
-	// MOVE(TEMP t, e) Evaluate e and move it into temporary t.
-	// MOVE(MEM(e1), e2) Evaluate e1, yielding address a. Then evaluate e2, and
+	// CMove(CTemp t, e) Evaluate e and move it into temporary t.
+	// CMove(CMem(e1), e2) Evaluate e1, yielding address a. Then evaluate e2, and
 	// store the result into wordSize bytes of memory starting at a.
-	class MOVE : public IStm {
+	// ¬ычисл€ем src и копируем результат в dst 
+	// (dst - либо временна€ переменна€ CIRTemp, либо адрес CIRMem)
+	class CMove : public IStm {
 	public:
-		MOVE( const IExp* _dst, const IExp* _src ) :
+		CMove( const IExp* _dst, const IExp* _src ) :
 			dst( _dst ),
 			src( _src )
 		{}
@@ -176,9 +217,9 @@ namespace IRTree {
 	};
 
 	// Evaluate e and discard the result.
-	class EXP : public IStm {
+	class CExp : public IStm {
 	public:
-		EXP( const IExp* const _exp ) :
+		CExp( const IExp* _exp ) :
 			exp( _exp )
 		{}
 
@@ -193,20 +234,20 @@ namespace IRTree {
 
 	/*
 		Transfer control (jump) to address e. The destination exp may be a
-	literal label, as in NAME(lab), or it may be an address calculated by any other
+	literal label, as in CName(lab), or it may be an address calculated by any other
 	kind of expression. 
 	
 	For example, a C-language switch(i) statement may be implemented by doing arithmetic on i. 
 	
 	The list of labels targets specifies all the possible locations 
 	that the expression exp can evaluate to; this is necessary for dataflow analysis later. 
-	The common case of jumping to a known label l is written as JUMP(NAME l, new Temp::LabelList(l, null)), 
+	The common case of jumping to a known label l is written as JUMP(CName l, new Temp::LabelList(l, null)), 
 	but the JUMP class has an extra constructor so that this can be abbreviated as JUMP(l).
 	*/
 	// ѕереходим в узел CIRLabel, которому соответствует метка
-	class JUMP : public IStm {
+	class CJump : public IStm {
 	public:
-		JUMP( const Temp::LabelList* _label ) :
+		CJump( const Temp::CLabel* _label ) :
 			label( _label )
 		{}
 
@@ -215,8 +256,7 @@ namespace IRTree {
 			printer.visit( this );
 		}
 	private:
-		//IExp exp;
-		const Temp::Label* label;
+		const Temp::CLabel* label;
 	};
 
 	/*
@@ -226,20 +266,19 @@ namespace IRTree {
 		The relational operators are EQ and NE for integer equality and nonequality (signed or unsigned); 
 		signed integer inequalities LT, GT, LE, GE; and unsigned integer inequalities ULT, ULE, UGT, UGE.
 	*/
-	class CJUMP : public IStm {
+	class CCJump : public IStm {
 	public:
-		CJUMP( CJUMP_ENUM _relop, const IExp* _left, const IExp* _right, const Temp::Label* _iftrue,
-		const Temp::Label* _iffalse ) :
+		CCJump( CCJump_ENUM _relop, const IExp* _left, const IExp* _right, const Temp::CLabel* _iftrue,
+		const Temp::CLabel* _iffalse ) :
 			relop( _relop ),
 			left( _left ),
 			right( _right ),
 			iftrue( _iftrue ),
 			iffalse( _iffalse )
-		{
-		}
+		{}
 
-		CJUMP( CJUMP_ENUM _relop, const IExp* const _left, const IExp* const _right, const Temp::Label* const _iftrue,
-			const Temp::Label* const _iffalse ) :
+		CCJump( CCJump_ENUM _relop, const IExp* const _left, const IExp* const _right, const Temp::CLabel* const _iftrue,
+			const Temp::CLabel* const _iffalse ) :
 			relop( _relop ),
 			left( _left ),
 			right( _right ),
@@ -253,31 +292,38 @@ namespace IRTree {
 		}
 				
 	private:
-		const CJUMP_ENUM relop;
+		const CCJump_ENUM relop;
 		const IExp* left;
 		const IExp* right;
-		const Temp::Label* const iftrue;
-		const Temp::Label* const iffalse;
+		const Temp::CLabel* const iftrue;
+		const Temp::CLabel* const iffalse;
 	};
 
 	/*
 		The statement left followed by right.
+		»сполн€ет сначала left, потом right
 	*/
-	class SEQ : public IStm {
+	class CSeq : public IStm {
 	public:
-		SEQ( const IStm* _left, const IStm* _right ) : left( _left ), right( _right ) {}
+		CSeq( const IStm* _left, const IStm* _right ) : 
+			left( _left ), 
+			right( _right ) 
+		{}
 
-		SEQ(const IStm* arg1, const IStm* arg2, const IStm* arg3 ) : left( arg1 ), right( new SEQ( arg2, arg3 ) ) {}
+		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3 ) : 
+			left( arg1 ), 
+			right( new CSeq( arg2, arg3 ) ) 
+		{}
 
-		SEQ(const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4 ) : 
-			left( arg1 ), right( new SEQ( arg2, arg3, arg4 ) ) {}
+		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4 ) : 
+			left( arg1 ), right( new CSeq( arg2, arg3, arg4 ) ) {}
 
-		SEQ(const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, const IStm* arg5 ) : 
-			left( arg1 ), right( new SEQ( arg2, arg3, arg4, arg5 ) ) {}
+		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, const IStm* arg5 ) : 
+			left( arg1 ), right( new CSeq( arg2, arg3, arg4, arg5 ) ) {}
 
-		SEQ(const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, 
-				const IStm* arg5, const IStm* arg6) : 
-			left(arg1), right( new SEQ( arg2, arg3, arg4, arg5, arg6 ) ) {}
+		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, 
+				const IStm* arg5, const IStm* arg6 ) : 
+			left( arg1 ), right( new CSeq( arg2, arg3, arg4, arg5, arg6 ) ) {}
 
 		virtual void Accept( IVisitor& printer ) const
 		{
@@ -291,11 +337,11 @@ namespace IRTree {
 	/*
 		Define the constant value of name label to be the current machine code address. 
 		This is like a label definition in assembly language. 
-		The value NAME(label) may be the target of jumps, calls, etc.
+		The value CName(label) may be the target of jumps, calls, etc.
 	*/
-	class LABEL : public IStm {
+	class CLabel : public IStm {
 	public: 
-		LABEL( const Temp::Label* const _label ) :
+		CLabel( const Temp::CLabel* const _label ) :
 			label( _label )
 		{}
 
@@ -304,15 +350,13 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const Temp::Label* const label;
 	private:
-		const Temp::Label* label;
+		const Temp::CLabel* label;
 	};
-	
-	
-	class ExpList {
+		
+	class CExpList {
 	public:
-		ExpList( const IExp* _head, const ExpList* _tail ) :
+		CExpList( const IExp* _head, const CExpList* _tail ) :
 			head( _head ), tail( _tail )
 		{}
 
@@ -322,7 +366,7 @@ namespace IRTree {
 		}
 	private:
 		const IExp* head;
-		const ExpList* tail;
+		const CExpList* tail;
 	};
 
 	/*

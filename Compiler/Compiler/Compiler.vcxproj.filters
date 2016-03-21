@@ -45,6 +45,9 @@
     <ClCompile Include="ConditionalWrapper.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="IRTreeBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -88,9 +91,6 @@
     <ClInclude Include="TypeChecker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Translate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IRTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -98,6 +98,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTreeVisitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRForestBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StmConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
