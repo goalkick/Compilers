@@ -16,9 +16,9 @@ namespace SymbolsTable {
 		return true;
 	}
 
-	CClassInfo* CTable::GetClass( const std::string& name )
+	CClassInfo* CTable::GetClass( const std::string& name ) const
 	{
-		std::vector<std::shared_ptr<CClassInfo>>::iterator it = classes.begin();
+		std::vector<std::shared_ptr<CClassInfo>>::const_iterator it = classes.cbegin();
 		for (; it != classes.end(); ++it)
 		{
 			if ((*it)->GetName() == name)

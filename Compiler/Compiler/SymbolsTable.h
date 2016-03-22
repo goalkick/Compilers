@@ -37,6 +37,7 @@ namespace SymbolsTable {
 		CVarInfo* GetVar( const std::string& name ) const;
 		CVarInfo* GetReturnType() const { return returnType.get(); }
 		std::vector<std::shared_ptr<CVarInfo>> GetParams() const { return params; }
+		std::vector<std::shared_ptr<CVarInfo>> GetLocals() const { return localVars; }
 		const CVarInfo* CMethodInfo::GetParamByNumber( int number ) const;
 		
 	private:
@@ -74,9 +75,8 @@ namespace SymbolsTable {
 	public:
 		bool AddClass( const std::string& name );
 
-		CClassInfo* GetClass( const std::string& name );
+		CClassInfo* GetClass( const std::string& name ) const;
 
-	private:
 		std::vector<std::shared_ptr<CClassInfo> > classes;
 	};
 }

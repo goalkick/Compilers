@@ -21,7 +21,7 @@ void CIRForestBuilder::visit( const CProgram& program )
 void CIRForestBuilder::visit( const CMainClass& mainClass )
 {
 	// Запоминаем в каком мы классе
-	className = mainClass.ClassName();
+	className = mainClass.ClassName()->GetString();
 	// У main нет никаких переменных, потому что такая грамматика
 	//	Программу можно будет начать если сделать временный объект какого нибудь класса
 	//	например System.out.println( new Pr1() );
@@ -41,15 +41,16 @@ void CIRForestBuilder::visit( const CMainClass& mainClass )
 void CIRForestBuilder::visit( const CClassDeclsList& classDeclList )
 {
 	// Здесь для IRTree ничего не нужно
-	for( const auto& clsDecl : classDeclList.ClassDeclsList() ) {
-		clsDecl->Accept( *this );
+	classDeclList.ClassDecls()->Accept( this );
+	if ( classDeclList.ClassDeclsList() != 0 ) {
+		classDeclList.ClassDeclsList()->Accept( this );
 	}
 }
 
 void CIRForestBuilder::visit( const CClassDecls& classDecl )
 {
 	// Запоминаем в каком мы классе
-	className = classDecl.ClassName();
+	className = classDecl.ClassName()->GetString();
 	if( classDecl.VarDeclList() != 0 ) {
 		classDecl.VarDeclList()->Accept( this );
 	}
@@ -63,49 +64,49 @@ void CIRForestBuilder::visit( const CClassDecls& classDecl )
 
 void CIRForestBuilder::visit( const CVarDeclList& varDeclList )
 {
-	// Здесь для IRTree ничего не нужно
-	for( const auto& decl : varDeclList.VarDeclList() ) {
-		decl->Accept( *this );
+	// Здесь для IRTree ничего не нужно	
+	varDeclList.VarDecl()->Accept( this );
+	if ( varDeclList.VarDeclList() != 0 ) {
+		varDeclList.VarDeclList()->Accept( this );
 	}
 }
 
 void CIRForestBuilder::visit( const CVarDecl& varDecl )
 {
-	// Здесь для IRTree ничего не нужно
 	varDecl.Type()->Accept( this );
 }
 
 void CIRForestBuilder::visit( const CMethodDeclList& methodDeclList )
-{
-	// Здесь для IRTree ничего не нужно
-	for( const auto& decl : methodDeclList.MethodDeclList() ) {
-		decl->Accept( this );
+{	
+	methodDeclList.MethodDecl()->Accept( this );
+	if ( methodDeclList.MethodDeclList() != 0 ) {
+		methodDeclList.MethodDeclList()->Accept( this );
 	}
 }
 
 void CIRForestBuilder::visit( const CMethodDecl& methodDecl )
 {
 	// Все это мы игнорируем, это есть у таблицы символов
-	methodDecl.ReturnedType()->Accept( *this );
+	methodDecl.Type()->Accept( this );
 	if( methodDecl.FormalList() != 0 ) {
-		methodDecl.FormalList()->Accept( *this );
+		methodDecl.FormalList()->Accept( this );
 	}
 	if( methodDecl.VarDeclList() != 0 ) {
-		methodDecl.VarDeclList()->Accept( *this );
+		methodDecl.VarDeclList()->Accept( this );
 	}
 	// Строим фрейм
-	currentFrame = new Frame::CFrame( className + "__" + methodDecl.MethodName() );
-	std::vector<const SymbolsTable::CClassDescriptor*> classNames;
-	const SymbolsTable::CClassDescriptor* currentClass = &symbolsTable.Classes().at( className );
+	currentFrame = new Frame::CFrame( className + "__" + methodDecl.Name()->GetString() );
+	std::vector<const SymbolsTable::CClassInfo*> classNames;
+	const SymbolsTable::CClassInfo* currentClass = symbolsTable.GetClass( className );
 	while( currentClass != nullptr ) {
 		classNames.push_back( currentClass );
-		if( !currentClass->BaseClass.empty() ) {
-			currentClass = &( symbolsTable.Classes().at( currentClass->BaseClass ) );
+		if( !currentClass->GetBaseClass()->empty() ) {
+			currentClass = currentClass->GetBaseClass();
 		} else {
 			currentClass = nullptr;
 		}
 	}
-	// Добавляем поля класса к фрейму symbolsTable.Classes().at( className )
+	// Добавляем поля класса к фрейму symbolsTable.GetClass( className )
 	for( int i = classNames.size() - 1; i >= 0; i-- ) {
 		for( const auto& field : classNames.at( i )->Fields ) {
 			currentFrame->AddField( field.Name(), new Frame::CInObject( currentFrame->ThisCounter ) );
@@ -113,33 +114,33 @@ void CIRForestBuilder::visit( const CMethodDecl& methodDecl )
 		}
 	}
 
-	const std::vector<SymbolsTable::CVariableDescriptor>* params = nullptr;
-	const std::vector<SymbolsTable::CVariableDescriptor>* locals = nullptr;
-	for( auto& method : symbolsTable.Classes().at( className ).Methods ) {
-		if( method.Name() == methodDecl.MethodName() ) {
-			params = &method.Params;
-			locals = &method.Locals;
+	const std::vector<std::shared_ptr<SymbolsTable::CVarInfo> >* params = nullptr;
+	const std::vector<std::shared_ptr<SymbolsTable::CVarInfo> >* locals = nullptr;
+	for( auto& method : symbolsTable.GetClass( className )->GetMethods() ) {
+		if( method->GetName() == methodDecl.Name()->GetString() ) {
+			params = &method->GetParams();
+			locals = &method->GetLocals();
 			break;
 		}
 	}
 	
 	// Добавляем параметры функции фрейму
 	for( size_t i = 0; i < params->size(); ++i ) {
-		currentFrame->AddField( params->at( i ).Name(), new Frame::CFormalParameterInStack( i + 1 ) );
+		currentFrame->AddField( params->at( i )->GetName(), new Frame::CFormalParameterInStack( i + 1 ) );
 	}
 	// Добавляем локальные переменные фрейму
 	for( const auto& field : *locals ) {
-		currentFrame->AddField( field.Name(), new Frame::CInFrame( currentFrame->LocalCounter ) );
+		currentFrame->AddField( field->GetName(), new Frame::CInFrame( currentFrame->LocalCounter ) );
 		currentFrame->LocalCounter++;
 	}
 	if( methodDecl.StatementList() != 0 ) {
-		methodDecl.StatementList()->Accept( *this );
+		methodDecl.StatementList()->Accept( this );
 		// после этой строки есть сам код
 	}
-	if( methodDecl.ReturnedExp() != 0 ) {
+	if( methodDecl.Exp() != 0 ) {
 		// Это обрабатываем как возвращаемое значение, оно проставляется return 
 		// Переносим lastReturnedValue в регистр если оно было
-		methodDecl.ReturnedExp()->Accept( *this );
+		methodDecl.Exp()->Accept( this );
 		if( lastReturnedExp != nullptr ) {
 			if( lastReturnedStm != nullptr ) {
 				lastReturnedStm = new IRTree::CSeq( lastReturnedStm, new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), lastReturnedExp ) );
@@ -161,7 +162,7 @@ void CIRForestBuilder::visit( const CFormalList& formalList )
 	// Эта инфа у таблицы символов
 	// Нам тут делать нечего
 	for( auto ptr = formalList.FormalList().begin(); ptr != formalList.FormalList().end(); ++ptr ) {
-		ptr->first->Accept( *this );
+		ptr->first->Accept( this );
 	}
 }
 
@@ -176,11 +177,11 @@ void CIRForestBuilder::visit( const CStatementList& statementList )
 	// Предполагается что есть хоть какие то statement
 	const IRTree::IStm* listOfStm = nullptr;
 	// Выполняем первый
-	statementList.StatmentList().front()->Accept( *this );
+	statementList.StatementList().front()->Accept( this );
 	listOfStm = lastReturnedStm;
 	lastReturnedStm = nullptr;
 	lastReturnedExp = nullptr;
-	if( statementList.StatmentList().size() == 1 ) {
+	if( statementList.StatementList().size() == 1 ) {
 		lastReturnedStm = listOfStm;
 		return;
 	} else {
@@ -188,7 +189,7 @@ void CIRForestBuilder::visit( const CStatementList& statementList )
 		iter++;
 		// начинаем после первого!
 		for( ; iter != statementList.StatmentList().end(); iter++ ) {
-			(*iter)->Accept( *this );
+			(*iter)->Accept( this );
 			const IRTree::IStm* statementToAdd = 0;
 			if( lastReturnedStm == nullptr ) {
 				// Нам нужны только IStm 
@@ -208,14 +209,14 @@ void CIRForestBuilder::visit( const CAssignStatement& assignStatement )
 {
 	const IRTree::IExp* leftExp = currentFrame->GetAccess( assignStatement.LeftId() )->ToExp( currentFrame );
 	if( assignStatement.IndexExp() != nullptr ) {
-		assignStatement.IndexExp()->Accept( *this );
+		assignStatement.IndexExp()->Accept( this );
 		const IRTree::IExp* indexDeFacto = new IRTree::CBinop( IRTree::B_Plus, lastReturnedExp , new IRTree::CConst( 1 ) );
 		const IRTree::IExp* realSize = new IRTree::CBinop( IRTree::B_Mul, indexDeFacto, new IRTree::CConst(  currentFrame->WordSize() ) );
 		
 		leftExp = new IRTree::CBinop( IRTree::B_Plus, new IRTree::CMem( leftExp ), realSize );
 		leftExp = new IRTree::CMem( leftExp );
 	}
-	assignStatement.RightExp()->Accept( *this );
+	assignStatement.RightExp()->Accept( this );
 	const IRTree::IExp* rightExp = lastReturnedExp;
 	lastReturnedExp = nullptr;
 	lastReturnedStm = new IRTree::CMove( leftExp, rightExp );
@@ -224,7 +225,7 @@ void CIRForestBuilder::visit( const CAssignStatement& assignStatement )
 void CIRForestBuilder::visit( const CPrintStatement& printStatement )
 {
 	// Вычисляем то что надо напечатать
-	printStatement.Exp()->Accept( *this );
+	printStatement.Exp()->Accept( this );
 	const IRTree::IExp* exprForPrint = lastReturnedExp;
 	lastReturnedExp = nullptr;
 	lastReturnedStm = nullptr;
@@ -239,12 +240,12 @@ void CIRForestBuilder::visit( const CPrintStatement& printStatement )
 void CIRForestBuilder::visit( const CCurlyBraceStatement& curlyBraceStatement )
 {
 	// Здесь ничего делать не нужно, это обрамление из фигурных скобок для StatementList
-	curlyBraceStatement.StatementList()->Accept( *this );
+	curlyBraceStatement.StatementList()->Accept( this );
 }
 
 void CIRForestBuilder::visit( const CIfStatement& ifStatement )
 {
-	ifStatement.Exp()->Accept( *this );
+	ifStatement.Exp()->Accept( this );
 	const IRTree::IExp* ifExpr = lastReturnedExp;
 	lastReturnedExp = nullptr;
 	lastReturnedStm = nullptr;
@@ -255,13 +256,13 @@ void CIRForestBuilder::visit( const CIfStatement& ifStatement )
 	IRTree::CLabel* falseLabel = new IRTree::CLabel( falseLabelTemp );
 	IRTree::CLabel* endLabel = new IRTree::CLabel( endLabelTemp );
 	IRTree::CJump* trueJumpToEnd = new IRTree::CJump( endLabelTemp );
-	ifStatement.IfStatement()->Accept( *this );
+	ifStatement.IfStatement()->Accept( this );
 	IRTree::IStm* trueStm = new IRTree::CSeq( trueLabel, lastReturnedStm, trueJumpToEnd );
 	lastReturnedExp = nullptr;
 	lastReturnedStm = nullptr;
 	IRTree::IStm* falseStm = 0;
 	if( ifStatement.ElseStatement() != 0 ) {
-		ifStatement.ElseStatement()->Accept( *this );
+		ifStatement.ElseStatement()->Accept( this );
 		IRTree::CJump* falseJumpToEnd = new IRTree::CJump( endLabelTemp );
 		falseStm = new IRTree::CSeq( falseLabel, lastReturnedStm, falseJumpToEnd );
 		lastReturnedExp = nullptr;
@@ -279,13 +280,13 @@ void CIRForestBuilder::visit( const CWhileStatement& whileStatement )
 	IRTree::CLabel* beforeConditionLabel = new IRTree::CLabel( beforeConditionLabelTemp );
 	IRTree::CLabel* inLoopLabel = new IRTree::CLabel( inLoopLabelTemp );
 	IRTree::CLabel* endLabel = new IRTree::CLabel( endLabelTemp );
-	whileStatement.Exp()->Accept( *this );
+	whileStatement.Exp()->Accept( this );
 	Translate::CConditionalWrapper converter( lastReturnedExp );
 	const IRTree::IStm* whileStm = converter.ToConditional( inLoopLabelTemp, endLabelTemp );
 	lastReturnedExp = nullptr;
 	lastReturnedStm = nullptr;
 	IRTree::IStm* conditionStm = new IRTree::CSeq( beforeConditionLabel, whileStm, inLoopLabel );
-	whileStatement.Statement()->Accept( *this );
+	whileStatement.Statement()->Accept( this );
 	lastReturnedStm = new IRTree::CSeq( conditionStm, lastReturnedStm, 
 		new IRTree::CJump( beforeConditionLabelTemp ), endLabel );
 	lastReturnedExp = nullptr;
@@ -295,7 +296,7 @@ void CIRForestBuilder::visit( const CExpList& expList )
 {
 	const IRTree::CExpList* irExpList = nullptr;
 	for( const auto& decl : expList.ExpList() ) {
-		decl->Accept( *this );
+		decl->Accept( this );
 		irExpList = new IRTree::CExpList( lastReturnedExp, irExpList );
 	}
 	lastReturnedExpList = irExpList;
@@ -305,9 +306,9 @@ void CIRForestBuilder::visit( const CExpList& expList )
 void CIRForestBuilder::visit( const CExpBinOpExp& exp )
 {
 	// Забираем правый и левый операнды
-	exp.LeftArg()->Accept( *this );
+	exp.LeftArg()->Accept( this );
 	const IRTree::IExp* first = lastReturnedExp;
-	exp.RightArg()->Accept( *this );
+	exp.RightArg()->Accept( this );
 	const IRTree::IExp* second = lastReturnedExp;
 	IRTree::BINOP_ENUM binOp;
 	switch( exp.Operation() ) {
@@ -344,7 +345,7 @@ void CIRForestBuilder::visit( const CUnMinExp& exp )
 {
 	// Как в лекциях заменяем на (0 - exp)
 	const IRTree::IExp* first = new IRTree::CConst( 0 );
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	const IRTree::IExp* second = lastReturnedExp;
 	// Аналогично binop
 	lastReturnedExp = new IRTree::CBinop( IRTree::B_Minus, first, second );
@@ -352,9 +353,9 @@ void CIRForestBuilder::visit( const CUnMinExp& exp )
 
 void CIRForestBuilder::visit( const CExpWithIndex& exp )
 {
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	const IRTree::IExp* varExp = lastReturnedExp;
-	exp.Index()->Accept( *this );
+	exp.Index()->Accept( this );
 	// в 0м элементе лежит размер массива
 	const IRTree::IExp* indexExp = new IRTree::CBinop( IRTree::B_Plus, lastReturnedExp, new IRTree::CConst( 1 ) );
 	IRTree::IExp* offset = new IRTree::CBinop( IRTree::B_Mul, new IRTree::CConst( Frame::CFrame::WordSize() ), indexExp );
@@ -365,7 +366,7 @@ void CIRForestBuilder::visit( const CExpWithIndex& exp )
 void CIRForestBuilder::visit( const CExpDotLength& exp )
 {
 	// Во время компиляции уже известен размер каждого массива, он должен проверяться на корректность при валидации
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	const IRTree::IExp* varExp = lastReturnedExp;
 	// Возвращаем длину
 	lastReturnedExp = new IRTree::CMem( varExp );
@@ -374,7 +375,7 @@ void CIRForestBuilder::visit( const CExpDotLength& exp )
 void CIRForestBuilder::visit( const CExpIdExpList& exp )
 {
 	// Вычисляем выражение к которому надо применить метод
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	auto findResult = nodesTypesLog.find( reinterpret_cast<const void*>( &exp ) );
 	assert( findResult != nodesTypesLog.end() );
 	std::string typeName = findResult->second;
@@ -388,7 +389,7 @@ void CIRForestBuilder::visit( const CExpIdExpList& exp )
 	IRTree::CExpList* args = new IRTree::CExpList( exprToBeCalled, nullptr );
 	// Заполняем список аргументов.
 	if( exp.ExpList() != 0 ) {
-		exp.ExpList()->Accept( *this );
+		exp.ExpList()->Accept( this );
 		args->tail = std::shared_ptr<const IRTree::CExpList>( lastReturnedExpList );
 	} else {
 		args->tail = nullptr;
@@ -406,7 +407,7 @@ void CIRForestBuilder::visit( const CExpIdVoidExpList& exp )
 	assert( findResult != nodesTypesLog.end() );
 	std::string typeName = findResult->second;
 
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	const IRTree::IExp* exprToBeCalled = lastReturnedExp;
 	lastReturnedExp = nullptr;
 	// Это просто метод который надо вызвать
@@ -448,7 +449,7 @@ void CIRForestBuilder::visit( const CThis& exp )
 
 void CIRForestBuilder::visit( const CNewIntExpIndex& exp )
 {
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	const IRTree::IExp* lengthOfArrray = lastReturnedExp;
 	const IRTree::IExp* lengthDeFacto = new IRTree::CBinop( IRTree::B_Plus, lengthOfArrray, new IRTree::CConst( 1 ) );
 	const IRTree::IExp* realSize = new IRTree::CBinop( IRTree::B_Mul, lengthDeFacto, new IRTree::CConst( currentFrame->WordSize() ) );
@@ -505,7 +506,7 @@ void CIRForestBuilder::visit( const CNewId& exp )
 void CIRForestBuilder::visit( const CNotExp& exp )
 {
 	// Получаем lastReturnedExp и записываем туда конструкцию XOR c Const(0)
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 	lastReturnedExp = new IRTree::CBinop( IRTree::B_Xor,
 		new IRTree::CConst( 0 ), lastReturnedExp );
 }
@@ -513,7 +514,7 @@ void CIRForestBuilder::visit( const CNotExp& exp )
 void CIRForestBuilder::visit( const CExpInBrackets& exp )
 {
 	// Здесь все и так нормально, тут сохраняется lastReturnedExp
-	exp.Exp()->Accept( *this );
+	exp.Exp()->Accept( this );
 }
 
 
