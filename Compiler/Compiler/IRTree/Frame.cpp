@@ -10,27 +10,27 @@ namespace Frame {
 		LocalCounter( 0 )
 	{
 		for( int i = 0; i < R_Count; ++i ) {
-			registers.emplace_back( const Temp::Temp( new const Temp::Temp( to_string( static_cast< TRegisters >( i ) ) ) ) );
+			registers.emplace_back( const Temp::CTemp( new const Temp::CTemp( to_string( static_cast< TRegisters >( i ) ) ) ) );
 		}
 	}
 
-	const Temp::Temp* CFrame::GetRegister( TRegisters registerType ) const
+	const Temp::CTemp* CFrame::GetRegister( TRegisters registerType ) const
 	{
 		//assert( registerType >= R_EAX && registerType < R_Count );
 		return registers.at( registerType ).get();
 	}
 
-	const Temp::Temp* CFrame::FramePointer() const
+	const Temp::CTemp* CFrame::FramePointer() const
 	{
 		return GetRegister( R_EBP );
 	}
 
 	const IRTree::IExp* CFrame::ThisPointerExp() const
 	{
-		return new IRTree::MEM( new IRTree::TEMP( *FramePointer() ) );
+		return new IRTree::CMem( new IRTree::CTemp( *FramePointer() ) );
 	}
 
-	const Temp::Temp* CFrame::ReturnValue() const
+	const Temp::CTemp* CFrame::ReturnValue() const
 	{
 		return GetRegister( R_EAX );
 	}
@@ -98,23 +98,23 @@ namespace Frame {
 	{
 		// Смещаемся в область меньших адресов.
 		// Добавляем 7 = 6 регистров + адрес возврата.
-		return new IRTree::MEM( new IRTree::BINOP(
-			IRTree::MINUS, new IRTree::TEMP( *( frame->FramePointer() ) ),
-			new IRTree::BINOP( IRTree::MUL, new IRTree::CONST( number + 7 ), new IRTree::CONST( frame->WordSize() ) ) ) );
+		return new IRTree::CMem( new IRTree::CBinop(
+			IRTree::MINUS, new IRTree::CTemp( *( frame->FramePointer() ) ),
+			new IRTree::CBinop( IRTree::MUL, new IRTree::CConst( number + 7 ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	const IRTree::IExp* CInObject::ToExp( const Frame::CFrame* frame ) const
 	{
-		return new IRTree::MEM( new IRTree::BINOP(
-			IRTree::PLUS, frame->ThisPointerExp(), new IRTree::BINOP( IRTree::MUL,
-			new IRTree::CONST( offsetInWords ), new IRTree::CONST( frame->WordSize() ) ) ) );
+		return new IRTree::CMem( new IRTree::CBinop(
+			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::MUL,
+			new IRTree::CConst( offsetInWords ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	const IRTree::IExp* CFormalParameterInStack::ToExp( const Frame::CFrame* frame ) const
 	{
-		return new IRTree::MEM( new IRTree::BINOP(
-			IRTree::PLUS, new IRTree::TEMP( *( frame->FramePointer() ) ), new IRTree::BINOP( IRTree::MUL,
-				new IRTree::CONST( number ), new IRTree::CONST( frame->WordSize() ) ) ) );
+		return new IRTree::CMem( new IRTree::CBinop(
+			IRTree::B_Plus, new IRTree::CTemp( *( frame->FramePointer() ) ), new IRTree::CBinop( IRTree::MUL,
+				new IRTree::CConst( number ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	std::string to_string( TRegisters registerType )

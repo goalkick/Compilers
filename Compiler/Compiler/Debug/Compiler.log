@@ -1,211 +1,147 @@
-﻿Build started 01.03.2016 15:38:39.
+﻿Build started 03.04.2016 13:45:43.
      1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ConditionalWrapper.cpp Frame.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ConditionalWrapper.cpp Frame.cpp IRTreeBuilder.cpp main.cpp SymbolsTable.cpp SymbolsTableVisitor.cpp TypeChecker.cpp
+         SymbolsTable.cpp
+     1>c:\users\elena\compilers\compiler\compiler\symbolstable.cpp(99): warning C4018: '>=' : signed/unsigned mismatch
+         IRTreeBuilder.cpp
+     1>c:\users\elena\compilers\compiler\compiler\temp.h(79): error C2039: 'nextUniqueId' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(34): warning C4099: 'IRTree::IVisitor' : type name first seen using 'struct' now seen using 'class'
+                 c:\users\elena\compilers\compiler\compiler\irtreevisitor.h(21) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(36): error C2039: 'ToString' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(170): error C2079: 'IRTree::CCall::args' uses undefined class 'IRTree::CExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(161): error C2440: 'initializing' : cannot convert from 'const IRTree::CExpList' to 'int'
+                 Source or target has incomplete type
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(161): error C2439: 'IRTree::CCall::args' : member could not be initialized
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(170) : see declaration of 'IRTree::CCall::args'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(177): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(177): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(188): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(188): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(178): error C2065: '_stm' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(179): error C2065: '_exp' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(180): error C2758: 'IRTree::CEseq::IStm' : must be initialized in constructor base/member initializer list
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(188) : see declaration of 'IRTree::CEseq::IStm'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(180): error C2614: 'IRTree::CEseq' : illegal member initialization: 'stm' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(271): error C2061: syntax error : identifier 'CCJump_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(280): error C2061: syntax error : identifier 'CCJump_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(280): error C2535: 'IRTree::CCJump::CCJump(void)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(271) : see declaration of 'IRTree::CCJump::CCJump'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(295): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(295): error C2146: syntax error : missing ';' before identifier 'relop'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(273): error C2065: '_relop' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(274): error C2065: '_left' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(275): error C2065: '_right' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(276): error C2065: '_iftrue' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(277): error C2065: '_iffalse' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(278): error C2758: 'IRTree::CCJump::CCJump_ENUM' : must be initialized in constructor base/member initializer list
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(295) : see declaration of 'IRTree::CCJump::CCJump_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(278): error C2614: 'IRTree::CCJump' : illegal member initialization: 'relop' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(282): error C2065: '_relop' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(283): error C2065: '_left' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(284): error C2065: '_right' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(285): error C2065: '_iftrue' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(286): error C2065: '_iffalse' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(287): error C2758: 'IRTree::CCJump::CCJump_ENUM' : must be initialized in constructor base/member initializer list
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(295) : see declaration of 'IRTree::CCJump::CCJump_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(287): error C2614: 'IRTree::CCJump' : illegal member initialization: 'relop' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree.h(291): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::CCJump *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(7): error C2011: 'IRTree::BINOP_ENUM' : 'enum' type redefinition
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(11) : see declaration of 'IRTree::BINOP_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(20): error C2011: 'IRTree::CJUMP_ENUM' : 'enum' type redefinition
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(23) : see declaration of 'IRTree::CJUMP_ENUM'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(28): warning C4099: 'IRTree::IVisitor' : type name first seen using 'struct' now seen using 'class'
+                 c:\users\elena\compilers\compiler\compiler\irtreevisitor.h(21) : see declaration of 'IRTree::IVisitor'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(30): error C2011: 'IRTree::IExp' : 'class' type redefinition
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(61) : see declaration of 'IRTree::IExp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(36): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(44): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::CONST *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(52): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(60): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::NAME *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(69): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(77): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::TEMP *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(85): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(95): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::BINOP *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(107): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(113): error C3668: 'IRTree::MEM::Accept' : method with override specifier 'override' did not override any base class methods
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(115): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::MEM *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(123): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(125): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(125): error C2143: syntax error : missing ',' before '&'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(136): error C2146: syntax error : missing ';' before identifier 'args'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(136): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(127): error C2065: '_args' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(128): error C2614: 'IRTree::CALL' : illegal member initialization: 'args' is not a base or member
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(132): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::CALL *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(140): error C2504: 'IRTree::IExp' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(149): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::ESEQ *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(157): error C2011: 'IRTree::IStm' : 'class' type redefinition
+                 c:\users\elena\compilers\compiler\compiler\irtree.h(192) : see declaration of 'IRTree::IStm'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(164): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(173): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::MOVE *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(182): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(190): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::EXP *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(210): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(212): error C2039: 'LabelList' : is not a member of 'Temp'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(212): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(212): error C2143: syntax error : missing ',' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(213): error C2065: '_label' : undeclared identifier
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(218): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::JUMP *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(232): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(244): error C2535: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : member function already defined or declared
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(234) : see declaration of 'IRTree::CJUMP::CJUMP'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(255): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::CJUMP *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(269): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(273): error C2440: 'initializing' : cannot convert from 'IRTree::SEQ *' to 'const IRTree::IStm *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(273): error C2439: 'IRTree::SEQ::right' : member could not be initialized
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(291) : see declaration of 'IRTree::SEQ::right'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(276): error C2440: 'initializing' : cannot convert from 'IRTree::SEQ *' to 'const IRTree::IStm *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(276): error C2439: 'IRTree::SEQ::right' : member could not be initialized
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(291) : see declaration of 'IRTree::SEQ::right'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(279): error C2440: 'initializing' : cannot convert from 'IRTree::SEQ *' to 'const IRTree::IStm *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(279): error C2439: 'IRTree::SEQ::right' : member could not be initialized
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(291) : see declaration of 'IRTree::SEQ::right'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(283): error C2440: 'initializing' : cannot convert from 'IRTree::SEQ *' to 'const IRTree::IStm *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(283): error C2439: 'IRTree::SEQ::right' : member could not be initialized
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(291) : see declaration of 'IRTree::SEQ::right'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(287): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::SEQ *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(299): error C2504: 'IRTree::IStm' : base class undefined
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(312): error C2373: 'IRTree::LABEL::label' : redefinition; different type modifiers
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(310) : see declaration of 'IRTree::LABEL::label'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(307): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::LABEL *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(324): error C2664: 'void IRTree::IVisitor::visit(const IRTree::CMove *)' : cannot convert parameter 1 from 'const IRTree::ExpList *const ' to 'const IRTree::CMove *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>c:\users\elena\compilers\compiler\compiler\irtree\subtreewrapper.h(2): fatal error C1083: Cannot open include file: 'IRTree.h': No such file or directory
          Frame.cpp
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(44): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CONST *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(60): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::NAME *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(77): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::TEMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(95): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::BINOP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(115): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::MEM *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C2143: syntax error : missing ',' before '&'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(136): error C2146: syntax error : missing ';' before identifier 'args'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(136): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(127): error C2065: '_args' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(128): error C2614: 'IRTree::CALL' : illegal member initialization: 'args' is not a base or member
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(132): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CALL *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2143: syntax error : missing ',' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(153): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(153): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(143): error C2065: '_stm' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(144): error C2065: '_exp' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(145): error C2758: 'IRTree::ESEQ::IStm' : must be initialized in constructor base/member initializer list
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(153) : see declaration of 'IRTree::ESEQ::IStm'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(145): error C2614: 'IRTree::ESEQ' : illegal member initialization: 'stm' is not a base or member
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(149): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::ESEQ *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(173): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::MOVE *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(190): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::EXP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C2039: 'LabelList' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C2143: syntax error : missing ',' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(213): error C2065: '_label' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(218): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::JUMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(244): error C2535: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : member function already defined or declared
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(234) : see declaration of 'IRTree::CJUMP::CJUMP'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(255): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CJUMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(287): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::SEQ *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(312): error C2373: 'IRTree::LABEL::label' : redefinition; different type modifiers
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(310) : see declaration of 'IRTree::LABEL::label'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(307): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::LABEL *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(324): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::ExpList *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2039: 'shared_ptr' : is not a member of 'std'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2065: 'shared_ptr' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2059: syntax error : 'const'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(13): error C2039: 'CTemp' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C2039: 'CTemp' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(17): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C2556: 'int *Frame::CFrame::GetRegister(Frame::TRegisters) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::GetRegister(Frame::TRegisters) const'
-                 c:\users\elena\compilers\compiler\compiler\frame.h(85) : see declaration of 'Frame::CFrame::GetRegister'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(18): error C2373: 'Frame::CFrame::GetRegister' : redefinition; different type modifiers
-                 c:\users\elena\compilers\compiler\compiler\frame.h(85) : see declaration of 'Frame::CFrame::GetRegister'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(19): error C3861: 'assert': identifier not found
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(20): error C2228: left of '.get' must have class/struct/union
-                 type is 'const Temp::Temp *const '
-                 did you intend to use '->' instead?
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2039: 'CTemp' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(23): error C2086: 'const int Frame::CTemp' : redefinition
-                 c:\users\elena\compilers\compiler\compiler\frame.cpp(17) : see declaration of 'Frame::CTemp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C2556: 'int *Frame::CFrame::FramePointer(void) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::FramePointer(void) const'
-                 c:\users\elena\compilers\compiler\compiler\frame.h(87) : see declaration of 'Frame::CFrame::FramePointer'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(24): error C2373: 'Frame::CFrame::FramePointer' : redefinition; different type modifiers
-                 c:\users\elena\compilers\compiler\compiler\frame.h(87) : see declaration of 'Frame::CFrame::FramePointer'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(25): error C2264: 'Frame::CFrame::GetRegister' : error in function definition or declaration; function not called
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2039: 'CMem' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2061: syntax error : identifier 'CMem'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(30): error C2039: 'CTemp' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2039: 'CTemp' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(33): error C2086: 'const int Frame::CTemp' : redefinition
-                 c:\users\elena\compilers\compiler\compiler\frame.cpp(17) : see declaration of 'Frame::CTemp'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C2556: 'int *Frame::CFrame::ReturnValue(void) const' : overloaded function differs only by return type from 'const Temp::Temp *Frame::CFrame::ReturnValue(void) const'
-                 c:\users\elena\compilers\compiler\compiler\frame.h(91) : see declaration of 'Frame::CFrame::ReturnValue'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(34): error C2373: 'Frame::CFrame::ReturnValue' : redefinition; different type modifiers
-                 c:\users\elena\compilers\compiler\compiler\frame.h(91) : see declaration of 'Frame::CFrame::ReturnValue'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(35): error C2264: 'Frame::CFrame::GetRegister' : error in function definition or declaration; function not called
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2039: 'CMem' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2061: syntax error : identifier 'CMem'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(102): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(103): error C2039: 'B_Minus' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(103): error C2039: 'CTemp' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'B_Mul' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(104): error C2039: 'CConst' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2039: 'CMem' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2061: syntax error : identifier 'CMem'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(110): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'B_Plus' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(111): error C2039: 'B_Mul' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(112): error C2039: 'CConst' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2039: 'CMem' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2061: syntax error : identifier 'CMem'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(117): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'B_Plus' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'CTemp' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'CBinop' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(118): error C2039: 'B_Mul' : is not a member of 'IRTree'
-     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(119): error C2039: 'CConst' : is not a member of 'IRTree'
+     1>c:\users\elena\compilers\compiler\compiler\frame.cpp(3): fatal error C1083: Cannot open include file: 'Frame.h': No such file or directory
          ConditionalWrapper.cpp
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(44): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CONST *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(60): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::NAME *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(77): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::TEMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(95): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::BINOP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(115): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::MEM *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(125): error C2143: syntax error : missing ',' before '&'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(136): error C2146: syntax error : missing ';' before identifier 'args'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(136): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(127): error C2065: '_args' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(128): error C2614: 'IRTree::CALL' : illegal member initialization: 'args' is not a base or member
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(132): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CALL *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(142): error C2143: syntax error : missing ',' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(153): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(153): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(143): error C2065: '_stm' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(144): error C2065: '_exp' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(145): error C2758: 'IRTree::ESEQ::IStm' : must be initialized in constructor base/member initializer list
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(153) : see declaration of 'IRTree::ESEQ::IStm'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(145): error C2614: 'IRTree::ESEQ' : illegal member initialization: 'stm' is not a base or member
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(149): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::ESEQ *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(173): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::MOVE *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(190): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::EXP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C2039: 'LabelList' : is not a member of 'Temp'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(212): error C2143: syntax error : missing ',' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(213): error C2065: '_label' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(218): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::JUMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(244): error C2535: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : member function already defined or declared
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(234) : see declaration of 'IRTree::CJUMP::CJUMP'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(255): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::CJUMP *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(287): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::SEQ *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(312): error C2373: 'IRTree::LABEL::label' : redefinition; different type modifiers
-                 c:\users\elena\compilers\compiler\compiler\irtree.h(310) : see declaration of 'IRTree::LABEL::label'
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(307): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::LABEL *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\irtree.h(324): error C2664: 'void IVisitor::visit(const CProgram *)' : cannot convert parameter 1 from 'const IRTree::ExpList *const ' to 'const CProgram *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C2143: syntax error : missing ',' before '*'
-     1>c:\users\elena\compilers\compiler\compiler\translate.h(21): error C2143: syntax error : missing ';' before '...'
-     1>c:\users\elena\compilers\compiler\compiler\translate.h(22): error C2143: syntax error : missing ';' before '...'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(26): error C2661: 'IRTree::ESEQ::ESEQ' : no overloaded function takes 2 arguments
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(32): error C2680: 'const IRTree::BINOP_ENUM *' : invalid target type for dynamic_cast
-                 target type must be a pointer or reference to a defined class
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(33): error C3536: 'asBinop': cannot be used before it is initialized
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(33): error C2446: '!=' : no conversion from 'nullptr' to 'int'
-                 A native nullptr can only be converted to bool or, using reinterpret_cast, to an integral type
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(34): error C3536: 'asBinop': cannot be used before it is initialized
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(34): error C2664: 'Translate::CConditionalWrapper::binopToConditional' : cannot convert parameter 1 from 'int' to 'const IRTree::BINOP_ENUM *'
-                 Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(42): error C2227: left of '->binop' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(46): error C2227: left of '->left' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(46): error C2228: left of '.get' must have class/struct/union
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(46): error C2227: left of '->right' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(48): error C2227: left of '->left' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(48): error C2228: left of '.get' must have class/struct/union
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(48): error C2227: left of '->right' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(54): error C2664: 'IRTree::CJUMP::CJUMP(IRTree::CJUMP_ENUM,const IRTree::IExp *,const IRTree::IExp *,const Temp::Label *,const Temp::Label *)' : cannot convert parameter 2 from 'const IRTree::BINOP_ENUM *' to 'const IRTree::IExp *'
-                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(67): error C2227: left of '->left' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(67): error C2228: left of '.get' must have class/struct/union
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(68): error C2227: left of '->right' must point to class/struct/union/generic type
-                 type is 'const IRTree::BINOP_ENUM *'
-     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(68): error C2228: left of '.get' must have class/struct/union
+     1>c:\users\elena\compilers\compiler\compiler\conditionalwrapper.cpp(1): fatal error C1083: Cannot open include file: 'Translate.h': No such file or directory
+         Generating Code...
+         Compiling...
+         TypeChecker.cpp
+         SymbolsTableVisitor.cpp
+         main.cpp
          Generating Code...
      1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:03.45
+Time Elapsed 00:00:06.65

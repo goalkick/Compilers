@@ -81,13 +81,13 @@ namespace Frame {
 		explicit CFrame( const std::string _name );
 
 		// «арезервированные регистры
-		const Temp::Temp* GetRegister( TRegisters registerType ) const;
+		const Temp::CTemp* GetRegister( TRegisters registerType ) const;
 		// FP нужен дл€ того чтобы получать смещение дл€ локальных переменных внутри функции
-		const Temp::Temp* FramePointer() const;
+		const Temp::CTemp* FramePointer() const;
 		// this нужен чтобы получать смещени€ на пол€ объекта класса
 		const IRTree::IExp* ThisPointerExp() const;
 		// Temp дл€ возвращаемого значени€.
-		const Temp::Temp* ReturnValue() const;
+		const Temp::CTemp* ReturnValue() const;
 
 		// ƒоступ к формальным параметрам
 		const IAccess* GetFormal( std::string name ) const;
@@ -106,7 +106,7 @@ namespace Frame {
 		std::map<const std::string, const IAccess* > locals;
 		std::map<const std::string, const IAccess* > fields;
 
-		std::vector< const Temp::Temp* > registers;
+		std::vector< const Temp::CTemp* > registers;
 	};
 
 } 
