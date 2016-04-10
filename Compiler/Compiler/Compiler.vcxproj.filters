@@ -118,14 +118,8 @@
     <ClInclude Include="IRTree\Temp.h">
       <Filter>IRTree</Filter>
     </ClInclude>
-    <ClInclude Include="IRTree\StmConverter.h">
-      <Filter>IRTree</Filter>
-    </ClInclude>
     <ClInclude Include="IRTree\ConditionalWrapper.h">
       <Filter>IRTree</Filter>
-    </ClInclude>
-    <ClInclude Include="IRTree\IRTree.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="IRTree\Digraph.h">
       <Filter>IRTree\Visualization</Filter>
@@ -135,6 +129,9 @@
     </ClInclude>
     <ClInclude Include="CLocation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\IRTree.h">
+      <Filter>IRTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

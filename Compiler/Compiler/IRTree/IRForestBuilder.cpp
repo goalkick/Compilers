@@ -1,8 +1,8 @@
 #pragma once
 #include "IRForestBuilder.h"
 #include "../Visitor.h"
-#include "StmConverter.h"
-#include "ConditionalWrapper.cpp"
+//#include "StmConverter.h"
+#include "ConditionalWrapper.h"
 
 #include <iostream>
 #include <string>
