@@ -5,7 +5,7 @@ namespace IRTree {
 class CMove;
 class CExp;
 class CJump;
-class CCjump;
+class CCJump;
 class CSeq;
 class CConst;
 class CName;
@@ -18,12 +18,16 @@ class CExpList;
 class CLabel;
 
 
-struct IVisitor {
+class IVisitor {
+public:
+
+	virtual ~IVisitor()
+	{}
 
 	virtual void visit( const CMove* node ) = 0;
 	virtual void visit( const CExp* node ) = 0;
 	virtual void visit( const CJump* node ) = 0;
-	virtual void visit( const CCjump* node ) = 0;
+	virtual void visit( const CCJump* node ) = 0;
 	virtual void visit( const CSeq* node ) = 0;
 	virtual void visit( const CConst* node ) = 0;
 	virtual void visit( const CName* node ) = 0;

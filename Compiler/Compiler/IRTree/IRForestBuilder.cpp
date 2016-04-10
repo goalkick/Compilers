@@ -1,7 +1,7 @@
 #include "IRForestBuilder.h"
-#include "Visitor.h"
+#include "../Visitor.h"
 #include "StmConverter.h"
-#include "IRTree/ConditionalWrapper.cpp"
+#include "ConditionalWrapper.cpp"
 
 #include <iostream>
 #include <string>

@@ -42,9 +42,6 @@
     <ClCompile Include="TypeChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IRTreeBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IRTree\ConditionalWrapper.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
@@ -52,6 +49,9 @@
       <Filter>IRTree</Filter>
     </ClCompile>
     <ClCompile Include="IRTree\IRForestBuilder.cpp">
+      <Filter>IRTree</Filter>
+    </ClCompile>
+    <ClCompile Include="IRTreeBuilder.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,9 +100,6 @@
     <ClInclude Include="IRTree\IRForestBuilder.h">
       <Filter>IRTree</Filter>
     </ClInclude>
-    <ClInclude Include="IRTree\IRTree.h">
-      <Filter>IRTree</Filter>
-    </ClInclude>
     <ClInclude Include="IRTree\IRTreeVisitor.h">
       <Filter>IRTree</Filter>
     </ClInclude>
@@ -120,6 +117,9 @@
     </ClInclude>
     <ClInclude Include="IRTree\ConditionalWrapper.h">
       <Filter>IRTree</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\IRTree.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

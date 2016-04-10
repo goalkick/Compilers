@@ -127,7 +127,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const BINOP_ENUM binop;
 		const IExp* left;
 		const IExp* right;
@@ -307,7 +307,7 @@ namespace IRTree {
 	public:
 		CSeq( const IStm* _left, const IStm* _right ) : 
 			left( _left ), 
-			right( _right ) 
+			right( _right )  
 		{}
 
 		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3 ) : 
