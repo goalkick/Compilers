@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Temp.h"
-#include "../visitor.h"
 #include "IRTreeVisitor.h"
 #include <memory>
 #include <string>
 
 // Интерфейс для дерева промежуточного представления
 namespace IRTree {
+
 	static enum BINOP_ENUM {
 			B_Plus, 
 			B_Minus, 
@@ -33,7 +33,32 @@ namespace IRTree {
 
 	class IVisitor;
 
-	std::string IRTree::ToString( const BINOP_ENUM binOp )
+	// Exp stand for the computation of some value
+	class IExp {
+	public:
+		virtual void Accept( IVisitor& ) const = 0;
+	};
+
+	class IStm {
+	public:
+		virtual void Accept( IVisitor& ) const = 0;
+	};
+
+
+	class CExpList {
+	public:
+		CExpList( const IExp* _head, const CExpList* _tail ) : head( _head ), tail( _tail ) {}
+
+		void Accept( IVisitor& printer ) const
+		{
+			printer.visit( this );
+		}
+	//private:
+		const IExp* head;
+		const CExpList* tail;
+	};
+
+	std::string ToString( const BINOP_ENUM binOp )
 	{
 		switch( binOp ) {
 		case B_Plus:
@@ -57,12 +82,6 @@ namespace IRTree {
 		}
 	}
 
-	// Exp stand for the computation of some value
-	class IExp {
-	public:
-		virtual void Accept( IVisitor& ) const = 0;
-	};
-
 	// The integer constant
 	class CConst : public IExp {
 	public:
@@ -74,7 +93,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const int value;
 	};
 
@@ -91,7 +110,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const Temp::CLabel* label;
 	};
 
@@ -109,7 +128,7 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const Temp::CTemp temp;
 	};
 
@@ -147,7 +166,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const IExp* exp;
 	};
 
@@ -165,7 +184,7 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const IExp* func;
 		const CExpList args;
 	};
@@ -184,14 +203,9 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const IStm* stm;
 		const IExp* exp;
-	};
-
-	class IStm {
-	public:
-		virtual void Accept( IVisitor& ) const = 0;
 	};
 
 	// CMove(CTemp t, e) Evaluate e and move it into temporary t.
@@ -211,7 +225,7 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const IExp* dst;
 		const IExp* src;
 	};
@@ -228,7 +242,7 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const IExp* exp;
 	};
 
@@ -255,7 +269,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const Temp::CLabel* label;
 	};
 
@@ -276,22 +290,13 @@ namespace IRTree {
 			iftrue( _iftrue ),
 			iffalse( _iffalse )
 		{}
-
-		CCJump( CJUMP_ENUM _relop, const IExp* const _left, const IExp* const _right, const Temp::CLabel* const _iftrue,
-			const Temp::CLabel* const _iffalse ) :
-			relop( _relop ),
-			left( _left ),
-			right( _right ),
-			iftrue( _iftrue ),
-			iffalse( _iffalse )
-		{}
-
+			
 		virtual void Accept( IVisitor& printer ) const
 		{
 			printer.visit( this );
 		}
 				
-	private:
+	//private:
 		const CJUMP_ENUM relop;
 		const IExp* left;
 		const IExp* right;
@@ -329,7 +334,7 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	private:
+	//private:
 		const IStm* left;
 		const IStm* right;
 	};
@@ -350,26 +355,11 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-	private:
+	//private:
 		const Temp::CLabel* label;
 	};
 		
-	class CExpList {
-	public:
-		CExpList( const IExp* _head, const CExpList* _tail ) :
-			head( _head ), tail( _tail )
-		{}
-
-		void Accept( IVisitor& printer ) const
-		{
-			printer.visit( this );
-		}
-	private:
-		const IExp* head;
-		const CExpList* tail;
-	};
-
-	/*
+		/*
 	class StmList {
 	private:
 		IStm head;

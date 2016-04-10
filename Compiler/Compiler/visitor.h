@@ -38,6 +38,8 @@ class CBracesExpression;
 
 class IVisitor {
 public:
+	virtual ~IVisitor() {}
+
 	virtual void visit(const CProgram* n) = 0;
 	virtual void visit(const CMainClass* n) = 0;
 	virtual void visit(const CClassDeclsList* n) = 0;

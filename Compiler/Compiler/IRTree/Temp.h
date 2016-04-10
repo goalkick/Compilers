@@ -48,8 +48,8 @@ public:
 		nextUniqueId++;
 	}
 
-	CTemp( const CTemp& src ) : 
-		name( src.name ) 
+	CTemp( const CTemp* src ) : 
+		name( src->name ) 
 	{}
 		
 	CTemp( const std::string& _name ) :
@@ -75,8 +75,6 @@ private:
 	std::string name;
 };
 
-int CLabel::nextUniqueId = 0;
-int Temp::nextUniqueId = 0;
 
 } 
 
@@ -100,3 +98,4 @@ struct hash<Temp::CLabel> {
 };
 
 } 
+

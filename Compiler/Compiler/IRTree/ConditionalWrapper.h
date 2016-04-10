@@ -1,3 +1,4 @@
+#pragma once
 #include "SubtreeWrapper.h"
 #include "IRTree.h"
 

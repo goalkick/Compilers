@@ -79,7 +79,7 @@ void CSymbolTableBuilderVisitor::visit( const CClassDecls* program )
 			method->GetReturnType()->GetType()->Accept( this );
 			curClass->AddMethod( method->GetName(), lastTypeValue );
 		}
-		for( auto var : parentClass->GerVars() )
+		for( auto var : parentClass->GetVars() )
 		{
 			var->GetType()->Accept( this );
 			curClass->AddVar( var->GetName(), lastTypeValue );

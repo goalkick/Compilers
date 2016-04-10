@@ -16,6 +16,9 @@
     <Filter Include="IRTree">
       <UniqueIdentifier>{ea4b1eaa-d414-43c3-89e1-35895b0bf368}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IRTree\Visualization">
+      <UniqueIdentifier>{901649c4-01b2-44f7-bcad-c786be2f0739}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,7 +54,13 @@
     <ClCompile Include="IRTree\IRForestBuilder.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
-    <ClCompile Include="IRTreeBuilder.cpp">
+    <ClCompile Include="IRTree\Digraph.cpp">
+      <Filter>IRTree\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="IRTree\IRTreeToDigraphConverter.cpp">
+      <Filter>IRTree\Visualization</Filter>
+    </ClCompile>
+    <ClCompile Include="IRTree\Temp.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,9 +118,6 @@
     <ClInclude Include="IRTree\Temp.h">
       <Filter>IRTree</Filter>
     </ClInclude>
-    <ClInclude Include="IRTree\CLocation.h">
-      <Filter>IRTree</Filter>
-    </ClInclude>
     <ClInclude Include="IRTree\StmConverter.h">
       <Filter>IRTree</Filter>
     </ClInclude>
@@ -120,6 +126,15 @@
     </ClInclude>
     <ClInclude Include="IRTree\IRTree.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\Digraph.h">
+      <Filter>IRTree\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\IRTreeToDigraphConverter.h">
+      <Filter>IRTree\Visualization</Filter>
+    </ClInclude>
+    <ClInclude Include="CLocation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

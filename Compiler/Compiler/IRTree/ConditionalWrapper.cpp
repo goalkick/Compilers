@@ -1,3 +1,4 @@
+#pragma once
 #include "ConditionalWrapper.h"
 
 namespace Translate {
@@ -19,9 +20,8 @@ const IRTree::IExp* CConditionalWrapper::ToExp() const {
 	Temp::CLabel* falseLabel = new Temp::CLabel();
 	IRTree::CLabel* trueIRLabel = new IRTree::CLabel( trueLabel );
 	IRTree::CLabel* falseIRLabel = new IRTree::CLabel( falseLabel );
-	// CEseq vs CSeq ???
-	IRTree::CEseq* seqTrue = new IRTree::CEseq( trueIRLabel, moveTrue );
-	IRTree::CEseq* seqFalse = new IRTree::CEseq( falseIRLabel, moveFalse );
+	IRTree::CSeq* seqTrue = new IRTree::CSeq( trueIRLabel, moveTrue );
+	IRTree::CSeq* seqFalse = new IRTree::CSeq( falseIRLabel, moveFalse );
 	const IRTree::IStm* cond = ToConditional( trueLabel, falseLabel );
 	IRTree::CEseq* eseq = new IRTree::CEseq( cond, irTemp );
 	return eseq;

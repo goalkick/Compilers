@@ -3,6 +3,7 @@
 #include "SymbolsTableVisitor.h"
 #include "TypeChecker.h"
 #include "IRTree\IRForestBuilder.h"
+#include "IRTree\IRTreeToDigraphConverter.h"
 
 extern int yyparse( std::shared_ptr<CProgram>& );
 
@@ -27,9 +28,10 @@ int main()
 	// построение IR дерева
 	Translate::CIRForestBuilder* irForestBuilder( new Translate::CIRForestBuilder( (symbolTableBuilder->GetSymbolsTable()).get() ) );
 	root->Accept( irForestBuilder );
+
 	// визуализация IR-деревьев
-	for( const auto& frame : irForestBuilder.Methods ) {
-		// Печатаем деревья для отдельной функции
+	for( const auto& frame : irForestBuilder->Methods ) {
+		// печатаем деревья для отдельной функции
 		IRTree::CIRTreeToDigraphConverter irTreeToDigraphConverter( std::string( "IRTree_" ) 
 			+ frame->Name + std::string( ".dot" ) );
 		frame->Stm->Accept( irTreeToDigraphConverter );

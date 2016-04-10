@@ -10,14 +10,14 @@ namespace Frame {
 		LocalCounter( 0 )
 	{
 		for( int i = 0; i < R_Count; ++i ) {
-			registers.emplace_back( const Temp::CTemp( new const Temp::CTemp( to_string( static_cast< TRegisters >( i ) ) ) ) );
+			registers.emplace_back( new Temp::CTemp( to_string( static_cast< TRegisters >( i ) ) ) );
 		}
 	}
 
 	const Temp::CTemp* CFrame::GetRegister( TRegisters registerType ) const
 	{
 		//assert( registerType >= R_EAX && registerType < R_Count );
-		return registers.at( registerType ).get();
+		return registers.at( registerType );
 	}
 
 	const Temp::CTemp* CFrame::FramePointer() const
@@ -99,21 +99,21 @@ namespace Frame {
 		// Смещаемся в область меньших адресов.
 		// Добавляем 7 = 6 регистров + адрес возврата.
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::MINUS, new IRTree::CTemp( *( frame->FramePointer() ) ),
-			new IRTree::CBinop( IRTree::MUL, new IRTree::CConst( number + 7 ), new IRTree::CConst( frame->WordSize() ) ) ) );
+			IRTree::B_Mul, new IRTree::CTemp( *( frame->FramePointer() ) ),
+			new IRTree::CBinop( IRTree::B_Mul, new IRTree::CConst( number + 7 ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	const IRTree::IExp* CInObject::ToExp( const Frame::CFrame* frame ) const
 	{
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::MUL,
+			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::B_Mul,
 			new IRTree::CConst( offsetInWords ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 
 	const IRTree::IExp* CFormalParameterInStack::ToExp( const Frame::CFrame* frame ) const
 	{
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Plus, new IRTree::CTemp( *( frame->FramePointer() ) ), new IRTree::CBinop( IRTree::MUL,
+			IRTree::B_Plus, new IRTree::CTemp( *( frame->FramePointer() ) ), new IRTree::CBinop( IRTree::B_Mul,
 				new IRTree::CConst( number ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <memory>
 #include <string>
@@ -58,7 +60,7 @@ namespace SymbolsTable {
 
 		std::string GetName() const { return name; }
 		CClassInfo* GetBaseClass() const { return baseClass.get(); }
-		std::vector<std::shared_ptr<CVarInfo> > GerVars() const { return vars; }
+		std::vector<std::shared_ptr<CVarInfo> > GetVars() const { return vars; }
 		std::vector<std::shared_ptr<CMethodInfo> > GetMethods() const { return methods; }
 
 		CMethodInfo* GetMethod( const std::string& name ) const;

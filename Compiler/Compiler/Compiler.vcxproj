@@ -63,10 +63,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CSymbol.cpp" />
-    <ClCompile Include="IRTreeBuilder.cpp" />
     <ClCompile Include="IRTree\ConditionalWrapper.cpp" />
+    <ClCompile Include="IRTree\Digraph.cpp" />
     <ClCompile Include="IRTree\Frame.cpp" />
     <ClCompile Include="IRTree\IRForestBuilder.cpp" />
+    <ClCompile Include="IRTree\IRTreeToDigraphConverter.cpp" />
+    <ClCompile Include="IRTree\Temp.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.tab.cpp" />
@@ -93,12 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="classes.h" />
+    <ClInclude Include="CLocation.h" />
     <ClInclude Include="grammar.h" />
-    <ClInclude Include="IRTree\CLocation.h" />
     <ClInclude Include="IRTree\ConditionalWrapper.h" />
+    <ClInclude Include="IRTree\Digraph.h" />
     <ClInclude Include="IRTree\Frame.h" />
     <ClInclude Include="IRTree\IRForestBuilder.h" />
     <ClInclude Include="IRTree\IRTree.h" />
+    <ClInclude Include="IRTree\IRTreeToDigraphConverter.h" />
     <ClInclude Include="IRTree\IRTreeVisitor.h" />
     <ClInclude Include="IRTree\StmConverter.h" />
     <ClInclude Include="IRTree\SubtreeWrapper.h" />
