@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
 ﻿Build started 10.04.2016 20:06:12.
      1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -6,6 +8,11 @@
          ConditionalWrapper.cpp
          Generating Code...
        Link:
+=======
+﻿Build started 10.04.2016 18:56:46.
+     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+>>>>>>> bd427a49d1e8a4ee3b49de86a1d5675edd398225
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.lib" /MACHINE:X86 Debug\CSymbol.obj
          Debug\ConditionalWrapper.obj
          Debug\Digraph.obj
@@ -20,9 +27,33 @@
          Debug\SymbolsTable.obj
          Debug\SymbolsTableVisitor.obj
          Debug\TypeChecker.obj
+<<<<<<< HEAD
          Compiler.vcxproj -> C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe
      1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)).
 
 Build succeeded.
 
 Time Elapsed 00:00:03.60
+=======
+﻿  IRForestBuilder.cpp
+c:\users\anton\documents\study\abbyy\compilers\compiler\compiler\irtree\irtree.h(21): warning C4091: static : пропускается слева от "IRTree::BINOP_ENUM", когда ни одна переменная не объявлена
+c:\users\anton\documents\study\abbyy\compilers\compiler\compiler\irtree\irtree.h(32): warning C4091: static : пропускается слева от "IRTree::CJUMP_ENUM", когда ни одна переменная не объявлена
+  Compiler.vcxproj -> C:\Users\Anton\Documents\study\abbyy\Compilers\Compiler\Debug\Compiler.exe
+>>>>>>> 65d07ad9258b0d21c3d62c551d677290a314fe55
+=======
+     1>Frame.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl IRTree::ToString(enum IRTree::BINOP_ENUM)" (?ToString@IRTree@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4BINOP_ENUM@1@@Z) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "public: virtual class IRTree::IStm const * __thiscall Translate::CConditionalWrapper::ToConditional(class Temp::CLabel const *,class Temp::CLabel const *)const " (?ToConditional@CConditionalWrapper@Translate@@UBEPBVIStm@IRTree@@PBVCLabel@Temp@@0@Z) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "public: virtual class IRTree::IExp const * __thiscall Translate::CConditionalWrapper::ToExp(void)const " (?ToExp@CConditionalWrapper@Translate@@UBEPBVIExp@IRTree@@XZ) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "public: virtual class IRTree::IStm const * __thiscall Translate::CConditionalWrapper::ToStm(void)const " (?ToStm@CConditionalWrapper@Translate@@UBEPBVIStm@IRTree@@XZ) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl IRTree::ToString(enum IRTree::BINOP_ENUM)" (?ToString@IRTree@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4BINOP_ENUM@1@@Z) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "private: class IRTree::IStm const * __thiscall Translate::CConditionalWrapper::andBinopToConditional(class IRTree::CBinop const *,class Temp::CLabel const *,class Temp::CLabel const *)const " (?andBinopToConditional@CConditionalWrapper@Translate@@ABEPBVIStm@IRTree@@PBVCBinop@4@PBVCLabel@Temp@@1@Z) already defined in ConditionalWrapper.obj
+     1>IRForestBuilder.obj : error LNK2005: "private: class IRTree::IStm const * __thiscall Translate::CConditionalWrapper::binopToConditional(class IRTree::CBinop const *,class Temp::CLabel const *,class Temp::CLabel const *)const " (?binopToConditional@CConditionalWrapper@Translate@@ABEPBVIStm@IRTree@@PBVCBinop@4@PBVCLabel@Temp@@1@Z) already defined in ConditionalWrapper.obj
+     1>IRTreeToDigraphConverter.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl IRTree::ToString(enum IRTree::BINOP_ENUM)" (?ToString@IRTree@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4BINOP_ENUM@1@@Z) already defined in ConditionalWrapper.obj
+     1>main.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl IRTree::ToString(enum IRTree::BINOP_ENUM)" (?ToString@IRTree@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4BINOP_ENUM@1@@Z) already defined in ConditionalWrapper.obj
+     1>C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe : fatal error LNK1169: one or more multiply defined symbols found
+     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.53
+>>>>>>> bd427a49d1e8a4ee3b49de86a1d5675edd398225
