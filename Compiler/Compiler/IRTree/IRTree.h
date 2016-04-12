@@ -57,17 +57,8 @@ namespace IRTree {
 		const IExp* head;
 		const CExpList* tail;
 	};
-<<<<<<< HEAD
 	/*
 	std::string ToString( const BINOP_ENUM binOp )
-=======
-
-<<<<<<< HEAD
-	/*std::string ToString( const BINOP_ENUM binOp )
->>>>>>> 65d07ad9258b0d21c3d62c551d677290a314fe55
-=======
-	std::string ToString( const BINOP_ENUM binOp )
->>>>>>> bd427a49d1e8a4ee3b49de86a1d5675edd398225
 	{
 		switch( binOp ) {
 		case B_Plus:
@@ -90,7 +81,7 @@ namespace IRTree {
 			return std::string( "" );
 		}
 	}
-
+*/
 	// The integer constant
 	class CConst : public IExp {
 	public:
