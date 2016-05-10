@@ -1,0 +1,12 @@
+digraph {
+name_println__id_0 [ label="name_println" ]; 
+const_10__id_1 [ label="const_10" ]; 
+expList__id_2 [ label="expList" ]; 
+expList__id_2 -> const_10__id_1 [ label="head"] ; 
+call__id_3 [ label="call" ]; 
+call__id_3 -> name_println__id_0 [ label="func"] ; 
+call__id_3 -> expList__id_2 [ label="args"] ; 
+exp__id_4 [ label="exp" ]; 
+exp__id_4 -> call__id_3 ; 
+
+}

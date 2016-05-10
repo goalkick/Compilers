@@ -101,11 +101,11 @@ void CIRForestBuilder::visit( const CMethodDecl* methodDecl )
 	const SymbolsTable::CClassInfo* currentClass = symbolsTable->GetClass( className );
 	while( currentClass != nullptr ) {
 		classNames.push_back( currentClass );
-		//if( currentClass->GetBaseClass() ) {
-		//	currentClass = currentClass->GetBaseClass();
-		//} else {
-		//	currentClass = nullptr;
-		//}
+		if( currentClass->GetBaseClass() ) {
+			currentClass = currentClass->GetBaseClass();
+		} else {
+			currentClass = nullptr;
+		}
 	}
 	// Добавляем поля класса к фрейму symbolsTable.GetClass( className )
 	for( int i = classNames.size() - 1; i >= 0; i-- ) {
@@ -115,23 +115,23 @@ void CIRForestBuilder::visit( const CMethodDecl* methodDecl )
 		}
 	}
 
-	const std::vector<std::shared_ptr<SymbolsTable::CVarInfo> >* params = nullptr;
-	const std::vector<std::shared_ptr<SymbolsTable::CVarInfo> >* locals = nullptr;
+	std::vector<std::shared_ptr<SymbolsTable::CVarInfo> > params ;
+	std::vector<std::shared_ptr<SymbolsTable::CVarInfo> > locals ;
 	for( auto& method : symbolsTable->GetClass( className )->GetMethods() ) {
 		if( method->GetName() == methodDecl->Name()->GetString() ) {
-			params = &method->GetParams();
-			locals = &method->GetLocals();
+			params = method->GetParams();
+			locals = method->GetLocals();
 			break;
 		}
 	}
 	
 	// Добавляем параметры функции фрейму
-	for( size_t i = 0; i < params->size(); ++i ) {
-		currentFrame->AddField( params->at( i )->GetName(), new Frame::CFormalParameterInStack( i + 1 ) );
+	for( size_t i = 0; i < params.size(); ++i ) {
+		currentFrame->AddField( params.at( i )->GetName(), new Frame::CFormalParameterInStack( i + 1 ) );
 	}
 	// Добавляем локальные переменные фрейму
-	for( const auto& field : *locals ) {
-		currentFrame->AddField( field->GetName(), new Frame::CInFrame( currentFrame->LocalCounter ) );
+	for( size_t i = 0; i < locals.size(); ++i ) {
+		currentFrame->AddField( locals.at( i )->GetName(), new Frame::CInFrame( currentFrame->LocalCounter ) );
 		currentFrame->LocalCounter++;
 	}
 	if( methodDecl->StatementList() != 0 ) {
@@ -162,7 +162,10 @@ void CIRForestBuilder::visit( const CFormalList* formalList )
 {
 	// Эта инфа у таблицы символов
 	// Нам тут делать нечего
-	formalList->FormalRest()->Accept( this );
+	if( formalList->FormalRest() != nullptr )
+	{
+		formalList->FormalRest()->Accept( this );
+	}
 }
 
 void CIRForestBuilder::visit( const CType* type )
@@ -294,9 +297,12 @@ void CIRForestBuilder::visit( const CExpList* expList )
 	expList->Exp()->Accept( this );
 	irExpList = new IRTree::CExpList( lastReturnedExp, irExpList );
 	lastReturnedExpList = irExpList;
-	expList->ExpList()->Accept( this );
-	irExpList = new IRTree::CExpList( lastReturnedExp, irExpList );
-	lastReturnedExpList = irExpList;
+	if ( expList->ExpList() != 0 ) 
+	{
+		expList->ExpList()->Accept( this );
+		irExpList = new IRTree::CExpList( lastReturnedExp, irExpList );
+		lastReturnedExpList = irExpList;
+	}
 }
 
 void CIRForestBuilder::visit( const CBinOpExpression* exp )
@@ -307,29 +313,29 @@ void CIRForestBuilder::visit( const CBinOpExpression* exp )
 	exp->RightExp()->Accept( this );
 	const IRTree::IExp* second = lastReturnedExp;
 	IRTree::BINOP_ENUM binOp;
-	switch( exp->BinOp() ) {
-		case '+':
+	switch( exp->BinOp() ) { 
+	case CBinOpExpression::EBinOp::PLUS:
 			binOp = IRTree::B_Plus;
 			break;
-		case '-':
+		case CBinOpExpression::EBinOp::MINUS:
 			binOp = IRTree::B_Minus;
 			break;
-		case '*':
+		case CBinOpExpression::EBinOp::TIMES:
 			binOp = IRTree::B_Mul;
 			break;
-		case '/':
+		case CBinOpExpression::EBinOp::DIVIDE:
 			binOp = IRTree::B_Division;
 			break;
-		case '^':
+		/*case CBinOpExpression::EBinOp:::
 			binOp = IRTree::B_Xor;
-			break;
-		case '<':
+			break;*/
+		case CBinOpExpression::EBinOp::LESS:
 			binOp = IRTree::B_Less;
 			break;
-		case '>':
+		/*case CBinOpExpression::EBinOp:::
 			binOp = IRTree::B_Greater;
-			break;
-		case '&':
+			break;*/
+		case CBinOpExpression::EBinOp::AND:
 			binOp = IRTree::B_And;
 			break;
 	}
@@ -445,10 +451,14 @@ void CIRForestBuilder::visit( const CNewExpression* exp )
 	auto classDecriptor = symbolsTable->GetClass( exp->Id()->GetString() );
 	// assert( classDecriptor != symbolsTable.Classes().end() );
 	int fieldsCount = classDecriptor->GetVars().size();
-	// Проходимся по предкам
-	classDecriptor = symbolsTable->GetClass( classDecriptor->GetBaseClass()->GetName() );
-	while( classDecriptor != symbolsTable->classes.end()->get() ) {
-		fieldsCount += classDecriptor->GetVars().size();
+	
+	// Проходимся по предкам, если они есть
+	if ( classDecriptor->GetBaseClass() != 0 )
+	{
+		classDecriptor = symbolsTable->GetClass( classDecriptor->GetBaseClass()->GetName() );
+		while( classDecriptor != symbolsTable->classes.end()->get() ) {
+			fieldsCount += classDecriptor->GetVars().size();
+		}
 	}
 	// Выделяем память для полей самого класса и для полей базового класса
 	// Первый аргумент всегда this
@@ -492,9 +502,21 @@ void CIRForestBuilder::visit( const CExpRest* exp )
 
 }
 
-void CIRForestBuilder::visit( const CMethodExpression* exp )
+void CIRForestBuilder::visit( const CMethodExpression* rule )
 {
+	if( rule->Exp() != nullptr )
+	{
+		rule->Exp()->Accept( this );
+	}
+	const IRTree::IExp* varExp = lastReturnedExp;
+	rule->IndexExp()->Accept( this );
+	const IRTree::IExp* argExp = lastReturnedExp;
 
+	Temp::CLabel* funcName = new Temp::CLabel( rule->Id()->GetString() );
+	const IRTree::CName* funcNameTree = new IRTree::CName( funcName );
+	const IRTree::CExpList* args = new IRTree::CExpList( argExp, 0 );
+	const IRTree::IExp* funcCall = new IRTree::CCall( funcNameTree, *args );
+	lastReturnedStm = new IRTree::CExp( funcCall );
 }
 
 }
