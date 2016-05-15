@@ -254,12 +254,14 @@ void CIRForestBuilder::visit( const CIfStatement* ifStatement )
 	const IRTree::IExp* ifExpr = lastReturnedExp;
 	lastReturnedExp = nullptr;
 	lastReturnedStm = nullptr;
+
 	Temp::CLabel* trueLabelTemp = new Temp::CLabel();
 	Temp::CLabel* falseLabelTemp = new Temp::CLabel();
 	Temp::CLabel* endLabelTemp = new Temp::CLabel();
 	IRTree::CLabel* trueLabel = new IRTree::CLabel( trueLabelTemp );
 	IRTree::CLabel* falseLabel = new IRTree::CLabel( falseLabelTemp );
 	IRTree::CLabel* endLabel = new IRTree::CLabel( endLabelTemp );
+
 	IRTree::CJump* trueJumpToEnd = new IRTree::CJump( endLabelTemp );
 	ifStatement->IfTrueStatement()->Accept( this );
 	IRTree::IStm* trueStm = new IRTree::CSeq( trueLabel, lastReturnedStm, trueJumpToEnd );

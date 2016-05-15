@@ -42,9 +42,9 @@ const IRTree::IStm* CConditionalWrapper::binopToConditional( const IRTree::CBino
 	switch( binop->binop ) {
 		case IRTree::B_And:
 			return andBinopToConditional( binop, t, f );
-		//case IRTree::LSHIFT:
-			//return new IRTree::CCJump( IRTree::B_Less, binop->left.get(), binop->right.get(), t, f );
-		//case IRTree::RSHIFT:
+		case IRTree::B_Less:
+			return new IRTree::CCJump( IRTree::CJ_Less, binop->left, binop->right, t, f );
+		case IRTree::B_Greater:
 			return new IRTree::CCJump( IRTree::CJ_Greater, binop->left, binop->right, t, f );
 		case IRTree::B_Plus:
 		case IRTree::B_Minus:
