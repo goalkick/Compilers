@@ -24,8 +24,8 @@ void CIRForestBuilder::visit( const CMainClass* mainClass )
 	// Запоминаем в каком мы классе
 	className = mainClass->ClassName()->GetString();
 	// У main нет никаких переменных, потому что такая грамматика
-	//	Программу можно будет начать если сделать временный объект какого нибудь класса
-	//	например System.out.println( new Pr1() );
+	// Программу можно будет начать если сделать временный объект какого нибудь класса
+	// например System.out.println( new Pr1() );
 	currentFrame = new Frame::CFrame( className + "__main" );
 	if( mainClass->Statement() != 0 ) {
 		mainClass->Statement()->Accept( this );
@@ -134,24 +134,29 @@ void CIRForestBuilder::visit( const CMethodDecl* methodDecl )
 		currentFrame->AddField( locals.at( i )->GetName(), new Frame::CInFrame( currentFrame->LocalCounter ) );
 		currentFrame->LocalCounter++;
 	}
+	const IRTree::IStm* stm;
 	if( methodDecl->StatementList() != 0 ) {
 		methodDecl->StatementList()->Accept( this );
-		// после этой строки есть сам код
+		stm = lastReturnedStm;
+		lastReturnedStm = nullptr;
 	}
+	IRTree::IStm* methodStm;
 	if( methodDecl->Exp() != 0 ) {
-		// Это обрабатываем как возвращаемое значение, оно проставляется return 
-		// Переносим lastReturnedValue в регистр если оно было
+		// Это обрабатываем возвращаемое значение
+		// Переносим lastReturnedExp в регистр, если оно было
 		methodDecl->Exp()->Accept( this );
-		if( lastReturnedExp != nullptr ) {
-			if( lastReturnedStm != nullptr ) {
-				lastReturnedStm = new IRTree::CSeq( lastReturnedStm, new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), lastReturnedExp ) );
-			} else {
-				lastReturnedStm = new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), lastReturnedExp );
-			}
+		const IRTree::IExp* returnedExp = lastReturnedExp;
+		if( returnedExp != nullptr ) {
+			IRTree::IStm* moveResult = new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), returnedExp );
+			methodStm = moveResult;
+			if( stm != nullptr ) {
+				// lastReturnedStm = new IRTree::CSeq( stm, new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), lastReturnedExp ) );
+				methodStm = new IRTree::CSeq( stm, moveResult );
+			} 
 			
 		}
 	}
-	currentFrame->Stm = lastReturnedStm;
+	currentFrame->Stm = methodStm;
 	Methods.push_back( currentFrame );
 	currentFrame = nullptr;
 	lastReturnedStm = nullptr;
@@ -162,6 +167,7 @@ void CIRForestBuilder::visit( const CFormalList* formalList )
 {
 	// Эта инфа у таблицы символов
 	// Нам тут делать нечего
+	formalList->Type()->Accept( this );
 	if( formalList->FormalRest() != nullptr )
 	{
 		formalList->FormalRest()->Accept( this );
@@ -507,16 +513,24 @@ void CIRForestBuilder::visit( const CMethodExpression* rule )
 	if( rule->Exp() != nullptr )
 	{
 		rule->Exp()->Accept( this );
-	}
-	const IRTree::IExp* varExp = lastReturnedExp;
-	rule->IndexExp()->Accept( this );
-	const IRTree::IExp* argExp = lastReturnedExp;
+		const IRTree::IExp* varExp = lastReturnedExp;
+		lastReturnedStm = nullptr;
+		lastReturnedExp = nullptr;
 
-	Temp::CLabel* funcName = new Temp::CLabel( rule->Id()->GetString() );
-	const IRTree::CName* funcNameTree = new IRTree::CName( funcName );
-	const IRTree::CExpList* args = new IRTree::CExpList( argExp, 0 );
-	const IRTree::IExp* funcCall = new IRTree::CCall( funcNameTree, *args );
-	lastReturnedStm = new IRTree::CExp( funcCall );
+		rule->IndexExp()->Accept( this );
+		const IRTree::IExp* argExp = lastReturnedExp;
+		lastReturnedStm = nullptr;
+		lastReturnedExp = nullptr;
+
+		Temp::CLabel* funcName = new Temp::CLabel( rule->Id()->GetString() );
+		const IRTree::CName* funcNameTree = new IRTree::CName( funcName );
+		const IRTree::CExpList* args = new IRTree::CExpList( varExp, new IRTree::CExpList( argExp, 0 ) );
+		const IRTree::IExp* funcCall = new IRTree::CCall( funcNameTree, *args );
+		const IRTree::CTemp* returnedTemp = new IRTree::CTemp( *currentFrame->ReturnValue() );
+		lastReturnedExp = new IRTree::CEseq( new IRTree::CMove( new IRTree::CTemp( *currentFrame->ReturnValue() ), funcCall ), returnedTemp );
+		
+	}
+	
 }
 
 }
