@@ -5,7 +5,6 @@
 #include <memory>
 #include <string>
 
-// Интерфейс для дерева промежуточного представления
 namespace IRTree {
 
 	static enum BINOP_ENUM {
@@ -33,13 +32,19 @@ namespace IRTree {
 
 	class IVisitor;
 
+	class INode {
+	public:
+		virtual void accept( IVisitor* Visitor ) = 0;
+		virtual ~INode() {}
+	};
+
 	// Exp stand for the computation of some value
-	class IExp {
+	class IExp : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
 	};
 
-	class IStm {
+	class IStm : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
 	};
@@ -57,30 +62,29 @@ namespace IRTree {
 		const IExp* head;
 		const CExpList* tail;
 	};
-	/*
-	std::string ToString( const BINOP_ENUM binOp )
-	{
-		switch( binOp ) {
-		case B_Plus:
-			return std::string( "+" );
-		case B_Minus:
-			return std::string( "-" );
-		case B_Mul:
-			return std::string( "*" );
-		case B_Division:
-			return std::string( "/" );
-		case B_Xor:
-			return std::string( "^" );
-		case B_Less:
-			return std::string( "<" );
-		case B_Greater:
-			return std::string( ">" );
-		case B_And:
-			return std::string( "&" );
-		default:
-			return std::string( "" );
-		}
-	}*/
+
+	class ExpList {
+	public:
+		ExpList( IExp* _head, ExpList* _tail ) : head( _head ), tail( _tail ) {}
+		IExp* head;
+		ExpList* tail;
+	};
+
+	class StmtList {
+	public:
+		StmtList( IStm* _head, StmtList* _tail );
+		StmtList( vector<IStm*>& list );
+		IStm* head;
+		StmtList* tail;
+
+		void toVector( vector<IStm*>& list );
+	};
+
+	struct StmExpList {
+		StmExpList( IStm* _stm, ExpList* _exps );
+		IStm* stm;
+		ExpList* exps;
+	};
 
 	// The integer constant
 	class CConst : public IExp {

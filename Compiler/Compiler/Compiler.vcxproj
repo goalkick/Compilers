@@ -94,6 +94,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Canonization.h" />
     <ClInclude Include="classes.h" />
     <ClInclude Include="CLocation.h" />
     <ClInclude Include="grammar.h" />

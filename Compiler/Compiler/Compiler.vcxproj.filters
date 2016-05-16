@@ -133,5 +133,8 @@
     <ClInclude Include="IRTree\IRTree.h">
       <Filter>IRTree</Filter>
     </ClInclude>
+    <ClInclude Include="Canonization.h">
+      <Filter>IRTree</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
