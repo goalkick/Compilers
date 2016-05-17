@@ -63,6 +63,9 @@
     <ClCompile Include="IRTree\Temp.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
+    <ClCompile Include="Canonization.cpp">
+      <Filter>IRTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">

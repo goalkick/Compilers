@@ -1,28 +1,885 @@
-﻿Build started 16.05.2016 2:13:38.
+﻿Build started 17.05.2016 1:35:05.
      1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt IRTree\ConditionalWrapper.cpp IRTree\IRForestBuilder.cpp
-         IRForestBuilder.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt IRTree\ConditionalWrapper.cpp IRTree\Frame.cpp IRTree\IRForestBuilder.cpp IRTree\IRTreeToDigraphConverter.cpp main.cpp
          ConditionalWrapper.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2433: 'IRTree::IExp::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2253: 'IRTree::IExp::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2433: 'IRTree::IStm::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2253: 'IRTree::IStm::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(180): error C2664: 'IRTree::ExpList::ExpList(IRTree::IExp *,IRTree::ExpList *)' : cannot convert parameter 1 from 'const IRTree::IExp *' to 'IRTree::IExp *'
+                 Conversion loses qualifiers
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(184): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(338): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(342): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(345): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(349): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(8): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(10): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(16): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(17): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(17): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(18): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(18): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(21): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(22): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(23): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(24): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(26): error C2259: 'IRTree::CEseq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(36): error C2259: 'IRTree::CCJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(36): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(46): error C2259: 'IRTree::CCJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(48): error C2259: 'IRTree::CCJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(54): error C2259: 'IRTree::CCJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(54): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(64): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\conditionalwrapper.cpp(70): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
          Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Elena\Compilers\Compiler\Debug\Compiler.lib" /MACHINE:X86 Debug\CSymbol.obj
-         Debug\ConditionalWrapper.obj
-         Debug\Digraph.obj
-         Debug\Frame.obj
-         Debug\IRForestBuilder.obj
-         Debug\IRTreeToDigraphConverter.obj
-         Debug\Temp.obj
-         Debug\lexer.obj
-         Debug\main.obj
-         Debug\parser.tab.obj
-         Debug\PrettyPrinter.obj
-         Debug\SymbolsTable.obj
-         Debug\SymbolsTableVisitor.obj
-         Debug\TypeChecker.obj
-         Compiler.vcxproj -> C:\Users\Elena\Compilers\Compiler\Debug\Compiler.exe
-     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)).
+         Compiling...
+         Frame.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2433: 'IRTree::IExp::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2253: 'IRTree::IExp::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2433: 'IRTree::IStm::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2253: 'IRTree::IStm::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(180): error C2664: 'IRTree::ExpList::ExpList(IRTree::IExp *,IRTree::ExpList *)' : cannot convert parameter 1 from 'const IRTree::IExp *' to 'IRTree::IExp *'
+                 Conversion loses qualifiers
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(184): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(338): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(342): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(345): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(349): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(30): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(30): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(101): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(101): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(102): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(103): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(103): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(108): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(108): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(109): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(110): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(115): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(115): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(116): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(116): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\frame.cpp(117): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+         Generating Code...
+         Compiling...
+         IRForestBuilder.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2433: 'IRTree::IExp::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2253: 'IRTree::IExp::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2433: 'IRTree::IStm::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2253: 'IRTree::IStm::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(180): error C2664: 'IRTree::ExpList::ExpList(IRTree::IExp *,IRTree::ExpList *)' : cannot convert parameter 1 from 'const IRTree::IExp *' to 'IRTree::IExp *'
+                 Conversion loses qualifiers
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(184): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(338): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(342): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(345): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(349): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(150): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(150): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(154): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(200): error C2259: 'IRTree::CExp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(204): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(216): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(216): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(217): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(217): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(219): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(219): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(220): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(224): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(233): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(245): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(247): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(248): error C2259: 'IRTree::CExp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(261): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(262): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(263): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(265): error C2259: 'IRTree::CJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(267): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(273): error C2259: 'IRTree::CJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(274): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(279): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(287): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(288): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(289): error C2259: 'IRTree::CLabel' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(295): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(297): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(298): error C2259: 'IRTree::CJump' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(351): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(357): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(361): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(370): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(370): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(371): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(371): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(373): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(373): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(382): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(408): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(413): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(431): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(431): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(432): error C2259: 'IRTree::CBinop' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(432): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(435): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(438): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(440): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(443): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(445): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(447): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(449): error C2259: 'IRTree::CEseq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(449): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(449): error C2259: 'IRTree::CExp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(458): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(473): error C2259: 'IRTree::CConst' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(475): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(476): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(480): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(482): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(484): error C2259: 'IRTree::CEseq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(484): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(484): error C2259: 'IRTree::CExp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(528): error C2259: 'IRTree::CName' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(530): error C2259: 'IRTree::CCall' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(531): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(532): error C2259: 'IRTree::CEseq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(532): error C2259: 'IRTree::CMove' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irforestbuilder.cpp(532): error C2259: 'IRTree::CTemp' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+         Generating Code...
+         Compiling...
+         IRTreeToDigraphConverter.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2433: 'IRTree::IExp::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2253: 'IRTree::IExp::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2433: 'IRTree::IStm::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2253: 'IRTree::IStm::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(180): error C2664: 'IRTree::ExpList::ExpList(IRTree::IExp *,IRTree::ExpList *)' : cannot convert parameter 1 from 'const IRTree::IExp *' to 'IRTree::IExp *'
+                 Conversion loses qualifiers
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(184): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(338): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(342): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(345): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(349): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+         Generating Code...
+         Compiling...
+         main.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2433: 'IRTree::IExp::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(46): error C2253: 'IRTree::IExp::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2143: syntax error : missing ';' before '*'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2433: 'IRTree::IStm::ExpList' : 'virtual' not permitted on data declarations
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): warning C4183: 'kids': missing return type; assumed to be a member function returning 'int'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54): error C2061: syntax error : identifier 'ExpList'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(53): error C2253: 'IRTree::IStm::kids' : pure specifier or abstract override specifier only allowed on virtual function
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(180): error C2664: 'IRTree::ExpList::ExpList(IRTree::IExp *,IRTree::ExpList *)' : cannot convert parameter 1 from 'const IRTree::IExp *' to 'IRTree::IExp *'
+                 Conversion loses qualifiers
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(184): error C2259: 'IRTree::CMem' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IExp *IRTree::IExp::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(47) : see declaration of 'IRTree::IExp::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(338): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(342): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(345): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+     1>c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(349): error C2259: 'IRTree::CSeq' : cannot instantiate abstract class
+                 due to following members:
+                 'void IRTree::INode::Accept(IRTree::IVisitor *)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(38) : see declaration of 'IRTree::INode::Accept'
+                 'IRTree::IStm *IRTree::IStm::build(void)' : is abstract
+                 c:\users\elena\compilers\compiler\compiler\irtree\irtree.h(54) : see declaration of 'IRTree::IStm::build'
+         Generating Code...
+     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:03.20
+Time Elapsed 00:00:04.45

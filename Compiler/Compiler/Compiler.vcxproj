@@ -62,6 +62,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Canonization.cpp" />
     <ClCompile Include="CSymbol.cpp" />
     <ClCompile Include="IRTree\ConditionalWrapper.cpp" />
     <ClCompile Include="IRTree\Digraph.cpp" />

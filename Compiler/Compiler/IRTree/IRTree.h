@@ -4,6 +4,7 @@
 #include "IRTreeVisitor.h"
 #include <memory>
 #include <string>
+#include <vector>
 
 namespace IRTree {
 
@@ -34,7 +35,7 @@ namespace IRTree {
 
 	class INode {
 	public:
-		virtual void accept( IVisitor* Visitor ) = 0;
+		virtual void Accept( IVisitor* Visitor ) = 0;
 		virtual ~INode() {}
 	};
 
@@ -42,11 +43,15 @@ namespace IRTree {
 	class IExp : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
+		virtual ExpList* kids() = 0;
+		virtual IExp* build( ExpList* kids ) = 0;
 	};
 
 	class IStm : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
+		virtual ExpList* kids() = 0;
+		virtual IStm* build( ExpList* kids) = 0;
 	};
 
 
@@ -73,11 +78,11 @@ namespace IRTree {
 	class StmtList {
 	public:
 		StmtList( IStm* _head, StmtList* _tail );
-		StmtList( vector<IStm*>& list );
+		StmtList( std::vector<IStm*>& list );
 		IStm* head;
 		StmtList* tail;
 
-		void toVector( vector<IStm*>& list );
+		void toVector( std::vector<IStm*>& list );
 	};
 
 	struct StmExpList {
@@ -97,6 +102,15 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return 0;
+	 	}
+	 
+	 	const IExp* build( const ExpList* kids ) const {
+	 		return this;
+	 	}
+
 	//private:
 		const int value;
 	};
@@ -114,6 +128,15 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return 0;
+	 	}
+	 
+	 	const IExp* build(const ExpList* kids) const {
+	 		return this;
+	 	}
+
 	//private:
 		const Temp::CLabel* label;
 	};
@@ -131,6 +154,14 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return 0;
+	 	}
+	 
+	 	const IExp* build(const ExpList* kids) const {
+	 		return this;
+	 	}
 
 	//private:
 		const Temp::CTemp temp;
@@ -150,6 +181,15 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return new ExpList(left, new ExpList(right, 0));
+	 	}
+	 
+	 	const IExp* build(const ExpList* kids) const {
+	 		return new BINOP(binop, kids->head, kids->tail->head);
+	 	}
+
 	//private:
 		const BINOP_ENUM binop;
 		const IExp* left;
@@ -159,7 +199,6 @@ namespace IRTree {
 	// The contents of wordSize bytes of memory starting at address e 
 	// (where wordSize is defined in the Frame module). 
 	// Note that when CMem is used as the left child of a CMove, it means “store,” but anywhere else it means “fetch.”
-	// ?????????? Accept????????
 	class CMem : public IExp {
 	public:
 		CMem( const IExp* _exp ) :
@@ -170,6 +209,16 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		ExpList* CMem::kids() 
+		{
+			return new ExpList( exp, nullptr );
+		}
+
+		IExp* CMem::build( ExpList* kids ) {
+			return new CMem( kids->head );
+		}
+
 	//private:
 		const IExp* exp;
 	};
@@ -187,6 +236,14 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return new ExpList(func, args);
+	 	}
+	 
+	 	const IExp* build(const ExpList* kids) const {
+	 		return new CALL(kids->head, kids->tail);
+	 	}
 
 	//private:
 		const IExp* func;
@@ -206,6 +263,16 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		//assert(0);
+	 		return 0;
+	 	}
+	 
+	 	const IExp* build(const ExpList* kids) const {
+	 		//assert(0);
+	 		return 0;
+	 	}
 
 	//private:
 		const IStm* stm;
@@ -229,6 +296,25 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
+		const ExpList* kids() const {
+	 		const CMem* memDst = dynamic_cast<const CMem*>( dst );
+	 		if (memDst != 0) {
+	 			return new ExpList( memDst->exp, new ExpList( src, nullptr ) );
+	 		} else {
+	 			return new ExpList( src, nullptr );
+	 		}
+	 	}
+	 
+	 	const IStm* build(const ExpList* kids) const {
+	 		
+	 		const CMem* memDst = dynamic_cast<const CMem*>(dst);
+	 		if (memDst != 0) {
+	 			return new MOVE(new CMem(kids->head), kids->tail->head);
+	 		} else {
+	 			return new MOVE(dst, kids->head);
+	 		}
+	 	}
+
 	//private:
 		const IExp* dst;
 		const IExp* src;
@@ -246,6 +332,13 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
+		const ExpList* kids() const {
+	 		return new ExpList( exp, 0 );
+	 	}
+	 	
+	 	const IStm* build( const ExpList* kids ) const {
+	 		return new EXP( kids->head );
+	 	}
 	//private:
 		const IExp* exp;
 	};
@@ -273,6 +366,15 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
+
+		const ExpList* kids() const {
+	 		return new ExpList( exp, 0 );
+	 	}
+	 	
+	 	const IStm* build( const ExpList* kids ) const {
+	 		return new JUMP( kids->head, target );
+	 	}
+
 	//private:
 		const Temp::CLabel* label;
 	};
@@ -299,7 +401,15 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-				
+			
+		const ExpList* kids() const {
+	 		return new ExpList( left, new ExpList( right, 0 ) );
+	 	}
+	 	
+	 	const IStm* build( const ExpList* kids ) const {
+	 		return new CJUMP( relop, kids->head, kids->tail->head, iftrue, iffalse );
+	 	}
+
 	//private:
 		const CJUMP_ENUM relop;
 		const IExp* left;
@@ -338,7 +448,18 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	//private:
+	
+		const ExpList* kids() const {
+	 		//assert(0);
+	 		return 0;
+	 	}
+	 	
+	 	const IStm* build( const ExpList* kids ) const {
+	 		//assert(0);
+	 		return 0;
+	 	}
+
+		//private:
 		const IStm* left;
 		const IStm* right;
 	};
@@ -359,15 +480,17 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
+		const ExpList* kids() const {
+	 		return 0;
+	 	}
+	 	
+	 	const IStm* build(const ExpList* kids) const {
+	 		return this;
+	 	}
+
 	//private:
 		const Temp::CLabel* label;
 	};
 		
-		/*
-	class StmList {
-	private:
-		IStm head;
-		StmList* tail;
-	};
-	*/
+	
 }
