@@ -35,7 +35,7 @@ namespace IRTree {
 
 	class INode {
 	public:
-		virtual void Accept( IVisitor* Visitor ) = 0;
+		virtual void Accept( IVisitor& Visitor ) const = 0;
 		virtual ~INode() {}
 	};
 
@@ -43,15 +43,15 @@ namespace IRTree {
 	class IExp : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
-		virtual ExpList* kids() = 0;
-		virtual IExp* build( ExpList* kids ) = 0;
+		virtual CExpList* kids() = 0;
+		virtual IExp* build( CExpList* kids ) = 0;
 	};
 
 	class IStm : public INode {
 	public:
 		virtual void Accept( IVisitor& ) const = 0;
-		virtual ExpList* kids() = 0;
-		virtual IStm* build( ExpList* kids) = 0;
+		virtual CExpList* kids() = 0;
+		virtual IStm* build( CExpList* kids ) = 0;
 	};
 
 
@@ -63,17 +63,11 @@ namespace IRTree {
 		{
 			printer.visit( this );
 		}
-	//private:
+	
 		const IExp* head;
 		const CExpList* tail;
 	};
 
-	class ExpList {
-	public:
-		ExpList( IExp* _head, ExpList* _tail ) : head( _head ), tail( _tail ) {}
-		IExp* head;
-		ExpList* tail;
-	};
 
 	class StmtList {
 	public:
@@ -85,10 +79,11 @@ namespace IRTree {
 		void toVector( std::vector<IStm*>& list );
 	};
 
-	struct StmExpList {
-		StmExpList( IStm* _stm, ExpList* _exps );
+	class StmExpList {
+	public:
+		StmExpList( IStm* _stm, CExpList* _exps );
 		IStm* stm;
-		ExpList* exps;
+		CExpList* exps;
 	};
 
 	// The integer constant
@@ -103,15 +98,14 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() {
 	 		return 0;
 	 	}
 	 
-	 	const IExp* build( const ExpList* kids ) const {
+	 	IExp* build( CExpList* kids ) {
 	 		return this;
 	 	}
 
-	//private:
 		const int value;
 	};
 
@@ -129,15 +123,14 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() {
 	 		return 0;
 	 	}
 	 
-	 	const IExp* build(const ExpList* kids) const {
+	 	IExp* build( CExpList* kids ) {
 	 		return this;
 	 	}
 
-	//private:
 		const Temp::CLabel* label;
 	};
 
@@ -155,15 +148,14 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() {
 	 		return 0;
 	 	}
 	 
-	 	const IExp* build(const ExpList* kids) const {
+	 	IExp* build( CExpList* kids ) {
 	 		return this;
 	 	}
 
-	//private:
 		const Temp::CTemp temp;
 	};
 
@@ -182,15 +174,14 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
-	 		return new ExpList(left, new ExpList(right, 0));
+		CExpList* kids() {
+	 		return new CExpList( left, new CExpList( right, 0 ) );
 	 	}
 	 
-	 	const IExp* build(const ExpList* kids) const {
-	 		return new BINOP(binop, kids->head, kids->tail->head);
+	 	IExp* build( CExpList* kids ) {
+	 		return new CBinop( binop, kids->head, kids->tail->head );
 	 	}
 
-	//private:
 		const BINOP_ENUM binop;
 		const IExp* left;
 		const IExp* right;
@@ -210,16 +201,16 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		ExpList* CMem::kids() 
+		CExpList* CMem::kids() 
 		{
-			return new ExpList( exp, nullptr );
+			return new CExpList( exp, nullptr );
 		}
 
-		IExp* CMem::build( ExpList* kids ) {
+		IExp* CMem::build( CExpList* kids ) 
+		{
 			return new CMem( kids->head );
 		}
 
-	//private:
 		const IExp* exp;
 	};
 
@@ -227,7 +218,7 @@ namespace IRTree {
 	// The subexpression f is evaluated before the arguments which are evaluated left to right.
 	class CCall : public IExp {
 	public:
-		CCall( const IExp* const _func, const CExpList& _args ) :
+		CCall( const IExp* _func, const CExpList* _args ) :
 			func( _func ),
 			args( _args )
 		{}
@@ -237,17 +228,16 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
-	 		return new ExpList(func, args);
+		CExpList* kids() {
+	 		return new CExpList( func, args );
 	 	}
 	 
-	 	const IExp* build(const ExpList* kids) const {
-	 		return new CALL(kids->head, kids->tail);
+	 	IExp* build( CExpList* kids ) {
+	 		return new CCall( kids->head, kids->tail );
 	 	}
 
-	//private:
 		const IExp* func;
-		const CExpList args;
+		const CExpList* args;
 	};
 
 	// The statement s is evaluated for side effects, then e is evaluated for a result.
@@ -264,17 +254,16 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() {
 	 		//assert(0);
 	 		return 0;
 	 	}
 	 
-	 	const IExp* build(const ExpList* kids) const {
+	 	IExp* build( CExpList* kids ) {
 	 		//assert(0);
 	 		return 0;
 	 	}
 
-	//private:
 		const IStm* stm;
 		const IExp* exp;
 	};
@@ -296,26 +285,30 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() {
 	 		const CMem* memDst = dynamic_cast<const CMem*>( dst );
-	 		if (memDst != 0) {
-	 			return new ExpList( memDst->exp, new ExpList( src, nullptr ) );
-	 		} else {
-	 			return new ExpList( src, nullptr );
+	 		if ( memDst != 0 ) 
+			{
+	 			return new CExpList( memDst->exp, new CExpList( src, nullptr ) );
+	 		} 
+			else 
+			{
+	 			return new CExpList( src, nullptr );
 	 		}
 	 	}
 	 
-	 	const IStm* build(const ExpList* kids) const {
-	 		
+	 	IStm* build( CExpList* kids ) 
+		{
 	 		const CMem* memDst = dynamic_cast<const CMem*>(dst);
-	 		if (memDst != 0) {
-	 			return new MOVE(new CMem(kids->head), kids->tail->head);
-	 		} else {
-	 			return new MOVE(dst, kids->head);
+	 		if ( memDst != 0 ) 
+			{
+	 			return new CMove( new CMem( kids->head ), kids->tail->head );
+	 		} else 
+			{
+	 			return new CMove( dst, kids->head );
 	 		}
 	 	}
 
-	//private:
 		const IExp* dst;
 		const IExp* src;
 	};
@@ -332,14 +325,16 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
-	 		return new ExpList( exp, 0 );
+		CExpList* kids()  
+		{
+	 		return new CExpList( exp, 0 );
 	 	}
 	 	
-	 	const IStm* build( const ExpList* kids ) const {
-	 		return new EXP( kids->head );
+	 	IStm* build( CExpList* kids )  
+		{
+	 		return new CExp( kids->head );
 	 	}
-	//private:
+	
 		const IExp* exp;
 	};
 
@@ -358,6 +353,11 @@ namespace IRTree {
 	// ѕереходим в узел CIRLabel, которому соответствует метка
 	class CJump : public IStm {
 	public:
+		CJump( const IExp* _exp, const Temp::CLabel* _label ) :
+			exp( _exp ),
+			label( _label )
+		{}
+
 		CJump( const Temp::CLabel* _label ) :
 			label( _label )
 		{}
@@ -367,15 +367,17 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
-	 		return new ExpList( exp, 0 );
+		CExpList* kids() 
+		{
+	 		return new CExpList( exp, 0 );
 	 	}
 	 	
-	 	const IStm* build( const ExpList* kids ) const {
-	 		return new JUMP( kids->head, target );
+	 	IStm* build( CExpList* kids ) 
+		{
+			return new CJump( kids->head, label );
 	 	}
 
-	//private:
+		const IExp* exp;
 		const Temp::CLabel* label;
 	};
 
@@ -402,15 +404,14 @@ namespace IRTree {
 			printer.visit( this );
 		}
 			
-		const ExpList* kids() const {
-	 		return new ExpList( left, new ExpList( right, 0 ) );
+		CExpList* kids() {
+	 		return new CExpList( left, new CExpList( right, 0 ) );
 	 	}
 	 	
-	 	const IStm* build( const ExpList* kids ) const {
-	 		return new CJUMP( relop, kids->head, kids->tail->head, iftrue, iffalse );
+	 	IStm* build( CExpList* kids ) {
+	 		return new CCJump( relop, kids->head, kids->tail->head, iftrue, iffalse );
 	 	}
 
-	//private:
 		const CJUMP_ENUM relop;
 		const IExp* left;
 		const IExp* right;
@@ -449,17 +450,18 @@ namespace IRTree {
 			printer.visit( this );
 		}
 	
-		const ExpList* kids() const {
+		CExpList* kids() 
+		{
 	 		//assert(0);
 	 		return 0;
 	 	}
 	 	
-	 	const IStm* build( const ExpList* kids ) const {
+	 	IStm* build( CExpList* kids ) 
+		{
 	 		//assert(0);
 	 		return 0;
 	 	}
 
-		//private:
 		const IStm* left;
 		const IStm* right;
 	};
@@ -480,17 +482,46 @@ namespace IRTree {
 			printer.visit( this );
 		}
 
-		const ExpList* kids() const {
+		CExpList* kids() 
+		{
 	 		return 0;
 	 	}
 	 	
-	 	const IStm* build(const ExpList* kids) const {
+	 	IStm* build( CExpList* kids ) 
+		{
 	 		return this;
 	 	}
 
-	//private:
 		const Temp::CLabel* label;
 	};
 		
-	
+	class CMoveCall: public IStm {
+	public:
+		CMoveCall( CTemp* _dst, CCall* _src);
+		CExpList* kids();
+		IStm* build( CExpList* kids);
+
+		CTemp* dst;
+		CCall* src;
+
+		virtual void Accept( IVisitor& printer ) const
+		{
+			printer.visit( this );
+		}
+	};
+
+	class CExpCall: public IStm {
+	public:
+		CExpCall( CCall* _call);
+		CExpList* kids();
+		IStm* build( CExpList* kids );
+
+		CCall* call;
+
+		virtual void Accept( IVisitor& printer ) const
+		{
+			printer.visit( this );
+		}
+	};
+
 }

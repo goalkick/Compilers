@@ -20,8 +20,8 @@ public:
     virtual void visit( IRTree::CCall* node );
     virtual void visit( IRTree::CExpList* node, IRTree::CExpList*& newNode );
 	virtual void visit( IRTree::CEseq* node );
-    //virtual void visit( IRTree::CMoveCall* node );
-  	//virtual void visit( IRTree::CExpCall* node );
+    virtual void visit( IRTree::CMoveCall* node );
+  	virtual void visit( IRTree::CExpCall* node );
 
     IRTree::INode* current_node;
 };
