@@ -60,9 +60,9 @@ private:
 	const SymbolsTable::CTable* symbolsTable;
 	// std::unordered_map<const void*, std::string>& nodesTypesLog;
 	std::string className;
-	const IRTree::IExp* lastReturnedExp;
-	const IRTree::IStm* lastReturnedStm;
-	const IRTree::CExpList* lastReturnedExpList;
+	IRTree::IExp* lastReturnedExp;
+	IRTree::IStm* lastReturnedStm;
+	IRTree::CExpList* lastReturnedExpList;
 };
 
 }

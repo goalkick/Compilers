@@ -2,7 +2,7 @@
 
 using namespace IRTree;
 
-void CCanonizer::visit( CMove* node ) {
+void CCanonizer::visit( const CMove* node ) {
 	node->dst->Accept( *this );
 	IExp* arg1 = dynamic_cast<IExp*>( current_node );
 	node->src->Accept( *this );
@@ -10,13 +10,13 @@ void CCanonizer::visit( CMove* node ) {
 	current_node = ( doStm( new CMove( arg1, arg2 ) ) );
 }
 
-void CCanonizer::visit( CExp* node ) {
+void CCanonizer::visit( const CExp* node ) {
 	node->exp->Accept( *this );
 	IExp* arg = dynamic_cast<IExp*>( current_node );
 	current_node = doStm( new CExp( arg ) );
 }
 
-void CCanonizer::visit( CJump* node ) {
+void CCanonizer::visit( const CJump* node ) {
 	if ( node->exp != 0 ) {
 		node->exp->Accept( *this );
 		IExp* arg = dynamic_cast<IExp*>( current_node );
@@ -26,7 +26,7 @@ void CCanonizer::visit( CJump* node ) {
 	}
 }
 
-void CCanonizer::visit( CCJump* node ) {
+void CCanonizer::visit( const CCJump* node ) {
 	node->left->Accept( *this );
 	IExp* arg1 = dynamic_cast<IExp*>( current_node );
 	node->right->Accept( *this );
@@ -34,7 +34,7 @@ void CCanonizer::visit( CCJump* node ) {
 	current_node = doStm( new CCJump( node->relop, arg1, arg2, node->iftrue, node->iffalse ) );
 }
 
-void CCanonizer::visit( CSeq* node ) {
+void CCanonizer::visit( const CSeq* node ) {
 	node->left->Accept( *this );
 	IStm* arg1 = dynamic_cast<IStm*>( current_node );
 	node->right->Accept( *this );
@@ -42,23 +42,23 @@ void CCanonizer::visit( CSeq* node ) {
 	current_node = doStm( new CSeq( arg1, arg2 ) );
 }
 
-void CCanonizer::visit( CLabel* node ) {
-	current_node = node;
+void CCanonizer::visit( const CLabel* node ) {
+	current_node = const_cast<CLabel*>( node );
 }
 
-void CCanonizer::visit( CConst* node ) {
-	current_node = node;
+void CCanonizer::visit( const CConst* node ) {
+	current_node = const_cast<CConst*>( node );
 }
 
-void CCanonizer::visit( CName* node ){
-	current_node = node;
+void CCanonizer::visit( const CName* node ){
+	current_node = const_cast<CName*>( node );
 }
 
-void CCanonizer::visit( CTemp* node ) {
-	current_node = node;
+void CCanonizer::visit( const CTemp* node ) {
+	current_node = const_cast<CTemp*>( node );
 }
 
-void CCanonizer::visit( CBinop* node ) {
+void CCanonizer::visit( const CBinop* node ) {
 	node->left->Accept( *this );
 	IExp* arg1 = dynamic_cast<IExp*>( current_node );
 	node->right->Accept( *this );
@@ -66,26 +66,27 @@ void CCanonizer::visit( CBinop* node ) {
 	current_node = doExp( new CBinop( node->binop, arg1, arg2 ) );
 }
 
-void CCanonizer::visit( CMem* node ) {
+void CCanonizer::visit( const CMem* node ) {
 	node->exp->Accept( *this );
 	IExp* arg = dynamic_cast<IExp*>( current_node );
 	current_node = doExp( new CMem( arg ) );
 }
 
-void CCanonizer::visit( CCall* node ) {
+void CCanonizer::visit( const CCall* node ) {
 	node->func->Accept( *this );
 	IExp* func = dynamic_cast<IExp*>( current_node );
 	const IExp* arg = node->args->head;
 
 	IRTree::CExpList* newNode = nullptr;
 	if ( node->args != nullptr ) {
-		visit( node->args, newNode );
+		// *&
+		visit( const_cast<const IRTree::CExpList*>( node->args ), const_cast<const IRTree::CExpList*&>( newNode ) );
 		IRTree::CExpList* ptr( newNode );
 		current_node = doExp( new CCall( func, ptr ) );
 	}
 }
 
-void CCanonizer::visit( IRTree::CExpList* node, IRTree::CExpList*& newNode ) 
+void CCanonizer::visit( const IRTree::CExpList* node, const IRTree::CExpList*& newNode ) 
 {
 	if ( node != nullptr )
 	{
@@ -94,7 +95,7 @@ void CCanonizer::visit( IRTree::CExpList* node, IRTree::CExpList*& newNode )
 			visit( node->tail, newNode );
 		}
 
-		IRTree::CExpList* ptr( newNode );
+		IRTree::CExpList* ptr( const_cast<IRTree::CExpList*>( newNode ) );
 		node->head->Accept( *this );
 		IExp* arg = dynamic_cast<IExp*>( current_node );
 		newNode = new IRTree::CExpList( doExp( arg ), ptr );
@@ -106,7 +107,7 @@ void CCanonizer::visit( IRTree::CExpList* node, IRTree::CExpList*& newNode )
 
 }
 
-void CCanonizer::visit( CEseq* node )  
+void CCanonizer::visit( const CEseq* node )  
 {
 	node->stm->Accept( *this );
 	IStm* arg1 = dynamic_cast<IStm*>( current_node );
@@ -117,12 +118,12 @@ void CCanonizer::visit( CEseq* node )
 
 }
 
-void CCanonizer::visit( IRTree::CMoveCall* node ) 
+void CCanonizer::visit( const IRTree::CMoveCall* node ) 
 {
 	//assert( 0 );
 }
 
-void CCanonizer::visit( IRTree::CExpCall* node ) 
+void CCanonizer::visit( const IRTree::CExpCall* node ) 
 {
 	//assert( 0 );
 }
@@ -214,10 +215,11 @@ StmExpList* reorder( IRTree::CExpList* list ) {
 	{
 		return new StmExpList( new CExp( new CConst( 0 ) ), 0 );
 	}
-	const IExp* head = list->head;
+	IExp* head = list->head;
 	CCall* call = dynamic_cast<CCall*>( head );
 
-	if ( call != 0 ) {
+	if ( call != 0 ) 
+	{
 		const Temp::CTemp* t = new const Temp::CTemp( );
 		IExp* eseq = new CEseq( new CMove( new CTemp( t ), head ), new CTemp( t ) );
 		return reorder( new IRTree::CExpList( eseq, list->tail ) );
@@ -225,28 +227,34 @@ StmExpList* reorder( IRTree::CExpList* list ) {
 
 	CEseq* eseq = doExp( head );
 	StmExpList* stmtList = reorder( list->tail );
-	if ( commute( stmtList->stm, eseq->exp ) ) {
+	if ( commute( stmtList->stm, eseq->exp ) ) 
+	{
 		return new StmExpList( seq( eseq->stm, stmtList->stm ),
-							    new ExpList( eseq->exp, stmtList->exps ) );
-	} else {
-		const Temp::CTemp* t = new const Temp::CTemp();
-		return new StmExpList( seq( eseq->stm, seq( new CMove( new CTemp( t ), eseq->exp ), stmtList->stm ) ),
-							    new IRTree::CExpList*( new CTemp( t ), stmtList->exps ) );
+							    new IRTree::CExpList( eseq->exp, stmtList->exps ) );
+	} 
+	else 
+	{
+		Temp::CTemp* t = new Temp::CTemp();
+		return new StmExpList( seq( eseq->stm, seq( new CMove( new CTemp( *t ), eseq->exp ), stmtList->stm ) ),
+							    new IRTree::CExpList( new CTemp( *t ), stmtList->exps ) );
 	}
 }
 
-CEseq* reorderExp( IExp* exp ) {
+CEseq* reorderExp( IExp* exp ) 
+{
 	StmExpList* l = reorder( exp->kids( ) );
 	return new CEseq( l->stm, exp->build( l->exps ) );
 }
 
-IStm* reorderStm( IStm* stm ) {
+IStm* reorderStm( IStm* stm ) 
+{
 	StmExpList* list = reorder( stm->kids( ) );
 	return seq( list->stm, stm->build( list->exps ) );
 }
 
 // Linearize
-StmtList* linear( IStm* s, StmtList* l ) {
+StmtList* linear( IStm* s, StmtList* l ) 
+{
 	CSeq* seq = dynamic_cast<CSeq*>( s );
 	if ( seq != 0 )
 		return linear( seq, l );

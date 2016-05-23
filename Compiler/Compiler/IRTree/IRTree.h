@@ -57,31 +57,49 @@ namespace IRTree {
 
 	class CExpList {
 	public:
-		CExpList( const IExp* _head, const CExpList* _tail ) : head( _head ), tail( _tail ) {}
+		CExpList( IExp* _head, CExpList* _tail ) : head( _head ), tail( _tail ) {}
 
 		void Accept( IVisitor& printer ) const
 		{
 			printer.visit( this );
 		}
 	
-		const IExp* head;
-		const CExpList* tail;
+		IExp* head;
+		CExpList* tail;
 	};
 
 
 	class StmtList {
 	public:
-		StmtList( IStm* _head, StmtList* _tail );
-		StmtList( std::vector<IStm*>& list );
+		StmtList( IStm* _head, StmtList* _tail ) : head( _head ), tail( _tail ) {}
+		StmtList( std::vector<IStm*>& list )
+		{
+			if (list.empty()) 
+			{
+				tail = 0;
+			} 
+			else 
+			{
+				head = list[0];
+				list.erase( list.begin() );
+				tail = new StmtList( list );
+			}
+		}
 		IStm* head;
 		StmtList* tail;
 
-		void toVector( std::vector<IStm*>& list );
+		void toVector( std::vector<IStm*>& list )
+		{
+			if ( head != 0 )
+				list.push_back(head);
+			if ( tail !=0 )
+				tail->toVector( list );
+		}
 	};
 
 	class StmExpList {
 	public:
-		StmExpList( IStm* _stm, CExpList* _exps );
+		StmExpList( IStm* _stm, CExpList* _exps ) : stm( _stm ), exps( _exps ) {}
 		IStm* stm;
 		CExpList* exps;
 	};
@@ -139,7 +157,7 @@ namespace IRTree {
 	// However, the abstract machine has an infinite number of temporaries.
 	class CTemp : public IExp {
 	public:
-		CTemp( const Temp::CTemp& _temp ) :
+		CTemp( Temp::CTemp _temp ) :
 			temp( _temp )
 		{}
 
@@ -156,14 +174,14 @@ namespace IRTree {
 	 		return this;
 	 	}
 
-		const Temp::CTemp temp;
+		Temp::CTemp temp;
 	};
 
 	// The application of binary operator o to operands left, right. 
 	// Subexpression left is evaluated before right.
 	class CBinop : public IExp {
 	public:
-		CBinop( BINOP_ENUM _binop, const IExp* _left, const IExp* _right ) :
+		CBinop( BINOP_ENUM _binop, IExp* _left, IExp* _right ) :
 			binop( _binop ),
 			left( _left ),
 			right( _right )
@@ -183,8 +201,8 @@ namespace IRTree {
 	 	}
 
 		const BINOP_ENUM binop;
-		const IExp* left;
-		const IExp* right;
+		IExp* left;
+		IExp* right;
 	};
 
 	// The contents of wordSize bytes of memory starting at address e 
@@ -192,7 +210,7 @@ namespace IRTree {
 	// Note that when CMem is used as the left child of a CMove, it means Уstore,Ф but anywhere else it means Уfetch.Ф
 	class CMem : public IExp {
 	public:
-		CMem( const IExp* _exp ) :
+		CMem( IExp* _exp ) :
 			exp( _exp )
 		{}
 
@@ -211,14 +229,14 @@ namespace IRTree {
 			return new CMem( kids->head );
 		}
 
-		const IExp* exp;
+		IExp* exp;
 	};
 
 	// A procedure call: the application of function f to argument list l.
 	// The subexpression f is evaluated before the arguments which are evaluated left to right.
 	class CCall : public IExp {
 	public:
-		CCall( const IExp* _func, const CExpList* _args ) :
+		CCall( IExp* _func, CExpList* _args ) :
 			func( _func ),
 			args( _args )
 		{}
@@ -236,15 +254,15 @@ namespace IRTree {
 	 		return new CCall( kids->head, kids->tail );
 	 	}
 
-		const IExp* func;
-		const CExpList* args;
+		IExp* func;
+		CExpList* args;
 	};
 
 	// The statement s is evaluated for side effects, then e is evaluated for a result.
 	// ¬ыполн€ет stm, затем вычисл€ет и возвращает exp
 	class CEseq : public IExp {
 	public:
-		CEseq( const IStm* _stm, const IExp* _exp ) :
+		CEseq( IStm* _stm, IExp* _exp ) :
 			stm( _stm ),
 			exp( _exp )
 		{}
@@ -264,8 +282,8 @@ namespace IRTree {
 	 		return 0;
 	 	}
 
-		const IStm* stm;
-		const IExp* exp;
+		IStm* stm;
+		IExp* exp;
 	};
 
 	// CMove(CTemp t, e) Evaluate e and move it into temporary t.
@@ -275,7 +293,7 @@ namespace IRTree {
 	// (dst - либо временна€ переменна€ CIRTemp, либо адрес CIRMem)
 	class CMove : public IStm {
 	public:
-		CMove( const IExp* _dst, const IExp* _src ) :
+		CMove( IExp* _dst, IExp* _src ) :
 			dst( _dst ),
 			src( _src )
 		{}
@@ -309,14 +327,14 @@ namespace IRTree {
 	 		}
 	 	}
 
-		const IExp* dst;
-		const IExp* src;
+		IExp* dst;
+		IExp* src;
 	};
 
 	// Evaluate e and discard the result.
 	class CExp : public IStm {
 	public:
-		CExp( const IExp* _exp ) :
+		CExp( IExp* _exp ) :
 			exp( _exp )
 		{}
 
@@ -335,7 +353,7 @@ namespace IRTree {
 	 		return new CExp( kids->head );
 	 	}
 	
-		const IExp* exp;
+		IExp* exp;
 	};
 
 	/*
@@ -353,12 +371,12 @@ namespace IRTree {
 	// ѕереходим в узел CIRLabel, которому соответствует метка
 	class CJump : public IStm {
 	public:
-		CJump( const IExp* _exp, const Temp::CLabel* _label ) :
+		CJump( IExp* _exp, Temp::CLabel* _label ) :
 			exp( _exp ),
 			label( _label )
 		{}
 
-		CJump( const Temp::CLabel* _label ) :
+		CJump( Temp::CLabel* _label ) :
 			label( _label )
 		{}
 
@@ -377,8 +395,8 @@ namespace IRTree {
 			return new CJump( kids->head, label );
 	 	}
 
-		const IExp* exp;
-		const Temp::CLabel* label;
+		IExp* exp;
+		Temp::CLabel* label;
 	};
 
 	/*
@@ -390,7 +408,7 @@ namespace IRTree {
 	*/
 	class CCJump : public IStm {
 	public:
-		CCJump( CJUMP_ENUM _relop, const IExp* _left, const IExp* _right, const Temp::CLabel* _iftrue,
+		CCJump( CJUMP_ENUM _relop, IExp* _left, IExp* _right, Temp::CLabel* _iftrue,
 		const Temp::CLabel* _iffalse ) :
 			relop( _relop ),
 			left( _left ),
@@ -413,9 +431,9 @@ namespace IRTree {
 	 	}
 
 		const CJUMP_ENUM relop;
-		const IExp* left;
-		const IExp* right;
-		const Temp::CLabel* const iftrue;
+		IExp* left;
+		IExp* right;
+		Temp::CLabel* iftrue;
 		const Temp::CLabel* const iffalse;
 	};
 
@@ -425,24 +443,24 @@ namespace IRTree {
 	*/
 	class CSeq : public IStm {
 	public:
-		CSeq( const IStm* _left, const IStm* _right ) : 
+		CSeq( IStm* _left, IStm* _right ) : 
 			left( _left ), 
 			right( _right )  
 		{}
 
-		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3 ) : 
+		CSeq( IStm* arg1, IStm* arg2, IStm* arg3 ) : 
 			left( arg1 ), 
 			right( new CSeq( arg2, arg3 ) ) 
 		{}
 
-		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4 ) : 
+		CSeq( IStm* arg1, IStm* arg2, IStm* arg3, IStm* arg4 ) : 
 			left( arg1 ), right( new CSeq( arg2, arg3, arg4 ) ) {}
 
-		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, const IStm* arg5 ) : 
+		CSeq( IStm* arg1, IStm* arg2, IStm* arg3, IStm* arg4, IStm* arg5 ) : 
 			left( arg1 ), right( new CSeq( arg2, arg3, arg4, arg5 ) ) {}
 
-		CSeq( const IStm* arg1, const IStm* arg2, const IStm* arg3, const IStm* arg4, 
-				const IStm* arg5, const IStm* arg6 ) : 
+		CSeq( IStm* arg1, IStm* arg2, IStm* arg3, IStm* arg4, 
+				IStm* arg5, IStm* arg6 ) : 
 			left( arg1 ), right( new CSeq( arg2, arg3, arg4, arg5, arg6 ) ) {}
 
 		virtual void Accept( IVisitor& printer ) const
@@ -462,8 +480,8 @@ namespace IRTree {
 	 		return 0;
 	 	}
 
-		const IStm* left;
-		const IStm* right;
+		IStm* left;
+		IStm* right;
 	};
 
 	/*
@@ -497,9 +515,16 @@ namespace IRTree {
 		
 	class CMoveCall: public IStm {
 	public:
-		CMoveCall( CTemp* _dst, CCall* _src);
-		CExpList* kids();
-		IStm* build( CExpList* kids);
+		CMoveCall( CTemp* _dst, CCall* _src) : dst( _dst ), src( _src ) {}
+		CExpList* kids()
+		{
+			return src->kids();
+		}
+
+		IStm* build( CExpList* kids)
+		{
+			return new CMove( dst, src->build( kids ) );
+		}
 
 		CTemp* dst;
 		CCall* src;
@@ -512,9 +537,16 @@ namespace IRTree {
 
 	class CExpCall: public IStm {
 	public:
-		CExpCall( CCall* _call);
-		CExpList* kids();
-		IStm* build( CExpList* kids );
+		CExpCall( CCall* _call) : call( _call ) {}
+		CExpList* kids()
+		{
+			return call->kids();
+		}
+
+		IStm* build( CExpList* kids )
+		{
+			return new CExp( call->build( kids ) );
+		}
 
 		CCall* call;
 

@@ -69,6 +69,7 @@
     <ClCompile Include="IRTree\Frame.cpp" />
     <ClCompile Include="IRTree\IRForestBuilder.cpp" />
     <ClCompile Include="IRTree\IRTreeToDigraphConverter.cpp" />
+    <ClCompile Include="IRTree\Optimizer.cpp" />
     <ClCompile Include="IRTree\Temp.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="classes.h" />
     <ClInclude Include="CLocation.h" />
     <ClInclude Include="grammar.h" />
+    <ClInclude Include="IRTree\BasicBlocks.h" />
     <ClInclude Include="IRTree\ConditionalWrapper.h" />
     <ClInclude Include="IRTree\Digraph.h" />
     <ClInclude Include="IRTree\Frame.h" />
@@ -106,8 +108,10 @@
     <ClInclude Include="IRTree\IRTree.h" />
     <ClInclude Include="IRTree\IRTreeToDigraphConverter.h" />
     <ClInclude Include="IRTree\IRTreeVisitor.h" />
+    <ClInclude Include="IRTree\Optimizer.h" />
     <ClInclude Include="IRTree\SubtreeWrapper.h" />
     <ClInclude Include="IRTree\Temp.h" />
+    <ClInclude Include="IRTree\Trace.h" />
     <ClInclude Include="parser.tab.hpp" />
     <ClInclude Include="PrettyPrinter.h" />
     <ClInclude Include="Program_Kolya.h">

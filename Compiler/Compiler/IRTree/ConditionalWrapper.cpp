@@ -6,8 +6,8 @@ namespace Translate {
 const IRTree::IStm* CConditionalWrapper::ToStm() const {
 	Temp::CLabel* tempLabel = new Temp::CLabel();
 	IRTree::CLabel* irLabel = new IRTree::CLabel( tempLabel );
-	const IRTree::IStm* cond = ToConditional( tempLabel, tempLabel );
-	const IRTree::CSeq* seq = new IRTree::CSeq( cond, irLabel );
+	IRTree::IStm* cond = const_cast<IRTree::IStm*>( ToConditional( tempLabel, tempLabel ) );
+	IRTree::CSeq* seq = new IRTree::CSeq( cond, irLabel );
 	return seq;
 }
 
@@ -22,36 +22,40 @@ const IRTree::IExp* CConditionalWrapper::ToExp() const {
 	IRTree::CLabel* falseIRLabel = new IRTree::CLabel( falseLabel );
 	IRTree::CSeq* seqTrue = new IRTree::CSeq( trueIRLabel, moveTrue );
 	IRTree::CSeq* seqFalse = new IRTree::CSeq( falseIRLabel, moveFalse );
-	const IRTree::IStm* cond = ToConditional( trueLabel, falseLabel );
+	IRTree::IStm* cond = const_cast<IRTree::IStm*>( ToConditional( trueLabel, falseLabel ) );
 	IRTree::CEseq* eseq = new IRTree::CEseq( cond, irTemp );
 	return eseq;
 }
 
 const IRTree::IStm* CConditionalWrapper::ToConditional( const Temp::CLabel* t, const Temp::CLabel* f ) const
 {
+	Temp::CLabel* tt = const_cast<Temp::CLabel*>( t );
+	Temp::CLabel* ff = const_cast<Temp::CLabel*>( f );
 	auto asBinop = dynamic_cast< const IRTree::CBinop* >( exp );
 	if( asBinop != nullptr ) {
-		return binopToConditional( asBinop, t, f );
+		return binopToConditional( asBinop, tt, ff );
 	} else {
-		return new IRTree::CCJump( IRTree::CJ_NotEqual, exp, new IRTree::CConst( 0 ), t, f );
+		return new IRTree::CCJump( IRTree::CJ_NotEqual, const_cast<IRTree::IExp*>( exp ), new IRTree::CConst( 0 ), tt, ff );
 	}
 }
 
 const IRTree::IStm* CConditionalWrapper::binopToConditional( const IRTree::CBinop* binop, const Temp::CLabel* t, const Temp::CLabel* f ) const
 {
+	Temp::CLabel* tt = const_cast<Temp::CLabel*>( t );
+	Temp::CLabel* ff = const_cast<Temp::CLabel*>( f );
 	switch( binop->binop ) {
 		case IRTree::B_And:
-			return andBinopToConditional( binop, t, f );
+			return andBinopToConditional( binop, tt, ff );
 		case IRTree::B_Less:
-			return new IRTree::CCJump( IRTree::CJ_Less, binop->left, binop->right, t, f );
+			return new IRTree::CCJump( IRTree::CJ_Less, binop->left, binop->right, tt, ff );
 		case IRTree::B_Greater:
-			return new IRTree::CCJump( IRTree::CJ_Greater, binop->left, binop->right, t, f );
+			return new IRTree::CCJump( IRTree::CJ_Greater, binop->left, binop->right, tt, ff );
 		case IRTree::B_Plus:
 		case IRTree::B_Minus:
 		case IRTree::B_Mul:
 		case IRTree::B_Division:
 		case IRTree::B_Xor:
-			return new IRTree::CCJump( IRTree::CJ_NotEqual, binop, new IRTree::CConst( 0 ), t, f );
+			return new IRTree::CCJump( IRTree::CJ_NotEqual, const_cast<IRTree::CBinop*>( binop ), new IRTree::CConst( 0 ), tt, ff );
 		default:
 			//assert( false );
 			return nullptr;
@@ -67,7 +71,8 @@ const IRTree::IStm* CConditionalWrapper::andBinopToConditional( const IRTree::CB
 	CConditionalWrapper leftWrapper( binop->left );
 	CConditionalWrapper rightWrapper( binop->right );
 
-	return new IRTree::CSeq( leftWrapper.ToConditional(firstTrueLabel, f), firstTrueIRLabel, rightWrapper.ToConditional( t, f ) );
+	return new IRTree::CSeq( const_cast<IRTree::IStm*>( leftWrapper.ToConditional(firstTrueLabel, f) ), 
+		firstTrueIRLabel, const_cast<IRTree::IStm*>( rightWrapper.ToConditional( t, f ) ) );
 }
 
 } 

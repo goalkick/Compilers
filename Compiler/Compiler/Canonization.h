@@ -2,26 +2,26 @@
 #include "IRTree\IRTree.h"
 
 
-//using namespace IRTree;
+using namespace IRTree;
 
 class CCanonizer: public IRTree::IVisitor {
 public:
-	virtual void visit( IRTree::CMove* node );
-	virtual void visit( IRTree::CExp* node );
-	virtual void visit( IRTree::CJump* node );
-    virtual void visit( IRTree::CCJump* node );
-    virtual void visit( IRTree::CSeq* node );
-    virtual void visit( IRTree::CLabel* node );
-    virtual void visit( IRTree::CConst* node );
-    virtual void visit( IRTree::CName* node );
-	virtual void visit( IRTree::CTemp* node );
-	virtual void visit( IRTree::CBinop* node );
-	virtual void visit( IRTree::CMem* node );
-    virtual void visit( IRTree::CCall* node );
-    virtual void visit( IRTree::CExpList* node, IRTree::CExpList*& newNode );
-	virtual void visit( IRTree::CEseq* node );
-    virtual void visit( IRTree::CMoveCall* node );
-  	virtual void visit( IRTree::CExpCall* node );
+	virtual void visit( const CMove* node );
+	virtual void visit( const CExp* node );
+	virtual void visit( const CJump* node );
+    virtual void visit( const CCJump* node );
+    virtual void visit( const CSeq* node );
+    virtual void visit( const IRTree::CLabel* node );
+    virtual void visit( const CConst* node );
+    virtual void visit( const CName* node );
+	virtual void visit( const IRTree::CTemp* node );
+	virtual void visit( const CBinop* node );
+	virtual void visit( const CMem* node );
+    virtual void visit( const CCall* node );
+    virtual void visit( const IRTree::CExpList* node, const IRTree::CExpList*& newNode );
+	virtual void visit( const CEseq* node );
+    virtual void visit( const CMoveCall* node );
+  	virtual void visit( const CExpCall* node );
 
     IRTree::INode* current_node;
 };

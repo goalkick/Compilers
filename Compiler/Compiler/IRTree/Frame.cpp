@@ -106,7 +106,7 @@ namespace Frame {
 	const IRTree::IExp* CInObject::ToExp( const Frame::CFrame* frame ) const
 	{
 		return new IRTree::CMem( new IRTree::CBinop(
-			IRTree::B_Plus, frame->ThisPointerExp(), new IRTree::CBinop( IRTree::B_Mul,
+			IRTree::B_Plus, const_cast<IRTree::IExp*>( frame->ThisPointerExp() ), new IRTree::CBinop( IRTree::B_Mul,
 			new IRTree::CConst( offsetInWords ), new IRTree::CConst( frame->WordSize() ) ) ) );
 	}
 

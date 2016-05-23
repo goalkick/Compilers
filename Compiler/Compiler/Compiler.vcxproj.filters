@@ -66,6 +66,9 @@
     <ClCompile Include="Canonization.cpp">
       <Filter>IRTree</Filter>
     </ClCompile>
+    <ClCompile Include="IRTree\Optimizer.cpp">
+      <Filter>IRTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="lexer.l">
@@ -137,6 +140,15 @@
       <Filter>IRTree</Filter>
     </ClInclude>
     <ClInclude Include="Canonization.h">
+      <Filter>IRTree</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\Optimizer.h">
+      <Filter>IRTree</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\BasicBlocks.h">
+      <Filter>IRTree</Filter>
+    </ClInclude>
+    <ClInclude Include="IRTree\Trace.h">
       <Filter>IRTree</Filter>
     </ClInclude>
   </ItemGroup>

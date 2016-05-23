@@ -16,6 +16,8 @@ class CCall;
 class CEseq;
 class CExpList;
 class CLabel;
+class CMoveCall;
+class CExpCall;
 
 
 class IVisitor {
@@ -38,6 +40,8 @@ public:
 	virtual void visit( const CEseq* node ) = 0;
 	virtual void visit( const CExpList* node ) = 0;
 	virtual void visit( const CLabel* node ) = 0;
+	virtual void visit( const CMoveCall* node ) = 0;
+	virtual void visit( const CExpCall* node ) = 0;
 
 };
 

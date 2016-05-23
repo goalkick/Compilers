@@ -44,6 +44,8 @@ public:
 	virtual void visit( const CEseq* node ) override;
 	virtual void visit( const CExpList* node ) override;
 	virtual void visit( const CLabel* node ) override;
+	virtual void visit( const CExpCall* node ) override;
+	virtual void visit( const CMoveCall* node ) override;
 
 	void Flush() { treeRepresentation.Flush(); }
 

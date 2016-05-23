@@ -137,7 +137,7 @@ void CIRTreeToDigraphConverter::visit( const CCall* node )
 {
 	node->func->Accept( *this );
 	string funcString = lastNodeName;
-	node->args.Accept( *this );
+	node->args->Accept( *this );
 	string argsString = lastNodeName;
 	nextNameWithId( "call" );
 	treeRepresentation.AddEdge( lastNodeName, funcString, "func" );
@@ -184,6 +184,16 @@ void CIRTreeToDigraphConverter::visit( const CLabel* node )
 	nextNameWithId( string( "label:" ) + node->label->Name() );
 }
 
+void CIRTreeToDigraphConverter::visit( const CMoveCall* node )
+{
+	// nothing
+}
+
+void CIRTreeToDigraphConverter::visit( const CExpCall* node )
+{
+	// nothing
+}
+
 void CIRTreeToDigraphConverter::nextNameWithId( std::string label )
 {
 	lastNodeName = label + string( "__id_" ) + to_string( minId++ );
@@ -209,5 +219,6 @@ void CIRTreeToDigraphConverter::LinkedVisit( const IExp* node )
 		treeRepresentation.AddEdge( fromName, toName, "next" );
 	}
 }
+
 
 }
