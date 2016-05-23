@@ -30,7 +30,7 @@ public:
     void addStm( IStm* s )
 	{
 		lastStm->tail = new StmtList( s, nullptr );
-		lastStm = std::make_shared<IRTree::StmtList>( lastStm->tail, nullptr );
+		lastStm = std::make_shared<IRTree::StmtList>( lastStm->tail );
 	}
 
     void doStms( std::shared_ptr<StmtList> l ) 
