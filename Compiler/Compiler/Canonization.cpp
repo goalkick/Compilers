@@ -16,6 +16,9 @@ void CCanonizer::visit( const CExp* node ) {
 	current_node = doStm( new CExp( arg ) );
 }
 
+void CCanonizer::visit( const IRTree::CExpList* node ) {
+}
+
 void CCanonizer::visit( const CJump* node ) {
 	if ( node->exp != 0 ) {
 		node->exp->Accept( *this );

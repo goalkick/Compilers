@@ -16,10 +16,10 @@ public:
 		blocks = b;
 		for (StmtListList* l = b->blocks; l != nullptr; l = l->tail) {
 			if (static_cast<IRTree::CLabel*>(l->head->head)->label == 0) {
-				cerr << "BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa" << endl;
+				// cerr << "BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa" << endl;
 				exit(1);
 			}
-			table[static_cast<LABEL*>(l->head->head)->label] = l->head;
+			table[static_cast<IRTree::CLabel*>(l->head->head)->label] = l->head;
 			//cout << "1" << endl;
 		}
 		stms = getNext();
@@ -38,7 +38,7 @@ public:
 			CJump* jump = dynamic_cast<CJump*>( s );
 			if ( jump != 0 ) 
 			{
-				std::unordered_map<const Temp::CLabel*, shared_ptr<StmtList>>::iterator it = table.find(jump->target);
+				std::unordered_map<const Temp::CLabel*, shared_ptr<StmtList>>::iterator it = table.find( jump->label );
 				if ( it != table.end() ) 
 				{
 					last->tail = it->second.get();
@@ -64,18 +64,20 @@ public:
 						l = itFalse->second;
 						//cout << "ohoho" << endl;
 					} else if ( itTrue != table.end() ) {
-						last->tail->head = new CCJump(cjump->relop, cjump->left, cjump->right, cjump->iffalse, cjump->iftrue);
+						last->tail->head = new CCJump(cjump->relop, const_cast<IRTree::IExp*>( cjump->left ), const_cast<IRTree::IExp*>( cjump->right ),
+							const_cast<Temp::CLabel*>( cjump->iffalse ), const_cast<Temp::CLabel*>( cjump->iftrue ) );
 						last->tail->tail = itTrue->second.get();
 						l = itTrue->second;
 					} else {
-						IRTree::CLabel* ff = new IRTree::CLabel();
-						last->tail->head = new CCJump(cjump->relop, cjump->left, cjump->right, cjump->iffalse, cjump->iftrue);
-						last->tail->tail = make_shared<StmtList>(new IRTree::CLabel(ff),
-																 make_shared<StmtList>(new CJump(cjump->iffalse), getNext()));
+						Temp::CLabel* ff = new Temp::CLabel();
+						last->tail->head = new CCJump( cjump->relop, const_cast<IRTree::IExp*>( cjump->left ), const_cast<IRTree::IExp*>( cjump->right ), 
+							const_cast<Temp::CLabel*>( cjump->iffalse ), const_cast<Temp::CLabel*>( cjump->iftrue ) );
+						last->tail->tail = new StmtList( new IRTree::CLabel(ff),
+							new StmtList( new CJump( const_cast<Temp::CLabel*>( cjump->iffalse ) ), getNext().get()));
 						return;
 					}
 				} else {
-					std::cerr << "BOOOOOOOOOOOM" << std::endl;
+					//std::cerr << "BOOOOOOOOOOOM" << std::endl;
 				}
 			}
 		}
@@ -84,10 +86,10 @@ public:
 	shared_ptr<StmtList> getNext()
 	{
 		if (blocks->blocks == nullptr) {
-			return make_shared<StmtList>( new Temp::CLabel(blocks->done), nullptr );
+			return make_shared<StmtList>( new IRTree::CLabel( blocks->done ), nullptr );
 		} else {
 			shared_ptr<StmtList> s = blocks->blocks->head;
-			Temp::CLabel* label = static_cast<Temp::CLabel*>(s->head);
+			IRTree::CLabel* label = static_cast<IRTree::CLabel*>( s->head );
 			std::unordered_map<const Temp::CLabel*, shared_ptr<StmtList>>::iterator itTrue = table.find( label->label );
 			if (itTrue != table.end()) {
 				trace(s);

@@ -1,84 +1,66 @@
-﻿Build started 22.05.2016 16:21:18.
-     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Rebuild target(s)).
-     1>CustomBuild:
-          compiling flex
-         Compiling bison
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Canonization.cpp CSymbol.cpp IRTree\ConditionalWrapper.cpp IRTree\Digraph.cpp IRTree\Frame.cpp IRTree\IRForestBuilder.cpp IRTree\IRTreeToDigraphConverter.cpp IRTree\Optimizer.cpp IRTree\Temp.cpp lexer.cpp main.cpp parser.tab.cpp PrettyPrinter.cpp SymbolsTable.cpp SymbolsTableVisitor.cpp TypeChecker.cpp
-         TypeChecker.cpp
-         SymbolsTableVisitor.cpp
-         SymbolsTable.cpp
-     1>c:\users\elena\compilers\compiler\compiler\symbolstable.cpp(99): warning C4018: '>=' : signed/unsigned mismatch
-         PrettyPrinter.cpp
-         parser.tab.cpp
-     1>c:\users\elena\compilers\compiler\compiler\parser.tab.cpp(1318): warning C4065: switch statement contains 'default' but no 'case' labels
-         main.cpp
-         lexer.cpp
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(57): warning C4005: 'INT8_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(60) : see previous definition of 'INT8_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(58): warning C4005: 'INT16_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(63) : see previous definition of 'INT16_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(59): warning C4005: 'INT32_MIN' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(66) : see previous definition of 'INT32_MIN'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(61): warning C4005: 'INT8_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(69) : see previous definition of 'INT8_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(62): warning C4005: 'INT16_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(72) : see previous definition of 'INT16_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(63): warning C4005: 'INT32_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(75) : see previous definition of 'INT32_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(65): warning C4005: 'UINT8_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(78) : see previous definition of 'UINT8_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(66): warning C4005: 'UINT16_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(81) : see previous definition of 'UINT16_MAX'
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdint.h(67): warning C4005: 'UINT32_MAX' : macro redefinition
-                 c:\users\elena\compilers\compiler\compiler\lexer.cpp(84) : see previous definition of 'UINT32_MAX'
-     1>c:\users\elena\compilers\compiler\compiler\lexer.l(67): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-         Temp.cpp
+﻿Build started 24.05.2016 2:27:09.
+     1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Canonization.cpp IRTree\Optimizer.cpp
          Optimizer.cpp
-     1>c:\users\elena\compilers\compiler\compiler\canonization.h(7): error C2011: 'CCanonizer' : 'class' type redefinition
-                 c:\users\elena\compilers\compiler\compiler\canonization.h(7) : see declaration of 'CCanonizer'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(10): error C2079: 'canonizer' uses undefined class 'CCanonizer'
      1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(11): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(12): error C2664: 'IRTree::INode::Accept' : cannot convert parameter 1 from 'int' to 'IRTree::IVisitor &'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(14): error C2228: left of '.current_node' must have class/struct/union
-                 type is 'int'
      1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(39): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(47): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(50): error C2065: 'TraceShedule' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(50): error C2065: 'traceSh' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(50): error C2061: syntax error : identifier 'TraceShedule'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(51): error C2065: 'traceSh' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(51): error C2227: left of '->stms' must point to class/struct/union/generic type
-                 type is ''unknown-type''
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(57): error C2065: 'CIRPrinter' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(57): error C2146: syntax error : missing ';' before identifier 'ir_print_vis'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(57): error C3861: 'ir_print_vis': identifier not found
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(58): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(62): error C2065: 'ir_print_vis' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(67): error C2065: 'CIRPrinter' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(67): error C2146: syntax error : missing ';' before identifier 'ir_print_vis'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(67): error C3861: 'ir_print_vis': identifier not found
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(68): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(70): error C2065: 'endl' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(72): error C2065: 'ir_print_vis' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(81): error C2065: 'CIRPrinter' : undeclared identifier
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(81): error C2146: syntax error : missing ';' before identifier 'ir_print_vis'
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(81): error C3861: 'ir_print_vis': identifier not found
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(82): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(88): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(89): error C2065: 'ir_print_vis' : undeclared identifier
-         IRTreeToDigraphConverter.cpp
-         IRForestBuilder.cpp
-         Frame.cpp
-         Digraph.cpp
-         ConditionalWrapper.cpp
-         CSymbol.cpp
+     1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): error C2664: 'IRTree::StmtList::StmtList(std::vector<_Ty> &)' : cannot convert parameter 1 from 'IRTree::StmtList *' to 'std::vector<_Ty> &'
+                 with
+                 [
+                     _Ty=IRTree::IStm *
+                 ]
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::StmtList*&>(_V0_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&
+                 ]
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::StmtList*&>(_V0_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&
+                 ]
+                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(33) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::StmtList*&>(_V0_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): error C2664: 'IRTree::StmtList::StmtList(IRTree::IStm *,IRTree::StmtList *)' : cannot convert parameter 2 from 'std::shared_ptr<_Ty>' to 'IRTree::StmtList *'
+                 with
+                 [
+                     _Ty=IRTree::StmtList
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::CJump,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::CJump *,
+                     _V1_t=std::shared_ptr<IRTree::StmtList> &
+                 ]
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::CJump,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::CJump *,
+                     _V1_t=std::shared_ptr<IRTree::StmtList> &
+                 ]
+                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(49) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::CJump*,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::CJump *,
+                     _V1_t=std::shared_ptr<IRTree::StmtList> &
+                 ]
          Canonization.cpp
          Generating Code...
-     1>c:\users\elena\compilers\compiler\compiler\canonization.cpp(210): warning C4715: 'doExp' : not all control paths return a value
-     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Rebuild target(s)) -- FAILED.
+     1>c:\users\elena\compilers\compiler\compiler\canonization.cpp(213): warning C4715: 'doExp' : not all control paths return a value
+     1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:53.76
+Time Elapsed 00:00:01.90

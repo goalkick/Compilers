@@ -1,3 +1,5 @@
+#ifndef BASICBLOCKS_HEADER
+#define BASICBLOCKS_HEADER
 #include "IRTree.h"
 
 using namespace IRTree;
@@ -12,7 +14,7 @@ public:
     StmtListList* tail;
 };
 
-class BasicBlocks{
+class BasicBlocks {
 public:
 	StmtListList* blocks;
 	const Temp::CLabel* done;
@@ -56,3 +58,5 @@ public:
 };
 
 }
+
+#endif

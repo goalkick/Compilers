@@ -1,6 +1,6 @@
 #include "Optimizer.h"
 #include "BasicBlocks.h"
-//#include "../TraceShedule.h"
+#include "Trace.h"
 #include "../Canonization.h"
 
 namespace Canon {
@@ -42,7 +42,8 @@ namespace Canon {
 		}
 	}
 
-	void Trace( std::vector<std::shared_ptr<StmtList>>& linearized, std::vector<std::shared_ptr<StmtList>>& result ) {
+	void Trace( std::vector<std::shared_ptr<StmtList>>& linearized, std::vector<std::shared_ptr<StmtList>>& result ) 
+	{
 		result.clear();
 		for ( int i = 0; i < linearized.size(); ++i ) {
 			std::shared_ptr<StmtList> listLin = linearized[i];
@@ -52,8 +53,8 @@ namespace Canon {
 			result.push_back(traced);
 		}
 	}
-
-	void Print(std::ostream& out, std::ostream& gv, std::vector<INode*>& trees) {
+	/*
+	void Print( std::ostream& out, std::ostream& gv, std::vector<INode*>& trees ) {
 		CIRPrinter ir_print_vis( out, gv );
 		for ( int i = 0; i < trees.size(); ++i ) {
 			out << "=================================" << std::endl;
@@ -89,5 +90,5 @@ namespace Canon {
 				trees[j]->Accept( &ir_print_vis );
 			}
 		}
-	}
+	}*/
 }

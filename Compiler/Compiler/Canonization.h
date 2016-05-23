@@ -1,10 +1,12 @@
+#ifndef CANONIZATION_HEADER
+#define CANONIZATION_HEADER
 #include "visitor.h"
 #include "IRTree\IRTree.h"
 
 
 using namespace IRTree;
 
-class CCanonizer: public IRTree::IVisitor {
+class CCanonizer : public IRTree::IVisitor {
 public:
 	virtual void visit( const CMove* node );
 	virtual void visit( const CExp* node );
@@ -22,6 +24,7 @@ public:
 	virtual void visit( const CEseq* node );
     virtual void visit( const CMoveCall* node );
   	virtual void visit( const CExpCall* node );
+	virtual void visit( const IRTree::CExpList* node ); // Надо ли?
 
     IRTree::INode* current_node;
 };
@@ -46,3 +49,5 @@ IRTree::IStm* reorderStm( IRTree::IStm* stm );
 IRTree::StmtList* linear( IRTree::IStm* s, IRTree::StmtList* l );
 IRTree::StmtList* linear( IRTree::CSeq* s, IRTree::StmtList* l );
 IRTree::StmtList* linearize( IRTree::IStm* s );
+
+#endif
