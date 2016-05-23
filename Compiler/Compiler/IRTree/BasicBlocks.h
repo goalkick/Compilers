@@ -30,7 +30,7 @@ public:
     void addStm( IStm* s )
 	{
 		lastStm->tail = new StmtList( s, nullptr );
-		lastStm = std::make_shared<IRTree::StmtList>( lastStm->tail );
+		lastStm = std::make_shared<IRTree::StmtList>( lastStm->tail, nullptr );
 	}
 
     void doStms( std::shared_ptr<StmtList> l ) 
@@ -39,14 +39,14 @@ public:
 			doStms( std::make_shared<StmtList>( new CJump( const_cast<Temp::CLabel*>( done ) ), nullptr ));
 		} else {
 			CJump* jump = dynamic_cast<CJump*>( l->head );
-			CJump* cjump = dynamic_cast<CJump*>( l->head );
+			CCJump* cjump = dynamic_cast<CCJump*>( l->head );
 			if (( jump != 0 ) || ( cjump != 0 )) {
 				addStm( l->head );
 				mkBlocks( std::make_shared<StmtList>( l->tail ) );
 			} else {
 				IRTree::CLabel* label = dynamic_cast<IRTree::CLabel*>( l->head );
 				if ( label != 0 ) {
-					doStms( std::make_shared<StmtList>( new CJump( const_cast<Temp::CLabel*>( label->label ) ), l ));
+					doStms( std::make_shared<StmtList>( new StmtList( new CJump( const_cast<Temp::CLabel*>( label->label ) ), l.get() )));
 				} else {
 					addStm( l->head );
 					doStms( std::make_shared<StmtList>( l->tail ) );

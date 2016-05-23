@@ -1,11 +1,34 @@
-﻿Build started 24.05.2016 2:27:09.
+﻿Build started 24.05.2016 2:52:11.
      1>Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Canonization.cpp IRTree\Optimizer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt IRTree\Optimizer.cpp
          Optimizer.cpp
      1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(11): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(39): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\elena\compilers\compiler\compiler\irtree\optimizer.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): error C2664: 'IRTree::StmtList::StmtList(IRTree::IStm *,IRTree::StmtList *)' : cannot convert parameter 1 from 'IRTree::StmtList *' to 'IRTree::IStm *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::StmtList*&,nullptr>(_V0_t,_V1_t &&)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&,
+                     _V1_t=nullptr
+                 ]
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::StmtList*&,nullptr>(_V0_t,_V1_t &&)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&,
+                     _V1_t=nullptr
+                 ]
+                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(33) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::StmtList*&,nullptr>(_V0_t,_V1_t &&)' being compiled
+                 with
+                 [
+                     _Ty=IRTree::StmtList,
+                     _V0_t=IRTree::StmtList *&,
+                     _V1_t=nullptr
+                 ]
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): error C2664: 'IRTree::StmtList::StmtList(std::vector<_Ty> &)' : cannot convert parameter 1 from 'IRTree::StmtList *' to 'std::vector<_Ty> &'
                  with
                  [
@@ -23,44 +46,14 @@
                      _Ty=IRTree::StmtList,
                      _V0_t=IRTree::StmtList *&
                  ]
-                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(33) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::StmtList*&>(_V0_t)' being compiled
+                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(45) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::StmtList*&>(_V0_t)' being compiled
                  with
                  [
                      _Ty=IRTree::StmtList,
                      _V0_t=IRTree::StmtList *&
                  ]
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(873): error C2664: 'IRTree::StmtList::StmtList(IRTree::IStm *,IRTree::StmtList *)' : cannot convert parameter 2 from 'std::shared_ptr<_Ty>' to 'IRTree::StmtList *'
-                 with
-                 [
-                     _Ty=IRTree::StmtList
-                 ]
-                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::CJump,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
-                 with
-                 [
-                     _Ty=IRTree::StmtList,
-                     _V0_t=IRTree::CJump *,
-                     _V1_t=std::shared_ptr<IRTree::StmtList> &
-                 ]
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\memory(972) : see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<IRTree::CJump,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
-                 with
-                 [
-                     _Ty=IRTree::StmtList,
-                     _V0_t=IRTree::CJump *,
-                     _V1_t=std::shared_ptr<IRTree::StmtList> &
-                 ]
-                 c:\users\elena\compilers\compiler\compiler\irtree\basicblocks.h(49) : see reference to function template instantiation 'std::shared_ptr<_Ty> std::make_shared<IRTree::StmtList,IRTree::CJump*,std::shared_ptr<_Ty>&>(_V0_t &&,_V1_t)' being compiled
-                 with
-                 [
-                     _Ty=IRTree::StmtList,
-                     _V0_t=IRTree::CJump *,
-                     _V1_t=std::shared_ptr<IRTree::StmtList> &
-                 ]
-         Canonization.cpp
-         Generating Code...
-     1>c:\users\elena\compilers\compiler\compiler\canonization.cpp(213): warning C4715: 'doExp' : not all control paths return a value
      1>Done Building Project "C:\Users\Elena\Compilers\Compiler\Compiler\Compiler.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.90
+Time Elapsed 00:00:00.96
